@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\Burls.Core.csproj": {}
+    "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\Burls.Core.csproj": {}
   },
   "projects": {
-    "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\Burls.Core.csproj": {
+    "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\Burls.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\Burls.Core.csproj",
+        "projectUniqueName": "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\Burls.Core.csproj",
         "projectName": "Burls.Core",
-        "projectPath": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\Burls.Core.csproj",
+        "projectPath": "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\Burls.Core.csproj",
         "packagesPath": "C:\\Users\\YvCr\\.nuget\\packages\\",
-        "outputPath": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\obj\\",
+        "outputPath": "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Windows\\Burls.Windows.csproj",
+      "projectUniqueName": "C:\\Workspace\\GitHub\\Burls\\Burls.Windows\\Burls.Windows.csproj",
       "projectName": "Burls",
-      "projectPath": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Windows\\Burls.Windows.csproj",
+      "projectPath": "C:\\Workspace\\GitHub\\Burls\\Burls.Windows\\Burls.Windows.csproj",
       "packagesPath": "C:\\Users\\YvCr\\.nuget\\packages\\",
-      "outputPath": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Windows\\obj\\",
+      "outputPath": "C:\\Workspace\\GitHub\\Burls\\Burls.Windows\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -57,8 +57,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\Burls.Core.csproj": {
-              "projectPath": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\Burls.Core.csproj"
+            "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\Burls.Core.csproj": {
+              "projectPath": "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\Burls.Core.csproj"
             }
           }
         }

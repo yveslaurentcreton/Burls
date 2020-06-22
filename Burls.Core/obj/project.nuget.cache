@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WauS9VptMma7BG6WLSbzRY34fxJAMSUPdCZKTXaKdt4FAu3TUBkR5iKCsuab+pgbVumO0QOXqChfwNNK6lReOw==",
+  "dgSpecHash": "a3u7elT6t4vu3PeZ++Ts74VBTijzqLsMDVHUGMQwQjrXPe78pbImxxy8Qx77VWlFiM9YKxkj2qii7rcwJ322MA==",
   "success": true,
-  "projectFilePath": "C:\\Workspace\\GitHub\\Burls\\Burls\\Burls.Core\\Burls.Core.csproj",
+  "projectFilePath": "C:\\Workspace\\GitHub\\Burls\\Burls.Core\\Burls.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\YvCr\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\YvCr\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
