@@ -1,0 +1,9 @@
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\bin\Debug\netstandard2.0\Burls.Core.deps.json
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\bin\Debug\netstandard2.0\Burls.Core.dll
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\bin\Debug\netstandard2.0\Burls.Core.pdb
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\obj\Debug\netstandard2.0\Burls.Core.csprojAssemblyReference.cache
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\obj\Debug\netstandard2.0\Burls.Core.AssemblyInfoInputs.cache
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\obj\Debug\netstandard2.0\Burls.Core.AssemblyInfo.cs
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\obj\Debug\netstandard2.0\Burls.Core.csproj.CoreCompileInputs.cache
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\obj\Debug\netstandard2.0\Burls.Core.dll
+C:\Workspace\GitHub\Burls\Burls\Burls.Core\obj\Debug\netstandard2.0\Burls.Core.pdb
