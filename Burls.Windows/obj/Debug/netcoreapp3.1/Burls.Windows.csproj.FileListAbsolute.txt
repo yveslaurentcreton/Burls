@@ -29,11 +29,9 @@ C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Burls.pdb
 C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Burls.Core.dll
 C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Burls.Core.pdb
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.Windows.csprojAssemblyReference.cache
-C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls_MarkupCompile.cache
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls_MarkupCompile.lref
-C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\MainWindow.baml
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.g.resources
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.Windows.AssemblyInfoInputs.cache
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.Windows.AssemblyInfo.cs
@@ -42,3 +40,13 @@ C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.Windows.cs
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.dll
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.pdb
 C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Burls.Windows.genruntimeconfig.cache
+C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Views\MainView.g.cs
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\CommonServiceLocator.dll
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Prism.dll
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Prism.Unity.Wpf.dll
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Prism.Wpf.dll
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Unity.Abstractions.dll
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\Unity.Container.dll
+C:\Workspace\GitHub\Burls\Burls.Windows\obj\Debug\netcoreapp3.1\Views\MainView.baml
+C:\Workspace\GitHub\Burls\Burls.Windows\bin\Debug\netcoreapp3.1\MintPlayer.PlatformBrowser.dll
