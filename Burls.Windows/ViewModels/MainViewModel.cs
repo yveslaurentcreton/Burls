@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Burls.Windows.ViewModels
     public class MainViewModel : BindableBase
     {
         private readonly IBrowserService _browserService;
+
+        public string RequestUrl { get; set; } = @"https://github.com/";
 
         private IReadOnlyList<Browser> _browsers;
         public IReadOnlyList<Browser> Browsers
@@ -65,7 +68,7 @@ namespace Burls.Windows.ViewModels
 
         private void Use()
         {
-            throw new NotImplementedException();
+            Browser.NavigateToUrl(RequestUrl, Profile);
         }
     }
 }
