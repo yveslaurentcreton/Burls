@@ -34,6 +34,20 @@ namespace Burls.Windows.Services
                 var fileInfo = new FileInfo(x.Version.FileName);
                 var profiles = _profileService.GetProfiles(fileInfo.Name);
 
+                // Determine specific properties for specific browsers
+                string profileArgumentName;
+
+                switch ((new FileInfo(x.Version.FileName)).Name)
+                {
+                    case Browser.CHROMEFILENAME:
+                    case Browser.NEWEDGEFILENAME:
+                        profileArgumentName = "--profile-directory";
+                        break;
+                    default:
+                        profileArgumentName = null;
+                        break;
+                }
+
                 return new Browser(x.Name,
                     x.ExecutablePath,
                     x.IconPath,
@@ -41,6 +55,7 @@ namespace Burls.Windows.Services
                     x.Version,
                     x.FileAssociations,
                     x.UrlAssociations,
+                    profileArgumentName,
                     profiles);
             }).ToList();
         }

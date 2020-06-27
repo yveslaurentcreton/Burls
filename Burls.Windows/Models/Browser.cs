@@ -25,7 +25,8 @@ namespace Burls.Windows.Models
         public FileVersionInfo Version { get; }
         public ReadOnlyDictionary<string, object> FileAssociations { get; }
         public ReadOnlyDictionary<string, object> UrlAssociations { get; }
-        public IReadOnlyList<Profile> Profiles { get; set; }
+        public string ProfileArgumentName { get; }
+        public IReadOnlyList<Profile> Profiles { get; }
 
         public Browser(
             string name,
@@ -35,6 +36,7 @@ namespace Burls.Windows.Models
             FileVersionInfo version,
             ReadOnlyDictionary<string, object> fileAssociations,
             ReadOnlyDictionary<string, object> urlAssociations,
+            string profileArgumentName,
             IReadOnlyList<Profile> profiles)
         {
             Name = name;
@@ -45,7 +47,30 @@ namespace Burls.Windows.Models
             FileAssociations = fileAssociations;
             UrlAssociations = urlAssociations;
             IconImageSource = Icon.ExtractAssociatedIcon(IconPath).ToImageSource();
+            ProfileArgumentName = profileArgumentName;
             Profiles = profiles;
+        }
+
+        private string GetProfileArgument(Profile profile)
+        {
+            var profileArgument = string.Empty;
+
+            if (!string.IsNullOrEmpty(ProfileArgumentName))
+            {
+                profileArgument = $"{ProfileArgumentName}=\"{profile.Name}\"";
+            }
+
+            return profileArgument;
+        }
+
+        public void NavigateToUrl(string url, Profile profile)
+        {
+            var profileArgument = GetProfileArgument(profile);
+            var urlArgument = url;
+            var argumentList = new List<string>() { profileArgument, urlArgument };
+            var arguments = string.Join(' ', argumentList);
+
+            Process.Start(ExecutablePath, arguments);
         }
     }
 }
