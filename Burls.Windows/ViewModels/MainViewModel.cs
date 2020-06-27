@@ -15,7 +15,18 @@ namespace Burls.Windows.ViewModels
     {
         private readonly IBrowserService _browserService;
 
-        public IReadOnlyList<Browser> Browsers { get; set; }
+        private IReadOnlyList<Browser> _browsers;
+        public IReadOnlyList<Browser> Browsers
+        {
+            get { return _browsers; }
+            set 
+            { 
+                _browsers = value;
+                RaisePropertyChanged();
+
+                Browser = Browsers?.FirstOrDefault();
+            }
+        }
 
         private Browser _browser;
         public Browser Browser
@@ -24,6 +35,19 @@ namespace Burls.Windows.ViewModels
             set 
             { 
                 _browser = value;
+                RaisePropertyChanged();
+
+                Profile = Browser?.Profiles?.FirstOrDefault();
+            }
+        }
+
+        private Profile _profile;
+        public Profile Profile
+        {
+            get { return _profile; }
+            set 
+            {
+                _profile = value;
                 RaisePropertyChanged();
             }
         }
