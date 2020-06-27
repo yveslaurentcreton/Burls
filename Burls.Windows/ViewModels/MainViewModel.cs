@@ -16,7 +16,7 @@ namespace Burls.Windows.ViewModels
     {
         private readonly IBrowserService _browserService;
 
-        public string RequestUrl { get; set; } = @"https://github.com/";
+        public string RequestUrl { get; set; }
 
         private IReadOnlyList<Browser> _browsers;
         public IReadOnlyList<Browser> Browsers
@@ -60,6 +60,7 @@ namespace Burls.Windows.ViewModels
         public MainViewModel(IBrowserService browserService)
         {
             _browserService = browserService;
+            RequestUrl = (App.Current as App).RequestUrl;
             Browsers = browserService.GetBrowsers();
 
             UseCommand = new DelegateCommand(() => Use(), () => Browser != null)
