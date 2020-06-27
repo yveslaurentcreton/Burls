@@ -13,6 +13,10 @@ namespace Burls.Windows.Models
 {
     public class Browser
     {
+        public const string CHROMEFILENAME = "chrome.exe";
+        public const string OLDEDGEFILENAME = "MicrosoftEdge.exe";
+        public const string NEWEDGEFILENAME = "msedge.exe";
+
         public string Name { get; }
         public string ExecutablePath { get; }
         public string IconPath { get; }
@@ -21,6 +25,7 @@ namespace Burls.Windows.Models
         public FileVersionInfo Version { get; }
         public ReadOnlyDictionary<string, object> FileAssociations { get; }
         public ReadOnlyDictionary<string, object> UrlAssociations { get; }
+        public IReadOnlyList<Profile> Profiles { get; set; }
 
         public Browser(
             string name,
@@ -29,7 +34,8 @@ namespace Burls.Windows.Models
             int iconIndex,
             FileVersionInfo version,
             ReadOnlyDictionary<string, object> fileAssociations,
-            ReadOnlyDictionary<string, object> urlAssociations)
+            ReadOnlyDictionary<string, object> urlAssociations,
+            IReadOnlyList<Profile> profiles)
         {
             Name = name;
             ExecutablePath = executablePath;
@@ -39,6 +45,7 @@ namespace Burls.Windows.Models
             FileAssociations = fileAssociations;
             UrlAssociations = urlAssociations;
             IconImageSource = Icon.ExtractAssociatedIcon(IconPath).ToImageSource();
+            Profiles = profiles;
         }
     }
 }

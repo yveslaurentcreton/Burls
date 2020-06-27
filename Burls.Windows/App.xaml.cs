@@ -25,6 +25,7 @@ namespace Burls.Windows
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IBrowserService, BrowserService>();
+            containerRegistry.Register<IProfileService, ProfileService>();
         }
     }
 }
