@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Burls.Windows": {
+      "commandName": "Project",
+      "commandLineArgs": "https://github.com/"
+    }
+  }
+}

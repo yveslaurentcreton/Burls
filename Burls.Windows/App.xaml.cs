@@ -17,6 +17,15 @@ namespace Burls.Windows
     /// </summary>
     public partial class App : PrismApplication
     {
+        public string RequestUrl { get; private set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            RequestUrl = e.Args?.FirstOrDefault();
+
+            base.OnStartup(e);
+        }
+
         protected override Window CreateShell()
         {
             return Container.Resolve<MainView>();
