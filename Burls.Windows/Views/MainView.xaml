@@ -7,37 +7,51 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
-        Title="Burls" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Burls" Height="500" Width="850" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <DockPanel Margin="10,10,5,10">
-            <DockPanel DockPanel.Dock="Top" Margin="0,0,0,10">
-                <Label Content="URL:" />
-                <TextBox Text="{Binding Path=RequestUrl}" VerticalContentAlignment="Center" />
-            </DockPanel>
-            <ListBox DockPanel.Dock="Bottom" ItemsSource="{Binding Path=BrowserProfiles}" SelectedItem="{Binding Path=BrowserProfile}" DisplayMemberPath="Name" />
+        <DockPanel DockPanel.Dock="Top" Margin="10,10,10,0">
+            <Label Content="URL:" />
+            <TextBox Text="{Binding Path=RequestUrl}" VerticalContentAlignment="Center" />
         </DockPanel>
+        
+        <ItemsControl x:Name="BrowserProfiles" ItemsSource="{Binding Path=BrowserProfiles}" Grid.Row="1" Margin="10,5,10,5">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
 
-        <Grid Grid.Column="1" Margin="5,10,10,10">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+                    <UniformGrid x:Name="wpBrowserProfiles" Columns="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,10,10,10">
+                        <UniformGrid.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Margin" Value="5" />
+                            </Style>
+                        </UniformGrid.Resources>
+                    </UniformGrid>
 
-            <StackPanel Margin="0,0,0,10">
-                <Image Source="{Binding Path=BrowserProfile.Browser.IconImageSource}" Width="{Binding Path=BrowserProfile.Browser.IconImageSource.Width}" Height="{Binding Path=BrowserProfile.Browser.IconImageSource.Height}" />
-                <Label Content="{Binding Path=BrowserProfile.Browser.Name}" />
-                <Label Content="{Binding Path=BrowserProfile.Browser.ExecutablePath}" />
-                <Label Content="{Binding Path=BrowserProfile.Browser.IconPath}" />
-                <Label Content="{Binding Path=BrowserProfile.Browser.IconIndex}" />
-                <Label Content="{Binding Path=BrowserProfile.Browser.Version}" />
-            </StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="BrowserProfileButtonWidth" />
+                        </Grid.ColumnDefinitions>
+                        <Button Command="{Binding ElementName=BrowserProfiles, Path=DataContext.UseCommand}" CommandParameter="{Binding}" Width="190">
+                            <Button.Content>
+                                <StackPanel Orientation="Vertical">
+                                    <Image Source="{Binding Path=Browser.IconImageSource}" Width="{Binding Path=Browser.IconImageSource.Width}" Height="{Binding Path=Browser.IconImageSource.Height}" />
+                                    <Label Content="{Binding Path=Name}" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
 
-            <Button Command="{Binding Path=UseCommand}" Content="Use" Grid.Row="1" />
-        </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>
