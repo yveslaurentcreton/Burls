@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Burls.Windows.ViewModels
@@ -59,6 +60,8 @@ namespace Burls.Windows.ViewModels
         private void Use(BrowserProfile browserProfile)
         {
             browserProfile.NavigateToUrl(RequestUrl);
+
+            Application.Current.Shutdown();
         }
     }
 }
