@@ -26,19 +26,6 @@ namespace Burls.Windows.ViewModels
             {
                 _browserProfiles = value;
                 RaisePropertyChanged();
-
-                BrowserProfile = BrowserProfiles?.FirstOrDefault();
-            }
-        }
-
-        private BrowserProfile _browserProfile;
-        public BrowserProfile BrowserProfile
-        {
-            get { return _browserProfile; }
-            set
-            {
-                _browserProfile = value;
-                RaisePropertyChanged();
             }
         }
 
@@ -50,8 +37,7 @@ namespace Burls.Windows.ViewModels
             RequestUrl = (System.Windows.Application.Current as App).RequestUrl;
             BrowserProfiles = GetBrowserProfiles();
 
-            UseCommand = new DelegateCommand(() => Use(), () => BrowserProfile != null)
-                .ObservesProperty(() => BrowserProfile);
+            UseCommand = new DelegateCommand<BrowserProfile>(Use);
         }
 
         private IReadOnlyList<BrowserProfile> GetBrowserProfiles()
@@ -70,9 +56,9 @@ namespace Burls.Windows.ViewModels
             return browserProfiles;
         }
 
-        private void Use()
+        private void Use(BrowserProfile browserProfile)
         {
-            BrowserProfile.NavigateToUrl(RequestUrl);
+            browserProfile.NavigateToUrl(RequestUrl);
         }
     }
 }
