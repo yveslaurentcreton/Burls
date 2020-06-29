@@ -18,39 +18,26 @@ namespace Burls.Windows.ViewModels
 
         public string RequestUrl { get; set; }
 
-        private IReadOnlyList<Browser> _browsers;
-        public IReadOnlyList<Browser> Browsers
+        private IReadOnlyList<BrowserProfile> _browserProfiles;
+        public IReadOnlyList<BrowserProfile> BrowserProfiles
         {
-            get { return _browsers; }
-            set 
-            { 
-                _browsers = value;
-                RaisePropertyChanged();
-
-                Browser = Browsers?.FirstOrDefault();
-            }
-        }
-
-        private Browser _browser;
-        public Browser Browser
-        {
-            get { return _browser; }
-            set 
-            { 
-                _browser = value;
-                RaisePropertyChanged();
-
-                Profile = Browser?.Profiles?.FirstOrDefault();
-            }
-        }
-
-        private Profile _profile;
-        public Profile Profile
-        {
-            get { return _profile; }
-            set 
+            get { return _browserProfiles; }
+            set
             {
-                _profile = value;
+                _browserProfiles = value;
+                RaisePropertyChanged();
+
+                BrowserProfile = BrowserProfiles?.FirstOrDefault();
+            }
+        }
+
+        private BrowserProfile _browserProfile;
+        public BrowserProfile BrowserProfile
+        {
+            get { return _browserProfile; }
+            set
+            {
+                _browserProfile = value;
                 RaisePropertyChanged();
             }
         }
@@ -60,16 +47,32 @@ namespace Burls.Windows.ViewModels
         public MainViewModel(IBrowserService browserService)
         {
             _browserService = browserService;
-            RequestUrl = (App.Current as App).RequestUrl;
-            Browsers = browserService.GetBrowsers();
+            RequestUrl = (System.Windows.Application.Current as App).RequestUrl;
+            BrowserProfiles = GetBrowserProfiles();
 
-            UseCommand = new DelegateCommand(() => Use(), () => Browser != null)
-                .ObservesProperty(() => Browser);
+            UseCommand = new DelegateCommand(() => Use(), () => BrowserProfile != null)
+                .ObservesProperty(() => BrowserProfile);
+        }
+
+        private IReadOnlyList<BrowserProfile> GetBrowserProfiles()
+        {
+            var browsers = _browserService.GetBrowsers();
+            var browserProfiles = new List<BrowserProfile>();
+
+            foreach (var browser in browsers)
+            {
+                foreach (var profile in browser.Profiles)
+                {
+                    browserProfiles.Add(new BrowserProfile(browser, profile));
+                }
+            }
+
+            return browserProfiles;
         }
 
         private void Use()
         {
-            Browser.NavigateToUrl(RequestUrl, Profile);
+            BrowserProfile.NavigateToUrl(RequestUrl);
         }
     }
 }

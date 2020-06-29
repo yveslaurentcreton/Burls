@@ -7,7 +7,7 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
-        Title="Burls" Height="500" Width="800">
+        Title="Burls" Height="500" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -19,7 +19,7 @@
                 <Label Content="URL:" />
                 <TextBox Text="{Binding Path=RequestUrl}" VerticalContentAlignment="Center" />
             </DockPanel>
-            <ListBox DockPanel.Dock="Bottom" ItemsSource="{Binding Path=Browsers}" SelectedItem="{Binding Path=Browser}" DisplayMemberPath="Name" />
+            <ListBox DockPanel.Dock="Bottom" ItemsSource="{Binding Path=BrowserProfiles}" SelectedItem="{Binding Path=BrowserProfile}" DisplayMemberPath="Name" />
         </DockPanel>
 
         <Grid Grid.Column="1" Margin="5,10,10,10">
@@ -29,16 +29,12 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="0,0,0,10">
-                <Image Source="{Binding Path=Browser.IconImageSource}" Width="{Binding Path=Browser.IconImageSource.Width}" Height="{Binding Path=Browser.IconImageSource.Height}" />
-                <Label Content="{Binding Path=Browser.Name}" />
-                <Label Content="{Binding Path=Browser.ExecutablePath}" />
-                <Label Content="{Binding Path=Browser.IconPath}" />
-                <Label Content="{Binding Path=Browser.IconIndex}" />
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Profiles:" />
-                    <ComboBox ItemsSource="{Binding Path=Browser.Profiles, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=Profile, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" Margin="0" />
-                </StackPanel>
-                <Label Content="{Binding Path=Browser.Version}" />
+                <Image Source="{Binding Path=BrowserProfile.Browser.IconImageSource}" Width="{Binding Path=BrowserProfile.Browser.IconImageSource.Width}" Height="{Binding Path=BrowserProfile.Browser.IconImageSource.Height}" />
+                <Label Content="{Binding Path=BrowserProfile.Browser.Name}" />
+                <Label Content="{Binding Path=BrowserProfile.Browser.ExecutablePath}" />
+                <Label Content="{Binding Path=BrowserProfile.Browser.IconPath}" />
+                <Label Content="{Binding Path=BrowserProfile.Browser.IconIndex}" />
+                <Label Content="{Binding Path=BrowserProfile.Browser.Version}" />
             </StackPanel>
 
             <Button Command="{Binding Path=UseCommand}" Content="Use" Grid.Row="1" />
