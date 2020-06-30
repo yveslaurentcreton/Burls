@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Burls.Windows.Models
 {
     public class Profile
     {
         public string Name { get; protected set; }
+        public ImageSource IconImageSource { get; }
 
         public static Profile Default()
         {
@@ -19,9 +21,10 @@ namespace Burls.Windows.Models
         {
         }
 
-        public Profile(string name)
+        public Profile(string name, ImageSource iconImageSource = null)
         {
             Name = name;
+            IconImageSource = iconImageSource;
         }
     }
 }

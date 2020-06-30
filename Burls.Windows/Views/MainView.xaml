@@ -43,7 +43,7 @@
                         <Button Command="{Binding ElementName=BrowserProfiles, Path=DataContext.UseCommand}" CommandParameter="{Binding}" Width="190">
                             <Button.Content>
                                 <StackPanel Orientation="Vertical">
-                                    <Image Source="{Binding Path=Browser.IconImageSource}" Width="{Binding Path=Browser.IconImageSource.Width}" Height="{Binding Path=Browser.IconImageSource.Height}" />
+                                    <Image Source="{Binding Path=IconImageSource}" Width="{Binding Path=IconImageSource.Width}" Height="{Binding Path=IconImageSource.Height}" />
                                     <Label Content="{Binding Path=Name}" />
                                 </StackPanel>
                             </Button.Content>
