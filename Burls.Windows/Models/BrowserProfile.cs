@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Burls.Windows.Core;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Burls.Windows.Models
 {
@@ -11,12 +14,14 @@ namespace Burls.Windows.Models
         public string Name { get; }
         public Browser Browser { get; }
         public Profile Profile { get; }
+        public ImageSource IconImageSource { get; }
 
         public BrowserProfile(Browser browser, Profile profile)
         {
             Name = $"{browser.Name} - {profile.Name}";
             Browser = browser;
             Profile = profile;
+            IconImageSource = profile.IconImageSource ?? browser.IconImageSource;
         }
 
         public void NavigateToUrl(string url)
