@@ -8,6 +8,20 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
         Title="Burls" Height="500" Width="850" WindowStartupLocation="CenterScreen">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding ApplicationShutdownCommand}" />
+        <KeyBinding Key="D1" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="1" />
+        <KeyBinding Key="D2" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="2" />
+        <KeyBinding Key="D3" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="3" />
+        <KeyBinding Key="D4" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="4" />
+        <KeyBinding Key="D5" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="5" />
+        <KeyBinding Key="D6" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="6" />
+        <KeyBinding Key="D7" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="7" />
+        <KeyBinding Key="D8" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="8" />
+        <KeyBinding Key="D9" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="9" />
+    </Window.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,7 +32,7 @@
             <Label Content="URL:" />
             <TextBox Text="{Binding Path=RequestUrl}" VerticalContentAlignment="Center" />
         </DockPanel>
-        
+
         <ItemsControl x:Name="BrowserProfiles" ItemsSource="{Binding Path=BrowserProfiles}" Grid.Row="1" Margin="10,5,10,5">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -35,14 +49,15 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    
+
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="BrowserProfileButtonWidth" />
                         </Grid.ColumnDefinitions>
-                        <Button Command="{Binding ElementName=BrowserProfiles, Path=DataContext.UseCommand}" CommandParameter="{Binding}" Width="190">
+                        <Button Command="{Binding ElementName=BrowserProfiles, Path=DataContext.UseBrowserProfileCommand}" CommandParameter="{Binding}" Width="190">
                             <Button.Content>
                                 <StackPanel Orientation="Vertical">
+                                    <Label Content="{Binding Path=Shortcut}" HorizontalAlignment="Center" />
                                     <Image Source="{Binding Path=IconImageSource}" Width="{Binding Path=IconImageSource.Width}" Height="{Binding Path=IconImageSource.Height}" />
                                     <Label Content="{Binding Path=Name}" />
                                 </StackPanel>

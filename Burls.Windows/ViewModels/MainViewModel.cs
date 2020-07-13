@@ -30,7 +30,9 @@ namespace Burls.Windows.ViewModels
             }
         }
 
-        public ICommand UseCommand { get; set; }
+        public ICommand ApplicationShutdownCommand { get; set; }
+        public ICommand UseBrowserProfileCommand { get; set; }
+        public ICommand UseBrowserProfileIndexCommand { get; set; }
 
         public MainViewModel(IBrowserService browserService)
         {
@@ -38,30 +40,67 @@ namespace Burls.Windows.ViewModels
             RequestUrl = (System.Windows.Application.Current as App).RequestUrl;
             BrowserProfiles = GetBrowserProfiles();
 
-            UseCommand = new DelegateCommand<BrowserProfile>(Use);
+            ApplicationShutdownCommand = new DelegateCommand(ApplicationShutdown);
+            UseBrowserProfileCommand = new DelegateCommand<BrowserProfile>(UseBrowserProfile);
+            UseBrowserProfileIndexCommand = new DelegateCommand<string>(UseBrowserProfileIndex);
+        }
+
+        private IReadOnlyList<string> GetAvailableShortcuts()
+        {
+            var availableShortcuts = new List<string>();
+
+            availableShortcuts.Add("1");
+            availableShortcuts.Add("2");
+            availableShortcuts.Add("3");
+            availableShortcuts.Add("4");
+            availableShortcuts.Add("5");
+            availableShortcuts.Add("6");
+            availableShortcuts.Add("7");
+            availableShortcuts.Add("8");
+            availableShortcuts.Add("9");
+
+            return availableShortcuts;
         }
 
         private IReadOnlyList<BrowserProfile> GetBrowserProfiles()
         {
             var browsers = _browserService.GetBrowsers();
             var browserProfiles = new List<BrowserProfile>();
+            var availableShortcuts = new Queue<string>(GetAvailableShortcuts());
 
             foreach (var browser in browsers)
             {
                 foreach (var profile in browser.Profiles)
                 {
-                    browserProfiles.Add(new BrowserProfile(browser, profile));
+                    string shortcut = availableShortcuts.Count > 0 ? availableShortcuts.Dequeue() : null;
+
+                    browserProfiles.Add(new BrowserProfile(browser, profile, shortcut));
                 }
             }
 
             return browserProfiles;
         }
 
-        private void Use(BrowserProfile browserProfile)
+        private void ApplicationShutdown()
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void UseBrowserProfileIndex(string browserProfileIndex)
+        {
+            var browserProfile = BrowserProfiles.FirstOrDefault(x => x.Shortcut?.Equals(browserProfileIndex) ?? false);
+
+            if (browserProfile != null)
+            {
+                UseBrowserProfileCommand.Execute(browserProfile);
+            }
+        }
+
+        private void UseBrowserProfile(BrowserProfile browserProfile)
         {
             browserProfile.NavigateToUrl(RequestUrl);
 
-            Application.Current.Shutdown();
+            ApplicationShutdownCommand.Execute(null);
         }
     }
 }
