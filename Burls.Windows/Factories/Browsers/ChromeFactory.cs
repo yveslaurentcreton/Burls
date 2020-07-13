@@ -22,5 +22,10 @@ namespace Burls.Windows.Factories.Browsers
         {
             return new ChromeProfileFactory();
         }
+
+        protected override string GetProfileArgumentName()
+        {
+            return PROFILEARGUMENTNAME;
+        }
     }
 }
