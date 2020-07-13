@@ -15,12 +15,14 @@ namespace Burls.Windows.Models
         public Browser Browser { get; }
         public Profile Profile { get; }
         public ImageSource IconImageSource { get; }
+        public string Shortcut { get; }
 
-        public BrowserProfile(Browser browser, Profile profile)
+        public BrowserProfile(Browser browser, Profile profile, string shortcut = null)
         {
             Name = $"{browser.Name} - {profile.Name}";
             Browser = browser;
             Profile = profile;
+            Shortcut = shortcut;
             IconImageSource = profile.IconImageSource ?? browser.IconImageSource;
         }
 
