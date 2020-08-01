@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="$(var.Burls.Windows.TargetName)" Language="1033" Version="0.1.0.0" Manufacturer="Yves-Laurent Creton" UpgradeCode="4bd619b8-77ab-437e-8607-f6daf13b12b1">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="f_Burls" Title="Main application" Description="This will install Burls" Level="1">
+      <ComponentGroupRef Id="cg_Burls"/>
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFiles64Folder">
+				<Directory Id="INSTALLFOLDER" Name="Burls" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="cg_Burls" Directory="INSTALLFOLDER">
+      <Component Id="c_Burls_Windows">
+        <File Id="f_Burls_Windows" Name="$(var.Burls.Windows.TargetName).exe" Source="$(var.Burls.Windows.ProjectDir)bin\Release\netcoreapp3.1\publish\$(var.Burls.Windows.TargetName).exe" KeyPath="yes" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

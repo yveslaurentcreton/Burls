@@ -5,6 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>Burls</AssemblyName>
+    <Version>0.1.0.0</Version>
+    <Authors>Yves-Laurent Creton</Authors>
   </PropertyGroup>
 
   <ItemGroup>
