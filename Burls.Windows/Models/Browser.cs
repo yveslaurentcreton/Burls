@@ -62,7 +62,7 @@ namespace Burls.Windows.Models
         public void NavigateToUrl(string url, Profile profile)
         {
             var profileArgument = GetProfileArgument(profile);
-            var urlArgument = url;
+            var urlArgument = $"\"{url}\"";
             var argumentList = new List<string>() { profileArgument, urlArgument };
             var arguments = string.Join(' ', argumentList);
 
