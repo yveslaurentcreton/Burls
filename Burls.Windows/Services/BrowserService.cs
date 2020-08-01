@@ -1,4 +1,6 @@
-﻿using Burls.Windows.Models;
+﻿using Burls.Windows.Factories;
+using Burls.Windows.Factories.Browsers;
+using Burls.Windows.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,11 +12,8 @@ namespace Burls.Windows.Services
 {
     public class BrowserService : IBrowserService
     {
-        private readonly IProfileService _profileService;
-
-        public BrowserService(IProfileService profileService)
+        public BrowserService()
         {
-            _profileService = profileService;
         }
 
         public IReadOnlyList<Browser> GetBrowsers()
@@ -22,41 +21,34 @@ namespace Burls.Windows.Services
             var installedBrowsers = MintPlayer.PlatformBrowser.PlatformBrowser.GetInstalledBrowsers().ToList();
 
             // Filter browsers
-            if (installedBrowsers.Any(x => (new FileInfo(x.Version.FileName)).Name.Equals(Browser.NEWEDGEFILENAME, StringComparison.OrdinalIgnoreCase)))
+            if (installedBrowsers.Any(x => (new FileInfo(x.Version.FileName)).Name.Equals(ChromiumEdgeFactory.FILENAME, StringComparison.OrdinalIgnoreCase)))
             {
                 installedBrowsers = installedBrowsers
-                    .Where(x => !(new FileInfo(x.Version.FileName)).Name.Equals(Browser.OLDEDGEFILENAME, StringComparison.OrdinalIgnoreCase))
+                    .Where(x => !(new FileInfo(x.Version.FileName)).Name.Equals(MicrosoftEdgeFactory.FILENAME, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
 
             return installedBrowsers.Select(x =>
             {
                 var fileInfo = new FileInfo(x.Version.FileName);
-                var profiles = _profileService.GetProfiles(fileInfo.Name);
 
                 // Determine specific properties for specific browsers
-                string profileArgumentName;
+                BrowserFactory browserFactory;
 
                 switch ((new FileInfo(x.Version.FileName)).Name)
                 {
-                    case Browser.CHROMEFILENAME:
-                    case Browser.NEWEDGEFILENAME:
-                        profileArgumentName = "--profile-directory";
+                    case ChromeFactory.FILENAME:
+                        browserFactory = new ChromeFactory(x);
+                        break;
+                    case ChromiumEdgeFactory.FILENAME:
+                        browserFactory = new ChromiumEdgeFactory(x);
                         break;
                     default:
-                        profileArgumentName = null;
+                        browserFactory = new BrowserFactory(x);
                         break;
                 }
 
-                return new Browser(x.Name,
-                    x.ExecutablePath,
-                    x.IconPath,
-                    x.IconIndex,
-                    x.Version,
-                    x.FileAssociations,
-                    x.UrlAssociations,
-                    profileArgumentName,
-                    profiles);
+                return browserFactory.GetBrowser();
             }).ToList();
         }
     }

@@ -23,6 +23,20 @@ namespace Burls.Windows.Views
         public MainView()
         {
             InitializeComponent();
+
+            Loaded += MainView_Loaded;
+        }
+
+        private void MainView_Loaded(object sender, RoutedEventArgs e)
+        {
+            BringToTheFront();
+        }
+
+        private void BringToTheFront()
+        {
+            Topmost = true;
+            Topmost = false;
+            Focus();
         }
     }
 }

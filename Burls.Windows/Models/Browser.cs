@@ -13,10 +13,6 @@ namespace Burls.Windows.Models
 {
     public class Browser
     {
-        public const string CHROMEFILENAME = "chrome.exe";
-        public const string OLDEDGEFILENAME = "MicrosoftEdge.exe";
-        public const string NEWEDGEFILENAME = "msedge.exe";
-
         public string Name { get; }
         public string ExecutablePath { get; }
         public string IconPath { get; }
@@ -51,7 +47,7 @@ namespace Burls.Windows.Models
             Profiles = profiles;
         }
 
-        private string GetProfileArgument(Profile profile)
+        public string GetProfileArgument(Profile profile)
         {
             var profileArgument = string.Empty;
 
@@ -66,7 +62,7 @@ namespace Burls.Windows.Models
         public void NavigateToUrl(string url, Profile profile)
         {
             var profileArgument = GetProfileArgument(profile);
-            var urlArgument = url;
+            var urlArgument = $"\"{url}\"";
             var argumentList = new List<string>() { profileArgument, urlArgument };
             var arguments = string.Join(' ', argumentList);
 
