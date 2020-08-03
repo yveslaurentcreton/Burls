@@ -24,6 +24,52 @@
       <Component Id="c_Burls_Windows">
         <File Id="f_Burls_Windows" Name="$(var.Burls.Windows.TargetName).exe" Source="$(var.Burls.Windows.ProjectDir)bin\Release\netcoreapp3.1\publish\$(var.Burls.Windows.TargetName).exe" KeyPath="yes" />
       </Component>
+
+      <ComponentRef Id="c_Burls_Registry" />
 		</ComponentGroup>
 	</Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      
+      <Component Id="c_Burls_Registry">
+        
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Burls" Action="createAndRemoveOnUninstall" />
+
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Burls\Capabilities" Action="create">
+          <RegistryValue Type="string" Name="ApplicationDescription" Value="Burls" />
+          <RegistryValue Type="string" Name="ApplicationIcon" Value="[INSTALLFOLDER]$(var.Burls.Windows.TargetName).exe,0" />
+          <RegistryValue Type="string" Name="ApplicationName" Value="Burls" />
+        </RegistryKey>
+        
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Burls\Capabilities\FileAssociations" Action="create">
+          <RegistryValue Type="string" Name=".htm" Value="BurlsURL" />
+          <RegistryValue Type="string" Name=".html" Value="BurlsURL" />
+          <RegistryValue Type="string" Name=".shtml" Value="BurlsURL" />
+          <RegistryValue Type="string" Name=".xht" Value="BurlsURL" />
+          <RegistryValue Type="string" Name=".xhtml" Value="BurlsURL" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Burls\Capabilities\URLAssociations" Action="create">
+          <RegistryValue Type="string" Name="ftp" Value="BurlsURL" />
+          <RegistryValue Type="string" Name="http" Value="BurlsURL" />
+          <RegistryValue Type="string" Name="https" Value="BurlsURL" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKLM" Key="SOFTWARE\RegisteredApplications">
+          <RegistryValue Type="string" Name="Burls" Value="SOFTWARE\Burls\Capabilities" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Classes\BurlsURL" Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Value="Burls Document" />
+          <RegistryValue Type="string" Name="FriendlyTypeName" Value="Burls Document" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Classes\BurlsURL\shell\open\command" Action="create">
+          <RegistryValue Type="string" Value='"[INSTALLFOLDER]$(var.Burls.Windows.TargetName).exe" "%1"' />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+  </Fragment>
 </Wix>
