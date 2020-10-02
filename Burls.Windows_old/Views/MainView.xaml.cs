@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Burls.Windows.Views
+namespace Burls.Windows_old.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

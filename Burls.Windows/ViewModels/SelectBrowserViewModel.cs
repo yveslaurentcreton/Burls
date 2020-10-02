@@ -1,20 +1,24 @@
-﻿using Burls.Windows.Models;
-using Burls.Windows.Services;
-using Prism.Commands;
-using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
+using Burls.Windows.Constants;
+using Burls.Windows.Core.Contracts.Services;
+using Burls.Windows.Models;
+using Burls.Windows.Services;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Regions;
+
 namespace Burls.Windows.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public class SelectBrowserViewModel : BindableBase, INavigationAware
     {
+        private readonly IRegionManager _regionManager;
+        private IRegionNavigationService _navigationService;
         private readonly IBrowserService _browserService;
 
         public string RequestUrl { get; set; }
@@ -34,16 +38,30 @@ namespace Burls.Windows.ViewModels
         public ICommand UseBrowserProfileCommand { get; set; }
         public ICommand UseBrowserProfileIndexCommand { get; set; }
 
-        public MainViewModel(IBrowserService browserService)
+        public SelectBrowserViewModel(IRegionManager regionManager, IBrowserService browserService)
         {
+            _regionManager = regionManager;
+            _navigationService = regionManager.Regions[Regions.Main].NavigationService;
             _browserService = browserService;
-            RequestUrl = (System.Windows.Application.Current as App).RequestUrl;
+
+            RequestUrl = (Application.Current as App).RequestUrl;
             BrowserProfiles = GetBrowserProfiles();
 
             ApplicationShutdownCommand = new DelegateCommand(ApplicationShutdown);
             UseBrowserProfileCommand = new DelegateCommand<BrowserProfile>(UseBrowserProfile);
             UseBrowserProfileIndexCommand = new DelegateCommand<string>(UseBrowserProfileIndex);
         }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
 
         private IReadOnlyList<string> GetAvailableShortcuts()
         {
