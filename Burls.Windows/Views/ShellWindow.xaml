@@ -14,7 +14,8 @@
     mc:Ignorable="d"
     MinWidth="400"
     MinHeight="300"
-    Width="885"
+    Width="840"
+    Height="690"
     Title="{x:Static properties:Resources.AppDisplayName}"
     WindowStartupLocation="CenterScreen">
 
@@ -29,6 +30,7 @@
         <KeyBinding Key="D7" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="7" />
         <KeyBinding Key="D8" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="8" />
         <KeyBinding Key="D9" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="9" />
+        <KeyBinding Key="D0" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="0" />
     </controls:MetroWindow.InputBindings>
     
     <i:Interaction.Triggers>

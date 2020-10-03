@@ -86,6 +86,7 @@ namespace Burls.Windows.Services
             availableShortcuts.Add("7");
             availableShortcuts.Add("8");
             availableShortcuts.Add("9");
+            availableShortcuts.Add("0");
 
             return availableShortcuts;
         }

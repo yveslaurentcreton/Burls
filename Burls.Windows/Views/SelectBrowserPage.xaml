@@ -43,35 +43,37 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBlock
-            Style="{StaticResource PageTitleStyle}"
-            Margin="{StaticResource MediumLeftMargin}"
-            Text="{x:Static properties:Resources.SelectBrowserPageTitle}" />
-
-        <StackPanel
-            x:Name="ContentArea"
-            Grid.Row="1"
-            Margin="{StaticResource MediumLeftRightMargin}">
-
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <TextBlock
-                Style="{StaticResource BodyTextStyle}"
-                Text="{Binding BrowserStore.RequestUrl}" />
+                Style="{StaticResource PageTitleStyle}"
+                Margin="{StaticResource MediumLeftMargin}"
+                Text="{x:Static properties:Resources.SelectBrowserPageTitle}" />
 
-            <ListView
-                Margin="{StaticResource SmallTopBottomMargin}"
-                SelectionMode="Single"
-                ItemsSource="{Binding BrowserStore.BrowserProfiles}"
-                Style="{StaticResource ContentGridListViewStyle}"
-                ItemTemplate="{StaticResource contentGridItemTemplate}">
-                <i:Interaction.Behaviors>
-                    <behaviors:ListViewItemSelectionBehavior Command="{Binding UseBrowserProfileCommand}" />
-                </i:Interaction.Behaviors>
-            </ListView>
-        </StackPanel>
-    </Grid>
+            <StackPanel
+                x:Name="ContentArea"
+                Grid.Row="1"
+                Margin="{StaticResource MediumLeftRightMargin}">
+
+                <TextBlock
+                    Style="{StaticResource BodyTextStyle}"
+                    Text="{Binding BrowserStore.RequestUrl}" />
+
+                <ListView
+                    Margin="{StaticResource SmallTopBottomMargin}"
+                    SelectionMode="Single"
+                    ItemsSource="{Binding BrowserStore.BrowserProfiles}"
+                    Style="{StaticResource ContentGridListViewStyle}"
+                    ItemTemplate="{StaticResource contentGridItemTemplate}">
+                    <i:Interaction.Behaviors>
+                        <behaviors:ListViewItemSelectionBehavior Command="{Binding UseBrowserProfileCommand}" />
+                    </i:Interaction.Behaviors>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
