@@ -13,6 +13,7 @@ using Burls.Windows.Core.Contracts.Services;
 using Burls.Windows.Core.Services;
 using Burls.Windows.Models;
 using Burls.Windows.Services;
+using Burls.Windows.State;
 using Burls.Windows.ViewModels;
 using Burls.Windows.Views;
 
@@ -39,8 +40,7 @@ namespace Burls.Windows
         {
         }
 
-        protected override Window CreateShell()
-            => Container.Resolve<ShellWindow>();
+        protected override Window CreateShell() => Container.Resolve<ShellWindow>();
 
         protected override async void OnInitialized()
         {
@@ -66,6 +66,9 @@ namespace Burls.Windows
         {
             // Core Services
             containerRegistry.Register<IFileService, FileService>();
+
+            // State
+            containerRegistry.RegisterSingleton<IBrowserStore, BrowserStore>();
 
             // App Services
             containerRegistry.Register<IApplicationInfoService, ApplicationInfoService>();

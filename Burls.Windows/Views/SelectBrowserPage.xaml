@@ -12,28 +12,14 @@
     Style="{StaticResource BaseUserControlStyle}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
-
-    <UserControl.InputBindings>
-        <KeyBinding Key="Esc" Command="{Binding ApplicationShutdownCommand}" />
-        <KeyBinding Key="D1" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="1" />
-        <KeyBinding Key="D2" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="2" />
-        <KeyBinding Key="D3" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="3" />
-        <KeyBinding Key="D4" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="4" />
-        <KeyBinding Key="D5" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="5" />
-        <KeyBinding Key="D6" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="6" />
-        <KeyBinding Key="D7" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="7" />
-        <KeyBinding Key="D8" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="8" />
-        <KeyBinding Key="D9" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="9" />
-    </UserControl.InputBindings>
-
     <UserControl.Resources>
         <DataTemplate x:Key="contentGridItemTemplate">
             <Grid
-                Width="160"
-                Height="160"
+                Width="180"
+                Height="180"
                 Background="{DynamicResource MahApps.Brushes.Gray10}">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
-                    <Image Source="{Binding Path=IconImageSource}" Width="{Binding Path=IconImageSource.Width}" Height="{Binding Path=IconImageSource.Height}" />
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource SmallLeftTopRightBottomMargin}">
+                    <Image Source="{Binding Path=IconImageSource}" Width="60" Height="60" />
                     <TextBlock
                         Margin="{StaticResource XXSmallTopMargin}"
                         HorizontalAlignment="Center"
@@ -46,6 +32,12 @@
                         TextAlignment="Center"
                         Style="{StaticResource BodyTextStyle}"
                         Text="{Binding Profile.Name}" />
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{Binding Shortcut}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -60,16 +52,26 @@
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.SelectBrowserPageTitle}" />
-        <ListView
+
+        <StackPanel
+            x:Name="ContentArea"
             Grid.Row="1"
-            Margin="{StaticResource SmallLeftMargin}"
-            SelectionMode="Single"
-            ItemsSource="{Binding BrowserProfiles}"
-            Style="{StaticResource ContentGridListViewStyle}"
-            ItemTemplate="{StaticResource contentGridItemTemplate}">
-            <i:Interaction.Behaviors>
-                <behaviors:ListViewItemSelectionBehavior Command="{Binding UseBrowserProfileCommand}" />
-            </i:Interaction.Behaviors>
-        </ListView>
+            Margin="{StaticResource MediumLeftRightMargin}">
+
+            <TextBlock
+                Style="{StaticResource BodyTextStyle}"
+                Text="{Binding BrowserStore.RequestUrl}" />
+
+            <ListView
+                Margin="{StaticResource SmallTopBottomMargin}"
+                SelectionMode="Single"
+                ItemsSource="{Binding BrowserStore.BrowserProfiles}"
+                Style="{StaticResource ContentGridListViewStyle}"
+                ItemTemplate="{StaticResource contentGridItemTemplate}">
+                <i:Interaction.Behaviors>
+                    <behaviors:ListViewItemSelectionBehavior Command="{Binding UseBrowserProfileCommand}" />
+                </i:Interaction.Behaviors>
+            </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>

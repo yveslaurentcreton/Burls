@@ -17,6 +17,20 @@
     Width="885"
     Title="{x:Static properties:Resources.AppDisplayName}"
     WindowStartupLocation="CenterScreen">
+
+    <controls:MetroWindow.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding ApplicationShutdownCommand}" />
+        <KeyBinding Key="D1" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="1" />
+        <KeyBinding Key="D2" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="2" />
+        <KeyBinding Key="D3" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="3" />
+        <KeyBinding Key="D4" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="4" />
+        <KeyBinding Key="D5" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="5" />
+        <KeyBinding Key="D6" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="6" />
+        <KeyBinding Key="D7" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="7" />
+        <KeyBinding Key="D8" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="8" />
+        <KeyBinding Key="D9" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="9" />
+    </controls:MetroWindow.InputBindings>
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />

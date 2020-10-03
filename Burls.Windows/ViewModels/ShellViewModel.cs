@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 using Burls.Windows.Constants;
 using Burls.Windows.Properties;
-
+using Burls.Windows.Services;
+using Burls.Windows.State;
 using MahApps.Metro.Controls;
 
 using Prism.Commands;
@@ -17,14 +19,12 @@ namespace Burls.Windows.ViewModels
     public class ShellViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
+        private readonly IBrowserService _browserService;
+        private readonly IBrowserStore _browserStore;
         private IRegionNavigationService _navigationService;
         private HamburgerMenuItem _selectedMenuItem;
         private HamburgerMenuItem _selectedOptionsMenuItem;
         private DelegateCommand _goBackCommand;
-        private ICommand _loadedCommand;
-        private ICommand _unloadedCommand;
-        private ICommand _menuItemInvokedCommand;
-        private ICommand _optionsMenuItemInvokedCommand;
 
         public HamburgerMenuItem SelectedMenuItem
         {
@@ -48,19 +48,27 @@ namespace Burls.Windows.ViewModels
             new HamburgerMenuGlyphItem() { Label = Resources.ShellSettingsPage, Glyph = "\uE713", Tag = PageKeys.Settings }
         };
 
-        public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack, CanGoBack));
+        public DelegateCommand GoBackCommand => _goBackCommand ??= new DelegateCommand(OnGoBack, CanGoBack);
 
-        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new DelegateCommand(OnLoaded));
+        public ICommand LoadedCommand { get; }
+        public ICommand UnloadedCommand { get; }
+        public ICommand MenuItemInvokedCommand { get; }
+        public ICommand OptionsMenuItemInvokedCommand { get; }
+        public ICommand ApplicationShutdownCommand { get; }
+        public ICommand UseBrowserProfileIndexCommand { get; }
 
-        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new DelegateCommand(OnUnloaded));
-
-        public ICommand MenuItemInvokedCommand => _menuItemInvokedCommand ?? (_menuItemInvokedCommand = new DelegateCommand(OnMenuItemInvoked));
-
-        public ICommand OptionsMenuItemInvokedCommand => _optionsMenuItemInvokedCommand ?? (_optionsMenuItemInvokedCommand = new DelegateCommand(OnOptionsMenuItemInvoked));
-
-        public ShellViewModel(IRegionManager regionManager)
+        public ShellViewModel(IRegionManager regionManager, IBrowserService browserService, IBrowserStore browserStore)
         {
             _regionManager = regionManager;
+            _browserService = browserService;
+            _browserStore = browserStore;
+
+            LoadedCommand = new DelegateCommand(OnLoaded);
+            UnloadedCommand = new DelegateCommand(OnUnloaded);
+            MenuItemInvokedCommand = new DelegateCommand(OnMenuItemInvoked);
+            OptionsMenuItemInvokedCommand = new DelegateCommand(OnOptionsMenuItemInvoked);
+            ApplicationShutdownCommand = new DelegateCommand(ApplicationShutdown);
+            UseBrowserProfileIndexCommand = new DelegateCommand<string>(UseBrowserProfileIndex);
         }
 
         private void OnLoaded()
@@ -113,6 +121,16 @@ namespace Burls.Windows.ViewModels
             }
 
             GoBackCommand.RaiseCanExecuteChanged();
+        }
+
+        private void ApplicationShutdown()
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void UseBrowserProfileIndex(string browserProfileIndex)
+        {
+            _browserService.UseBrowserProfileIndex(_browserStore.BrowserProfiles, browserProfileIndex, _browserStore.RequestUrl);
         }
     }
 }
