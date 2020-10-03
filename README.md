@@ -1,7 +1,14 @@
 # Burls
-Tool for Windows to help select the right browser instance
+Burls is a tool for Windows to help select the right browser profile instance.
 
-## Create installer
-1. Publish Burls.Windows with the available publish profile in Visual Studio
-1. Build Burls.Installer using the Release configuration with Visual Studio
-1. Navigate to Burls.Installer\bin\Release\ to find the msi
+![](./Docs/Installation/Burls_working.png)
+
+## Installation
+You can download the latest version of Burls in the [releases](https://github.com/BEzGumpTion/Burls/releases) section.
+In order to get help installing Burls please check the [documentation](./Docs/Installation/README.md).
+
+## Releases
+Release notes can be found [here](./Docs/Releases/README.md).
+
+## Contribute
+If you wish to contribute, please check the [contribute](./Docs/Contribute/README.md) section.
