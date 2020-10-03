@@ -7,6 +7,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyName>Burls</AssemblyName>
   </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.8" />
@@ -17,6 +18,7 @@
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\Burls.Core\Burls.Core.csproj" />
   </ItemGroup>
