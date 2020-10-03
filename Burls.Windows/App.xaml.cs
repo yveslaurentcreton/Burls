@@ -9,10 +9,8 @@ using System.Windows.Threading;
 
 using Burls.Windows.Constants;
 using Burls.Windows.Contracts.Services;
-using Burls.Windows.Core.Contracts.Services;
-using Burls.Windows.Core.Services;
-using Burls.Windows.Models;
 using Burls.Windows.Services;
+using Burls.Windows.Models;
 using Burls.Windows.State;
 using Burls.Windows.ViewModels;
 using Burls.Windows.Views;
@@ -22,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
+using Burls.Core.Services;
 
 namespace Burls.Windows
 {

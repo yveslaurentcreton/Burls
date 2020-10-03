@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Input;
 
 using Burls.Windows.Constants;
-using Burls.Windows.Core.Contracts.Services;
 using Burls.Windows.Models;
 using Burls.Windows.Services;
 using Burls.Windows.State;

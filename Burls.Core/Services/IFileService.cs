@@ -1,4 +1,4 @@
-﻿namespace Burls.Windows.Core.Contracts.Services
+﻿namespace Burls.Core.Services
 {
     public interface IFileService
     {

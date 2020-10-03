@@ -1,11 +1,8 @@
 ﻿using System.IO;
 using System.Text;
-
-using Burls.Windows.Core.Contracts.Services;
-
 using Newtonsoft.Json;
 
-namespace Burls.Windows.Core.Services
+namespace Burls.Core.Services
 {
     public class FileService : IFileService
     {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
-
+using Burls.Core.Services;
 using Burls.Windows.Contracts.Services;
-using Burls.Windows.Core.Contracts.Services;
 using Burls.Windows.Models;
 
 namespace Burls.Windows.Services
