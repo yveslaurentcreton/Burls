@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
@@ -37,6 +38,9 @@
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
 name: .NET Core Desktop
+=======
+name: .NET Core
+>>>>>>> master
 
 on:
   push:
@@ -45,6 +49,7 @@ on:
     branches: [ master ]
 
 jobs:
+<<<<<<< HEAD
 
   build:
 
@@ -113,3 +118,21 @@ jobs:
       with:
         name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages
+=======
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+>>>>>>> master
