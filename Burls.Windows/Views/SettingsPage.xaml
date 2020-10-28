@@ -73,7 +73,8 @@
                     Text="{Binding VersionDescription, Mode=OneWay}"
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{StaticResource BodyTextStyle}" />
-                <TextBlock
+                <!-- TODO -->
+                <!--<TextBlock
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{StaticResource BodyTextStyle}"
                     Text="{x:Static properties:Resources.SettingsPageAboutText}" />
@@ -89,7 +90,7 @@
                             Style="{StaticResource BodyTextStyle}"
                             Text="{x:Static properties:Resources.SettingsPagePrivacyStatementText}" />
                     </Hyperlink>
-                </TextBlock>
+                </TextBlock>-->
             </StackPanel>
         </Grid>
     </ScrollViewer>
