@@ -9,7 +9,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Burls.Windows.Core
+namespace Burls.Windows.Helpers
 {
     public static class IconHelper
     {

@@ -2,7 +2,7 @@
   "profiles": {
     "Burls.Windows": {
       "commandName": "Project",
-      "commandLineArgs": "https://github.com/"
+      "commandLineArgs": "https://github.com/BEzGumpTion/Burls/"
     }
   }
 }

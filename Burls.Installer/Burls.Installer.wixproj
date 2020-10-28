@@ -30,7 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Burls.Windows\Burls.Windows.csproj">
       <Name>Burls.Windows</Name>
-      <Project>{2f6c198c-c7d7-402b-b370-144aab9b8bce}</Project>
+      <Project>{467c7a1e-b731-4c64-ab57-a778ee0ab4fe}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
