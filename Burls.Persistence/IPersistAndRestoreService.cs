@@ -1,4 +1,4 @@
-﻿namespace Burls.Windows.Contracts.Services
+﻿namespace Burls.Persistence
 {
     public interface IPersistAndRestoreService
     {

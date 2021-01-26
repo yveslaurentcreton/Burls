@@ -1,4 +1,5 @@
-﻿using Burls.Windows.Models;
+﻿using Burls.Domain;
+using Burls.Windows.Models;
 using System.Collections.Generic;
 
 namespace Burls.Windows.Services

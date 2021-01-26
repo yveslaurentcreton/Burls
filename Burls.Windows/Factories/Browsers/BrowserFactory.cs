@@ -1,5 +1,5 @@
-﻿using Burls.Windows.Factories.Profiles;
-using Burls.Windows.Models;
+﻿using Burls.Domain;
+using Burls.Windows.Factories.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +24,6 @@ namespace Burls.Windows.Factories.Browsers
                 _browserInfo.ExecutablePath,
                 _browserInfo.IconPath,
                 _browserInfo.IconIndex,
-                _browserInfo.Version,
-                _browserInfo.FileAssociations,
-                _browserInfo.UrlAssociations,
                 GetProfileArgumentName(),
                 GetProfiles());
         }

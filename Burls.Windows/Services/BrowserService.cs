@@ -1,4 +1,5 @@
-﻿using Burls.Windows.Factories;
+﻿using Burls.Domain;
+using Burls.Windows.Factories;
 using Burls.Windows.Factories.Browsers;
 using Burls.Windows.Models;
 using Burls.Windows.State;
@@ -32,8 +33,6 @@ namespace Burls.Windows.Services
 
             return installedBrowsers.Select(x =>
             {
-                var fileInfo = new FileInfo(x.Version.FileName);
-
                 // Determine specific properties for specific browsers
                 BrowserFactory browserFactory;
 

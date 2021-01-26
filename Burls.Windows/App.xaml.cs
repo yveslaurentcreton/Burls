@@ -21,6 +21,8 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
 using Burls.Core.Services;
+using Burls.Persistence;
+using System.ComponentModel;
 
 namespace Burls.Windows
 {
@@ -39,6 +41,11 @@ namespace Burls.Windows
         {
         }
 
+        protected override IContainerExtension CreateContainerExtension()
+        {
+            return ContainerLocator.Current;
+        }
+
         protected override Window CreateShell() => Container.Resolve<ShellWindow>();
 
         protected override async void OnInitialized()
@@ -50,6 +57,7 @@ namespace Burls.Windows
             themeSelectorService.SetTheme();
 
             base.OnInitialized();
+
             await Task.CompletedTask;
         }
 
@@ -57,7 +65,7 @@ namespace Burls.Windows
         {
             _startUpArgs = e.Args;
             RequestUrl = _startUpArgs?.FirstOrDefault();
-
+            
             base.OnStartup(e);
         }
 
@@ -72,6 +80,7 @@ namespace Burls.Windows
             // App Services
             containerRegistry.Register<IApplicationInfoService, ApplicationInfoService>();
             containerRegistry.Register<ISystemService, SystemService>();
+            containerRegistry.Register<IPropertyManager, PropertyManager>();
             containerRegistry.Register<IPersistAndRestoreService, PersistAndRestoreService>();
             containerRegistry.Register<IThemeSelectorService, ThemeSelectorService>();
             containerRegistry.Register<IBrowserService, BrowserService>();
@@ -87,9 +96,14 @@ namespace Burls.Windows
                 .GetSection(nameof(AppConfig))
                 .Get<AppConfig>();
 
-            // Register configurations to IoC
             containerRegistry.RegisterInstance<IConfiguration>(configuration);
             containerRegistry.RegisterInstance<AppConfig>(appConfig);
+
+            // Register services
+            containerRegistry.RegisterServices(services =>
+            {
+                services.AddPersistenceServices(configuration);
+            });
         }
 
         private IConfiguration BuildConfiguration()

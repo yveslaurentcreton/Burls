@@ -9,9 +9,9 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Burls.Windows.Helpers
+namespace Burls.Core.Wpf.Extensions
 {
-    public static class IconHelper
+    public static class IconExtensions
     {
         public static ImageSource ToImageSource(this Icon icon)
         {

@@ -1,4 +1,4 @@
-﻿using Burls.Windows.Helpers;
+﻿using Burls.Core.Wpf.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Burls.Windows.Models
+namespace Burls.Domain
 {
     public class Browser
     {
@@ -17,21 +17,16 @@ namespace Burls.Windows.Models
         public string ExecutablePath { get; }
         public string IconPath { get; }
         public int IconIndex { get; }
-        public ImageSource IconImageSource { get; }
-        public FileVersionInfo Version { get; }
-        public ReadOnlyDictionary<string, object> FileAssociations { get; }
-        public ReadOnlyDictionary<string, object> UrlAssociations { get; }
         public string ProfileArgumentName { get; }
         public IReadOnlyList<Profile> Profiles { get; }
+
+        public ImageSource IconImageSource => IconPath != null ? Icon.ExtractAssociatedIcon(IconPath).ToImageSource() : null;
 
         public Browser(
             string name,
             string executablePath,
             string iconPath,
             int iconIndex,
-            FileVersionInfo version,
-            ReadOnlyDictionary<string, object> fileAssociations,
-            ReadOnlyDictionary<string, object> urlAssociations,
             string profileArgumentName,
             IReadOnlyList<Profile> profiles)
         {
@@ -39,10 +34,6 @@ namespace Burls.Windows.Models
             ExecutablePath = executablePath;
             IconPath = iconPath;
             IconIndex = iconIndex;
-            Version = version;
-            FileAssociations = fileAssociations;
-            UrlAssociations = urlAssociations;
-            IconImageSource = Icon.ExtractAssociatedIcon(IconPath).ToImageSource();
             ProfileArgumentName = profileArgumentName;
             Profiles = profiles;
         }

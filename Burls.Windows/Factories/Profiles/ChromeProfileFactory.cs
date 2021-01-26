@@ -1,5 +1,4 @@
-﻿using Burls.Windows.Helpers;
-using Burls.Windows.Models;
+﻿using Burls.Domain;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,11 +22,10 @@ namespace Burls.Windows.Factories.Profiles
         protected override Profile GetProfile(string name)
         {
             var iconPath = Path.Combine(GetUserDataPath(), name, "Google Profile.ico");
-            var icon = new Icon(iconPath);
 
             return new Profile(
                 name,
-                icon.ToImageSource());
+                iconPath);
         }
     }
 }

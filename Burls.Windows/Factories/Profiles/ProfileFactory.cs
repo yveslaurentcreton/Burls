@@ -1,4 +1,4 @@
-﻿using Burls.Windows.Models;
+﻿using Burls.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,16 +1,20 @@
-﻿using System;
+﻿using Burls.Core.Wpf.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Burls.Windows.Models
+namespace Burls.Domain
 {
     public class Profile
     {
         public string Name { get; protected set; }
-        public ImageSource IconImageSource { get; }
+        public string IconPath { get; }
+
+        public ImageSource IconImageSource => IconPath != null ? Icon.ExtractAssociatedIcon(IconPath).ToImageSource() : null;
 
         public static Profile Default()
         {
@@ -21,10 +25,10 @@ namespace Burls.Windows.Models
         {
         }
 
-        public Profile(string name, ImageSource iconImageSource = null)
+        public Profile(string name, string iconPath = null)
         {
             Name = name;
-            IconImageSource = iconImageSource;
+            IconPath = iconPath;
         }
     }
 }
