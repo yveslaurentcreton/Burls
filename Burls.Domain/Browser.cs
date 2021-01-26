@@ -13,14 +13,17 @@ namespace Burls.Domain
 {
     public class Browser
     {
-        public string Name { get; }
-        public string ExecutablePath { get; }
-        public string IconPath { get; }
-        public int IconIndex { get; }
-        public string ProfileArgumentName { get; }
-        public IReadOnlyList<Profile> Profiles { get; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string ExecutablePath { get; private set; }
+        public string IconPath { get; private set; }
+        public int IconIndex { get; private set; }
+        public string ProfileArgumentName { get; private set; }
+        public virtual IReadOnlyList<Profile> Profiles { get; private set; }
 
         public ImageSource IconImageSource => IconPath != null ? Icon.ExtractAssociatedIcon(IconPath).ToImageSource() : null;
+
+        private Browser() { }
 
         public Browser(
             string name,

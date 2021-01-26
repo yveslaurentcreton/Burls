@@ -11,8 +11,9 @@ namespace Burls.Domain
 {
     public class Profile
     {
-        public string Name { get; protected set; }
-        public string IconPath { get; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string IconPath { get; private set; }
 
         public ImageSource IconImageSource => IconPath != null ? Icon.ExtractAssociatedIcon(IconPath).ToImageSource() : null;
 
@@ -21,7 +22,7 @@ namespace Burls.Domain
             return new Profile() { Name = "Default" };
         }
 
-        protected Profile()
+        private Profile()
         {
         }
 

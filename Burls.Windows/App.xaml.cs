@@ -23,6 +23,8 @@ using Prism.Unity;
 using Burls.Core.Services;
 using Burls.Persistence;
 using System.ComponentModel;
+using Unity;
+using Burls.Windows.Helpers;
 
 namespace Burls.Windows
 {
@@ -39,11 +41,6 @@ namespace Burls.Windows
 
         public App()
         {
-        }
-
-        protected override IContainerExtension CreateContainerExtension()
-        {
-            return ContainerLocator.Current;
         }
 
         protected override Window CreateShell() => Container.Resolve<ShellWindow>();
@@ -71,6 +68,8 @@ namespace Burls.Windows
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IServiceProvider, UnityProvider>();
+
             // Core Services
             containerRegistry.Register<IFileService, FileService>();
 
