@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Burls.Domain;
+using Burls.Persistence.Browsers.Data;
+using Burls.Persistence.Core;
+using Burls.Persistence.Profiles.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,6 +24,7 @@ namespace Burls.Persistence
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // DbContext
             services.AddDbContext<BurlsDbContext>(dbContextOptions =>
             {
                 dbContextOptions.UseSqlite(Configuration.GetConnectionString("BurlsDbContext"), sqlServerOptions =>
@@ -27,6 +32,13 @@ namespace Burls.Persistence
                     sqlServerOptions.MigrationsAssembly("Burls.Persistence");
                 });
             });
+
+            // Unit of work
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Repositories
+            services.AddScoped<IBrowserRepository, BrowserRepository>();
+            services.AddScoped<IProfileRepository, ProfileRepository>();
         }
     }
 

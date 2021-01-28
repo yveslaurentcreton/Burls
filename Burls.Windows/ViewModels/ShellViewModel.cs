@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -56,6 +57,7 @@ namespace Burls.Windows.ViewModels
         public ICommand OptionsMenuItemInvokedCommand { get; }
         public ICommand ApplicationShutdownCommand { get; }
         public ICommand UseBrowserProfileIndexCommand { get; }
+        public ICommand InvertSaveRequestUrlCommand { get; }
 
         public ShellViewModel(IRegionManager regionManager, IBrowserService browserService, IBrowserStore browserStore)
         {
@@ -68,7 +70,8 @@ namespace Burls.Windows.ViewModels
             MenuItemInvokedCommand = new DelegateCommand(OnMenuItemInvoked);
             OptionsMenuItemInvokedCommand = new DelegateCommand(OnOptionsMenuItemInvoked);
             ApplicationShutdownCommand = new DelegateCommand(ApplicationShutdown);
-            UseBrowserProfileIndexCommand = new DelegateCommand<string>(UseBrowserProfileIndex);
+            UseBrowserProfileIndexCommand = new DelegateCommand<string>(async (browserProfileIndex) => await UseBrowserProfileIndex(browserProfileIndex));
+            InvertSaveRequestUrlCommand = new DelegateCommand(InvertSaveRequestUrl);
         }
 
         private void OnLoaded()
@@ -128,9 +131,18 @@ namespace Burls.Windows.ViewModels
             Application.Current.Shutdown();
         }
 
-        private void UseBrowserProfileIndex(string browserProfileIndex)
+        private Task UseBrowserProfileIndex(string browserProfileIndex)
         {
-            _browserService.UseBrowserProfileIndex(_browserStore.BrowserProfiles, browserProfileIndex, _browserStore.RequestUrl);
+            return _browserService.UseBrowserProfileIndexAsync(
+                _browserStore.BrowserProfiles,
+                browserProfileIndex,
+                _browserStore.RequestUrl,
+                _browserStore.SaveRequestUrl);
+        }
+
+        private void InvertSaveRequestUrl()
+        {
+            _browserStore.SaveRequestUrl = !_browserStore.SaveRequestUrl;
         }
     }
 }

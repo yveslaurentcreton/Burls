@@ -7,5 +7,6 @@ namespace Burls.Windows.State
     {
         IEnumerable<BrowserProfile> BrowserProfiles { get; set; }
         string RequestUrl { get; set; }
+        bool SaveRequestUrl { get; set; }
     }
 }

@@ -25,6 +25,7 @@ using Burls.Persistence;
 using System.ComponentModel;
 using Unity;
 using Burls.Windows.Helpers;
+using AutoMapper;
 
 namespace Burls.Windows
 {
@@ -53,6 +54,26 @@ namespace Burls.Windows
             var themeSelectorService = Container.Resolve<IThemeSelectorService>();
             themeSelectorService.SetTheme();
 
+            var browserService = Container.Resolve<IBrowserService>();
+            await browserService.InitializeBrowsersAsync();
+
+            var browserStore = Container.Resolve<IBrowserStore>();
+
+            browserStore.RequestUrl = RequestUrl;
+            browserStore.BrowserProfiles = browserService.GetBrowserProfilesAsync().Result;
+
+            var requestUrlHost = (new Uri(browserStore.RequestUrl)).Host;
+            var browserProfile = browserStore.BrowserProfiles
+                .FirstOrDefault(bp => bp.Profile.Websites.Any(w => w.Domain?.Equals(requestUrlHost, StringComparison.CurrentCultureIgnoreCase) ?? false));
+
+            if (browserProfile != null)
+            {
+                await browserService.UseBrowserProfileAsync(
+                    browserProfile,
+                    browserStore.RequestUrl,
+                    false);
+            }
+
             base.OnInitialized();
 
             await Task.CompletedTask;
@@ -62,7 +83,7 @@ namespace Burls.Windows
         {
             _startUpArgs = e.Args;
             RequestUrl = _startUpArgs?.FirstOrDefault();
-            
+
             base.OnStartup(e);
         }
 
@@ -101,7 +122,11 @@ namespace Burls.Windows
             // Register services
             containerRegistry.RegisterServices(services =>
             {
+                // Add persistence
                 services.AddPersistenceServices(configuration);
+
+                // Add automapper
+                services.AddAutoMapper(typeof(App));
             });
         }
 

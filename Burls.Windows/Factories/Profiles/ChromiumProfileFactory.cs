@@ -10,7 +10,7 @@ namespace Burls.Windows.Factories.Profiles
 {
     public abstract class ChromiumProfileFactory : ProfileFactory
     {
-        public override IReadOnlyList<Profile> GetProfiles()
+        public override IReadOnlyList<InstalledProfile> GetProfiles()
         {
             return (new DirectoryInfo(GetUserDataPath()))
                 .EnumerateDirectories()
@@ -19,9 +19,9 @@ namespace Burls.Windows.Factories.Profiles
                 .ToList();
         }
 
-        protected virtual Profile GetProfile(string name)
+        protected virtual InstalledProfile GetProfile(string name)
         {
-            return new Profile(name);
+            return new InstalledProfile(name);
         }
 
         protected abstract string GetUserDataPath();

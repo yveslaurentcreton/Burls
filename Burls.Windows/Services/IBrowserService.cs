@@ -1,14 +1,15 @@
 ﻿using Burls.Domain;
 using Burls.Windows.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Burls.Windows.Services
 {
     public interface IBrowserService
     {
-        IEnumerable<Browser> GetBrowsers();
-        IEnumerable<BrowserProfile> GetBrowserProfiles();
-        void UseBrowserProfile(BrowserProfile browserProfile, string requestUrl);
-        void UseBrowserProfileIndex(IEnumerable<BrowserProfile> browserProfiles, string index, string requestUrl);
+        Task InitializeBrowsersAsync();
+        Task<IEnumerable<BrowserProfile>> GetBrowserProfilesAsync();
+        Task UseBrowserProfileAsync(BrowserProfile browserProfile, string requestUrl, bool saveRequestUrl);
+        Task UseBrowserProfileIndexAsync(IEnumerable<BrowserProfile> browserProfiles, string index, string requestUrl, bool saveRequestUrl);
     }
 }

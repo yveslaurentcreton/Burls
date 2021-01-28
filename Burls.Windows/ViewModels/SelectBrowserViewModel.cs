@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,7 +19,7 @@ namespace Burls.Windows.ViewModels
     public class SelectBrowserViewModel : BindableBase, INavigationAware
     {
         private readonly IRegionManager _regionManager;
-        private IRegionNavigationService _navigationService;
+        private readonly IRegionNavigationService _navigationService;
         private readonly IBrowserService _browserService;
 
         public IBrowserStore BrowserStore { get; }
@@ -32,9 +33,9 @@ namespace Burls.Windows.ViewModels
             BrowserStore = browserStore;
 
             BrowserStore.RequestUrl = (Application.Current as App).RequestUrl;
-            BrowserStore.BrowserProfiles = _browserService.GetBrowserProfiles();
+            BrowserStore.BrowserProfiles = _browserService.GetBrowserProfilesAsync().Result;
 
-            UseBrowserProfileCommand = new DelegateCommand<BrowserProfile>(UseBrowserProfile);
+            UseBrowserProfileCommand = new DelegateCommand<BrowserProfile>(async (browserProfile) => await UseBrowserProfile(browserProfile));
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -49,9 +50,9 @@ namespace Burls.Windows.ViewModels
 
         
 
-        private void UseBrowserProfile(BrowserProfile browserProfile)
+        private Task UseBrowserProfile(BrowserProfile browserProfile)
         {
-            _browserService.UseBrowserProfile(browserProfile, BrowserStore.RequestUrl);
+            return _browserService.UseBrowserProfileAsync(browserProfile, BrowserStore.RequestUrl, BrowserStore.SaveRequestUrl);
         }
     }
 }

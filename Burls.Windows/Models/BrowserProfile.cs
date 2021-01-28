@@ -14,7 +14,7 @@ namespace Burls.Windows.Models
         public string Name { get; }
         public Browser Browser { get; }
         public Profile Profile { get; }
-        public ImageSource IconImageSource { get; }
+        public string IconPath { get; }
         public string Shortcut { get; }
 
         public BrowserProfile(Browser browser, Profile profile, string shortcut = null)
@@ -23,7 +23,7 @@ namespace Burls.Windows.Models
             Browser = browser;
             Profile = profile;
             Shortcut = shortcut;
-            IconImageSource = profile.IconImageSource ?? browser.IconImageSource;
+            IconPath = !string.IsNullOrEmpty(profile.IconPath) ? profile.IconPath : browser.IconPath;
         }
 
         public void NavigateToUrl(string url)

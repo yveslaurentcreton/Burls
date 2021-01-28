@@ -9,9 +9,9 @@ namespace Burls.Windows.Factories.Profiles
 {
     public class ProfileFactory
     {
-        public virtual IReadOnlyList<Profile> GetProfiles()
+        public virtual IReadOnlyList<InstalledProfile> GetProfiles()
         {
-            return new List<Profile>() { Profile.Default() };
+            return new List<InstalledProfile>() { InstalledProfile.Default() };
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Burls.Core.Wpf.Extensions;
+﻿using Burls.Core.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace Burls.Domain
 {
-    public class Browser
+    public class Browser : IEntity
     {
         public int Id { get; private set; }
         public string Name { get; private set; }
@@ -19,27 +19,9 @@ namespace Burls.Domain
         public string IconPath { get; private set; }
         public int IconIndex { get; private set; }
         public string ProfileArgumentName { get; private set; }
-        public virtual IReadOnlyList<Profile> Profiles { get; private set; }
-
-        public ImageSource IconImageSource => IconPath != null ? Icon.ExtractAssociatedIcon(IconPath).ToImageSource() : null;
+        public virtual ICollection<Profile> Profiles { get; private set; }
 
         private Browser() { }
-
-        public Browser(
-            string name,
-            string executablePath,
-            string iconPath,
-            int iconIndex,
-            string profileArgumentName,
-            IReadOnlyList<Profile> profiles)
-        {
-            Name = name;
-            ExecutablePath = executablePath;
-            IconPath = iconPath;
-            IconIndex = iconIndex;
-            ProfileArgumentName = profileArgumentName;
-            Profiles = profiles;
-        }
 
         public string GetProfileArgument(Profile profile)
         {

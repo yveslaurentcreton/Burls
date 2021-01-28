@@ -12,6 +12,18 @@ namespace Burls.Windows.State
     {
         public string RequestUrl { get; set; }
 
+        private bool _saveRequestUrl;
+        public bool SaveRequestUrl
+        {
+            get { return _saveRequestUrl; }
+            set 
+            {
+                _saveRequestUrl = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         private IEnumerable<BrowserProfile> _browserProfiles;
         public IEnumerable<BrowserProfile> BrowserProfiles
         {

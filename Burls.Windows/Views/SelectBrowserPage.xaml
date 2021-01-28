@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:converters="clr-namespace:Burls.Windows.Converters"
     xmlns:properties="clr-namespace:Burls.Windows.Properties"
     xmlns:behaviors="clr-namespace:Burls.Windows.Behaviors"
     xmlns:prism="http://prismlibrary.com/"
@@ -13,13 +14,14 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <converters:StringToImageConverter x:Key="StringToImageConverter" />
         <DataTemplate x:Key="contentGridItemTemplate">
             <Grid
                 Width="180"
                 Height="180"
                 Background="{DynamicResource MahApps.Brushes.Gray10}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource SmallLeftTopRightBottomMargin}">
-                    <Image Source="{Binding Path=IconImageSource}" Width="60" Height="60" />
+                    <Image Source="{Binding Path=IconPath, Converter={StaticResource StringToImageConverter},ConverterParameter=Light}" Width="60" Height="60" />
                     <TextBlock
                         Margin="{StaticResource XXSmallTopMargin}"
                         HorizontalAlignment="Center"
@@ -48,6 +50,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="48" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="26" />
             </Grid.RowDefinitions>
             <TextBlock
                 Style="{StaticResource PageTitleStyle}"
@@ -73,6 +76,10 @@
                         <behaviors:ListViewItemSelectionBehavior Command="{Binding UseBrowserProfileCommand}" />
                     </i:Interaction.Behaviors>
                 </ListView>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2">
+                <CheckBox IsChecked="{Binding Path=BrowserStore.SaveRequestUrl}" />
+                <Label Content="Remember selected browser profile for url host" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

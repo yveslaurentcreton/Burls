@@ -31,6 +31,7 @@
         <KeyBinding Key="D8" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="8" />
         <KeyBinding Key="D9" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="9" />
         <KeyBinding Key="D0" Command="{Binding UseBrowserProfileIndexCommand}" CommandParameter="0" />
+        <KeyBinding Key="Space" Command="{Binding InvertSaveRequestUrlCommand}" />
     </controls:MetroWindow.InputBindings>
     
     <i:Interaction.Triggers>

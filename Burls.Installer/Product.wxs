@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="$(var.Burls.Windows.TargetName)" Language="1033" Version="0.2.0" Manufacturer="BEzGumpTion" UpgradeCode="4bd619b8-77ab-437e-8607-f6daf13b12b1">
+	<Product Id="*" Name="$(var.Burls.Windows.TargetName)" Language="1033" Version="0.3.0" Manufacturer="BEzGumpTion" UpgradeCode="4bd619b8-77ab-437e-8607-f6daf13b12b1">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

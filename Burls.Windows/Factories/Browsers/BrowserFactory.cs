@@ -17,9 +17,9 @@ namespace Burls.Windows.Factories.Browsers
             _browserInfo = browserInfo;
         }
 
-        public Browser GetBrowser()
+        public InstalledBrowser GetBrowser()
         {
-            return new Browser(
+            return new InstalledBrowser(
                 _browserInfo.Name,
                 _browserInfo.ExecutablePath,
                 _browserInfo.IconPath,
@@ -33,7 +33,7 @@ namespace Burls.Windows.Factories.Browsers
             return null;
         }
 
-        protected virtual IReadOnlyList<Profile> GetProfiles()
+        protected virtual IReadOnlyList<InstalledProfile> GetProfiles()
         {
             return GetProfileFactory()
                 .GetProfiles()

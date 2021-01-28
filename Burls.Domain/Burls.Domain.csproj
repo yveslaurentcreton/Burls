@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Burls.Core.Wpf\Burls.Core.Wpf.csproj" />
+    <ProjectReference Include="..\Burls.Core\Burls.Core.csproj" />
   </ItemGroup>
 
 </Project>
