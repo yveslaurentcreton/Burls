@@ -14,7 +14,7 @@ namespace Burls.Persistence.Browsers.Data
         public IQueryable<Browser> IncludeDefault(IQueryable<Browser> query)
         {
             return query.Include(x => x.Profiles)
-                .ThenInclude(x => x.Websites);
+                .ThenInclude(x => x.SelectionRules);
         }
     }
 }

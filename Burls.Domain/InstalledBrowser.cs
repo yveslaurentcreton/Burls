@@ -11,12 +11,12 @@ namespace Burls.Domain
 {
     public class InstalledBrowser
     {
-        public string Name { get; private set; }
-        public string ExecutablePath { get; private set; }
-        public string IconPath { get; private set; }
-        public int IconIndex { get; private set; }
-        public string ProfileArgumentName { get; private set; }
-        public virtual IReadOnlyList<InstalledProfile> Profiles { get; private set; }
+        public string Name { get; protected set; }
+        public string ExecutablePath { get; protected set; }
+        public string IconPath { get; protected set; }
+        public int IconIndex { get; protected set; }
+        public string ProfileArgumentName { get; protected set; }
+        public virtual IReadOnlyList<InstalledProfile> Profiles { get; protected set; }
 
         private InstalledBrowser() { }
 

@@ -1,0 +1,53 @@
+﻿<controls:Flyout x:Class="Burls.Windows.Views.ProfileSelectionRuleCreateDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:Burls.Windows.Core.Converters"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:viewmodels="clr-namespace:Burls.Windows.ViewModels"
+             xmlns:core="clr-namespace:Burls.Windows.Core"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ProfileSelectionRuleCreateViewModel}"
+             mc:Ignorable="d" 
+             Header="Create selection rule"
+             Position="Right"
+             Width="300"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <!--Content-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <Label Grid.Column="0" Content="Part" Margin="0,0,0,5" Height="26" />
+                <Label Grid.Column="0" Content="Compare type" Margin="0,0,0,5" Height="26" />
+                <Label Grid.Column="0" Grid.Row="2" Content="Value" Margin="0,0,0,5" Height="26" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <ComboBox Grid.Column="2" Margin="0,0,0,5" Height="26" ItemsSource="{Binding Path=SelectionRulePart, Converter={converters:EnumToCollectionConverter}, Mode=OneWay}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedValue="{Binding Path=SelectionRulePart, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox Grid.Column="2" Margin="0,0,0,5" Height="26" ItemsSource="{Binding Path=SelectionRuleCompareType, Converter={converters:EnumToCollectionConverter}, Mode=OneWay}" SelectedValuePath="Value" DisplayMemberPath="Description" SelectedValue="{Binding Path=SelectionRuleCompareType, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="2" Grid.Row="2" Margin="0,0,0,5" Height="26" Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+        </Grid>
+        
+        <!--Buttons-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel" IsCancel="true" Padding="5,0,5,0" MinWidth="75" Height="26" Command="{Binding Path=CancelCommand}" />
+            <Button Content="Ok" Margin="5,0,0,0" Padding="5,0,5,0" MinWidth="75" IsDefault="true" Height="26" Command="{Binding Path=OkCommand}" />
+        </StackPanel>
+    </Grid>
+    
+    
+</controls:Flyout>

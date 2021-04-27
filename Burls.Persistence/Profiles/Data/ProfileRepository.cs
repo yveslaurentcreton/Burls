@@ -1,4 +1,5 @@
-﻿using Burls.Domain;
+﻿using Burls.Application.Profiles.Data;
+using Burls.Domain;
 using Burls.Persistence.Core;
 using System;
 using System.Collections.Generic;

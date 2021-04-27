@@ -1,6 +1,7 @@
 ﻿using Burls.Core.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,13 @@ namespace Burls.Domain
 {
     public class Profile : IEntity
     {
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-        public string IconPath { get; private set; }
+        public int Id { get; protected set; }
+        public string Name { get; protected set; }
+        public string IconPath { get; protected set; }
 
-        public ICollection<Website> Websites { get; set; }
+        public IList<SelectionRule> SelectionRules { get; set; }
 
-        private Profile()
+        protected Profile()
         {
         }
     }

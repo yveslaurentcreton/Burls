@@ -12,10 +12,17 @@ namespace Burls.Windows.Views
         public ShellWindow(IRegionManager regionManager)
         {
             InitializeComponent();
-            RegionManager.SetRegionName(hamburgerMenuContentControl, Regions.Main);
-            RegionManager.SetRegionManager(hamburgerMenuContentControl, regionManager);
 
             Loaded += ShellWindow_Loaded;
+
+            SetRegionManager(regionManager, hamburgerMenuContentControl, Regions.Main);
+            SetRegionManager(regionManager, flyoutsControlRegion, Regions.FlyoutRegion);
+        }
+
+        private void SetRegionManager(IRegionManager regionManager, DependencyObject regionTarget, string regionName)
+        {
+            RegionManager.SetRegionName(regionTarget, regionName);
+            RegionManager.SetRegionManager(regionTarget, regionManager);
         }
 
         private void ShellWindow_Loaded(object sender, RoutedEventArgs e)

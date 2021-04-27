@@ -1,4 +1,7 @@
-﻿using Burls.Domain;
+﻿using Burls.Application.Browsers.Data;
+using Burls.Application.Core.Data;
+using Burls.Application.Profiles.Data;
+using Burls.Domain;
 using Burls.Persistence.Browsers.Data;
 using Burls.Persistence.Core;
 using Burls.Persistence.Profiles.Data;
@@ -27,7 +30,8 @@ namespace Burls.Persistence
             // DbContext
             services.AddDbContext<BurlsDbContext>(dbContextOptions =>
             {
-                dbContextOptions.UseSqlite(Configuration.GetConnectionString("BurlsDbContext"), sqlServerOptions =>
+                var connectionString = Configuration.GetConnectionString("BurlsDbContext");
+                dbContextOptions.UseSqlite(connectionString, sqlServerOptions =>
                 {
                     sqlServerOptions.MigrationsAssembly("Burls.Persistence");
                 });

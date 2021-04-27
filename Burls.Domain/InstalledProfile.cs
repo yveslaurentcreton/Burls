@@ -10,8 +10,8 @@ namespace Burls.Domain
 {
     public class InstalledProfile
     {
-        public string Name { get; private set; }
-        public string IconPath { get; private set; }
+        public string Name { get; protected set; }
+        public string IconPath { get; protected set; }
 
         public static InstalledProfile Default()
         {

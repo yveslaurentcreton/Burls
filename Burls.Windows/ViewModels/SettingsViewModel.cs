@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
-
+using Burls.Application.Core.Queries;
+using Burls.Application.Core.Services;
 using Burls.Windows.Contracts.Services;
 using Burls.Windows.Models;
-
+using MediatR;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -13,10 +14,10 @@ namespace Burls.Windows.ViewModels
     // TODO WTS: Change the URL for your privacy policy in the appsettings.json file, currently set to https://YourPrivacyUrlGoesHere
     public class SettingsViewModel : BindableBase, INavigationAware
     {
+        private readonly IMediator _mediator;
         private readonly AppConfig _appConfig;
         private readonly IThemeSelectorService _themeSelectorService;
         private readonly ISystemService _systemService;
-        private readonly IApplicationInfoService _applicationInfoService;
         private AppTheme _theme;
         private string _versionDescription;
         private ICommand _setThemeCommand;
@@ -38,17 +39,22 @@ namespace Burls.Windows.ViewModels
 
         public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new DelegateCommand(OnPrivacyStatement));
 
-        public SettingsViewModel(AppConfig appConfig, IThemeSelectorService themeSelectorService, ISystemService systemService, IApplicationInfoService applicationInfoService)
+        public SettingsViewModel(
+            IMediator mediator,
+            AppConfig appConfig,
+            IThemeSelectorService themeSelectorService,
+            ISystemService systemService)
         {
+            _mediator = mediator;
             _appConfig = appConfig;
             _themeSelectorService = themeSelectorService;
             _systemService = systemService;
-            _applicationInfoService = applicationInfoService;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            VersionDescription = $"Burls - {_applicationInfoService.GetVersion()}";
+            var version = _mediator.Send(new GetApplicationVersionQuery()).Result.Version;
+            VersionDescription = $"Burls - {version}";
             Theme = _themeSelectorService.GetCurrentTheme();
         }
 

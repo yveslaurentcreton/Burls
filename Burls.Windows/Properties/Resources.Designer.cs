@@ -70,6 +70,15 @@ namespace Burls.Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browser setup.
+        /// </summary>
+        public static string BrowserProfileSetupPageTitle {
+            get {
+                return ResourceManager.GetString("BrowserProfileSetupPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select browser.
         /// </summary>
         public static string SelectBrowserPageTitle {
@@ -147,6 +156,15 @@ namespace Burls.Windows.Properties {
         public static string SettingsPageTitle {
             get {
                 return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browser setup.
+        /// </summary>
+        public static string ShellBrowserProfileSetupPage {
+            get {
+                return ResourceManager.GetString("ShellBrowserProfileSetupPage", resourceCulture);
             }
         }
         

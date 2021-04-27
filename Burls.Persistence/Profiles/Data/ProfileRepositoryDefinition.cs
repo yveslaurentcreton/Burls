@@ -13,7 +13,7 @@ namespace Burls.Persistence.Profiles.Data
     {
         public IQueryable<Profile> IncludeDefault(IQueryable<Profile> query)
         {
-            return query.Include(x => x.Websites);
+            return query.Include(x => x.SelectionRules);
         }
     }
 }

@@ -41,10 +41,10 @@ namespace Burls.Windows.Services
                 }
             }
 
-            var currentTheme = ThemeManager.Current.DetectTheme(Application.Current);
+            var currentTheme = ThemeManager.Current.DetectTheme(System.Windows.Application.Current);
             if (currentTheme == null || currentTheme.Name != theme.ToString())
             {
-                ThemeManager.Current.ChangeTheme(Application.Current, $"{theme}.Blue");
+                ThemeManager.Current.ChangeTheme(System.Windows.Application.Current, $"{theme}.Blue");
                 App.Current.Properties["Theme"] = theme.ToString();
                 return true;
             }

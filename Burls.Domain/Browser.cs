@@ -13,15 +13,15 @@ namespace Burls.Domain
 {
     public class Browser : IEntity
     {
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-        public string ExecutablePath { get; private set; }
-        public string IconPath { get; private set; }
-        public int IconIndex { get; private set; }
-        public string ProfileArgumentName { get; private set; }
-        public virtual ICollection<Profile> Profiles { get; private set; }
+        public int Id { get; protected set; }
+        public string Name { get; protected set; }
+        public string ExecutablePath { get; protected set; }
+        public string IconPath { get; protected set; }
+        public int IconIndex { get; protected set; }
+        public string ProfileArgumentName { get; protected set; }
+        public virtual ICollection<Profile> Profiles { get; protected set; }
 
-        private Browser() { }
+        protected Browser() { }
 
         public string GetProfileArgument(Profile profile)
         {

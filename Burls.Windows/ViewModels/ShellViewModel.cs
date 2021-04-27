@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-
+using Burls.Application.Core.State;
 using Burls.Windows.Constants;
+using Burls.Windows.Events;
 using Burls.Windows.Properties;
 using Burls.Windows.Services;
-using Burls.Windows.State;
 using MahApps.Metro.Controls;
 
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -20,8 +23,7 @@ namespace Burls.Windows.ViewModels
     public class ShellViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
-        private readonly IBrowserService _browserService;
-        private readonly IBrowserStore _browserStore;
+        private readonly IApplicationState _applicationStore;
         private IRegionNavigationService _navigationService;
         private HamburgerMenuItem _selectedMenuItem;
         private HamburgerMenuItem _selectedOptionsMenuItem;
@@ -39,15 +41,11 @@ namespace Burls.Windows.ViewModels
             set { SetProperty(ref _selectedOptionsMenuItem, value); }
         }
 
-        public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
-        {
-            new HamburgerMenuGlyphItem() { Label = Resources.ShellSelectBrowserPage, Glyph = "\uE774", Tag = PageKeys.SelectBrowser },
-        };
+        private ObservableCollection<HamburgerMenuItem> _menuItems;
+        public ObservableCollection<HamburgerMenuItem> MenuItems { get { return _menuItems ??= GetMenuItems(); } }
 
-        public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
-        {
-            new HamburgerMenuGlyphItem() { Label = Resources.ShellSettingsPage, Glyph = "\uE713", Tag = PageKeys.Settings }
-        };
+        private ObservableCollection<HamburgerMenuItem> _optionMenuItems;
+        public ObservableCollection<HamburgerMenuItem> OptionMenuItems { get { return _optionMenuItems ??= GetOptionMenuItems(); } }
 
         public DelegateCommand GoBackCommand => _goBackCommand ??= new DelegateCommand(OnGoBack, CanGoBack);
 
@@ -55,23 +53,18 @@ namespace Burls.Windows.ViewModels
         public ICommand UnloadedCommand { get; }
         public ICommand MenuItemInvokedCommand { get; }
         public ICommand OptionsMenuItemInvokedCommand { get; }
-        public ICommand ApplicationShutdownCommand { get; }
-        public ICommand UseBrowserProfileIndexCommand { get; }
-        public ICommand InvertSaveRequestUrlCommand { get; }
+        public ICommand CommandTriggerEventCommand { get; }
 
-        public ShellViewModel(IRegionManager regionManager, IBrowserService browserService, IBrowserStore browserStore)
+        public ShellViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, IApplicationState applicationStore, IFlyoutService flyoutService)
         {
             _regionManager = regionManager;
-            _browserService = browserService;
-            _browserStore = browserStore;
+            _applicationStore = applicationStore;
 
             LoadedCommand = new DelegateCommand(OnLoaded);
             UnloadedCommand = new DelegateCommand(OnUnloaded);
             MenuItemInvokedCommand = new DelegateCommand(OnMenuItemInvoked);
             OptionsMenuItemInvokedCommand = new DelegateCommand(OnOptionsMenuItemInvoked);
-            ApplicationShutdownCommand = new DelegateCommand(ApplicationShutdown);
-            UseBrowserProfileIndexCommand = new DelegateCommand<string>(async (browserProfileIndex) => await UseBrowserProfileIndex(browserProfileIndex));
-            InvertSaveRequestUrlCommand = new DelegateCommand(InvertSaveRequestUrl);
+            CommandTriggerEventCommand = new DelegateCommand<string>((commandParameter) => eventAggregator.GetEvent<CommandTriggerEvent>().Publish(new CommandTriggerEventArgs(commandParameter)));
         }
 
         private void OnLoaded()
@@ -126,23 +119,26 @@ namespace Burls.Windows.ViewModels
             GoBackCommand.RaiseCanExecuteChanged();
         }
 
-        private void ApplicationShutdown()
+        private ObservableCollection<HamburgerMenuItem> GetMenuItems()
         {
-            Application.Current.Shutdown();
+            var menuItems = new ObservableCollection<HamburgerMenuItem>();
+
+            if (_applicationStore.ApplicationMode == ApplicationMode.Select)
+            {
+                menuItems.Add(new HamburgerMenuGlyphItem() { Label = Resources.ShellSelectBrowserPage, Glyph = "\uE774", Tag = PageKeys.BrowserProfileSelection });
+            }
+
+            menuItems.Add(new HamburgerMenuGlyphItem() { Label = Resources.ShellBrowserProfileSetupPage, Glyph = "\uEB41", Tag = PageKeys.BrowserProfileSetup });
+
+            return menuItems;
         }
 
-        private Task UseBrowserProfileIndex(string browserProfileIndex)
+        private ObservableCollection<HamburgerMenuItem> GetOptionMenuItems()
         {
-            return _browserService.UseBrowserProfileIndexAsync(
-                _browserStore.BrowserProfiles,
-                browserProfileIndex,
-                _browserStore.RequestUrl,
-                _browserStore.SaveRequestUrl);
-        }
-
-        private void InvertSaveRequestUrl()
-        {
-            _browserStore.SaveRequestUrl = !_browserStore.SaveRequestUrl;
+            return new ObservableCollection<HamburgerMenuItem>()
+            {
+                new HamburgerMenuGlyphItem() { Label = Resources.ShellSettingsPage, Glyph = "\uE713", Tag = PageKeys.Settings }
+            };
         }
     }
 }

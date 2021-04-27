@@ -10,19 +10,22 @@
   
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
-    <PackageReference Include="MintPlayer.PlatformBrowser" Version="1.1.0" />
+    <PackageReference Include="NLog" Version="4.7.9" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.1" />
     <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
     <PackageReference Include="Prism.Unity.Extensions" Version="8.0.48" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Burls.Application\Burls.Application.csproj" />
     <ProjectReference Include="..\Burls.Core\Burls.Core.csproj" />
     <ProjectReference Include="..\Burls.Domain\Burls.Domain.csproj" />
     <ProjectReference Include="..\Burls.Persistence\Burls.Persistence.csproj" />

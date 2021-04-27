@@ -1,5 +1,6 @@
-﻿using Burls.Persistence.Browsers.Data;
-using Burls.Persistence.Profiles.Data;
+﻿using Burls.Application.Browsers.Data;
+using Burls.Application.Core.Data;
+using Burls.Application.Profiles.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;

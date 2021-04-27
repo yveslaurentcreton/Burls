@@ -7,9 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
+    <PackageReference Include="MintPlayer.PlatformBrowser" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Burls.Application\Burls.Application.csproj" />
     <ProjectReference Include="..\Burls.Core\Burls.Core.csproj" />
     <ProjectReference Include="..\Burls.Domain\Burls.Domain.csproj" />
   </ItemGroup>
