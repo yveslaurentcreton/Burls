@@ -66,12 +66,12 @@
 
                 <TextBlock
                     Style="{StaticResource BodyTextStyle}"
-                    Text="{Binding BrowserState.RequestUrl}" />
+                    Text="{Binding RequestUrl}" />
 
                 <ListView
                     Margin="{StaticResource SmallTopBottomMargin}"
                     SelectionMode="Single"
-                    ItemsSource="{Binding BrowserState.BrowserProfiles}"
+                    ItemsSource="{Binding BrowserProfiles}"
                     Style="{StaticResource ContentGridListViewStyle}"
                     ItemTemplate="{StaticResource contentGridItemTemplate}">
                     <i:Interaction.Behaviors>
@@ -80,7 +80,7 @@
                 </ListView>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2">
-                <CheckBox IsChecked="{Binding Path=BrowserState.SaveRequestUrl}" />
+                <CheckBox IsChecked="{Binding Path=SaveRequestUrl}" />
                 <Label Content="Remember selected browser profile for url domain" />
             </StackPanel>
         </Grid>

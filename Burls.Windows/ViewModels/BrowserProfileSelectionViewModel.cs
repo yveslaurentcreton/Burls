@@ -27,9 +27,18 @@ namespace Burls.Windows.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionNavigationService _navigationService;
         private readonly IBrowserService _browserService;
+        public readonly IBrowserState _browserState;
         private SubscriptionToken _commandHandlerToken;
 
-        public IBrowserState BrowserState { get; }
+        public string RequestUrl => _browserState.RequestUrl;
+        public IEnumerable<BrowserProfile> BrowserProfiles => _browserState.BrowserProfiles;
+
+        public bool SaveRequestUrl
+        {
+            get { return _browserState.SaveRequestUrl; }
+            set { _browserState.SaveRequestUrl = value; }
+        }
+
         public ICommand UseBrowserProfileCommand { get; }
 
         public BrowserProfileSelectionViewModel(IMediator mediator, IRegionManager regionManager, IEventAggregator eventAggregator, IBrowserService browserService, IBrowserState browserState)
@@ -39,9 +48,17 @@ namespace Burls.Windows.ViewModels
             _eventAggregator = eventAggregator;
             _navigationService = regionManager.Regions[Regions.Main].NavigationService;
             _browserService = browserService;
-            BrowserState = browserState;
+            _browserState = browserState;
+
+            _browserState.StateChanged += _browserState_StateChanged;
 
             UseBrowserProfileCommand = new DelegateCommand<BrowserProfile>(async (browserProfile) => await UseBrowserProfile(browserProfile));
+        }
+
+        private void _browserState_StateChanged(object sender, EventArgs e)
+        {
+            RaisePropertyChanged(nameof(SaveRequestUrl));
+            RaisePropertyChanged(nameof(BrowserProfiles));
         }
 
         private void Subscribe()
@@ -65,15 +82,15 @@ namespace Burls.Windows.ViewModels
                     var browserProfileIndex = commandParameterParts[2];
 
                     await _browserService.UseBrowserProfileIndexAsync(
-                        BrowserState.BrowserProfiles,
+                        _browserState.BrowserProfiles,
                         browserProfileIndex,
-                        BrowserState.RequestUrl,
-                        BrowserState.SaveRequestUrl);
+                        _browserState.RequestUrl,
+                        _browserState.SaveRequestUrl);
                 }
 
                 if (commandParameterParts[1].Equals("SaveRequest"))
                 {
-                    BrowserState.SaveRequestUrl = !BrowserState.SaveRequestUrl;
+                    _browserState.SaveRequestUrl = !_browserState.SaveRequestUrl;
                 }
             }
 
@@ -98,7 +115,7 @@ namespace Burls.Windows.ViewModels
 
         private Task UseBrowserProfile(BrowserProfile browserProfile)
         {
-            return _browserService.UseBrowserProfileAsync(browserProfile, BrowserState.RequestUrl, BrowserState.SaveRequestUrl);
+            return _browserService.UseBrowserProfileAsync(browserProfile, _browserState.RequestUrl, _browserState.SaveRequestUrl);
         }
     }
 }
