@@ -149,12 +149,12 @@ namespace Burls.Application.Browsers.Services
         {
             if (saveRequestUrl)
             {
-                var requestUri = new Uri(requestUrl);
+                var requestDomain = SelectionRule.GetPartFromUrl(SelectionRule.SelectionRuleParts.Domain, requestUrl);
                 var command = new CreateProfileSelectionRuleCommand(
                     browserProfile.Profile.Id,
                     SelectionRule.SelectionRuleParts.Domain,
                     SelectionRule.SelectionRuleCompareTypes.Equals,
-                    requestUri.Host);
+                    requestDomain);
 
                 await _mediator.Send(command);
             }

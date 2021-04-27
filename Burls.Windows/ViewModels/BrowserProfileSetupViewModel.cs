@@ -35,8 +35,10 @@ namespace Burls.Windows.ViewModels
             set { _browserState.SelectedSelectionRule = value; }
         }
 
-        public ICommand AddSelectionRuleCommand { get; set; }
-        public ICommand RemoveSelectionRuleCommand { get; set; }
+        public readonly DelegateCommand _addSelectionRuleCommand;
+        public ICommand AddSelectionRuleCommand => _addSelectionRuleCommand;
+        public readonly DelegateCommand _removeSelectionRuleCommand;
+        public ICommand RemoveSelectionRuleCommand => _removeSelectionRuleCommand;
 
         public BrowserProfileSetupViewModel(IMediator mediator, IBrowserState browserState)
         {
@@ -45,8 +47,8 @@ namespace Burls.Windows.ViewModels
 
             _browserState.StateChanged += _browserState_StateChanged;
 
-            AddSelectionRuleCommand = new DelegateCommand(async () => await AddSelectionRuleAsync());
-            RemoveSelectionRuleCommand = new DelegateCommand(async () => await RemoveSelectionRuleAsync());
+            _addSelectionRuleCommand = new DelegateCommand(async () => await AddSelectionRuleAsync());
+            _removeSelectionRuleCommand = new DelegateCommand(async () => await RemoveSelectionRuleAsync(), () => SelectedSelectionRule != null);
         }
 
         private void _browserState_StateChanged(object sender, EventArgs e)
@@ -55,6 +57,9 @@ namespace Burls.Windows.ViewModels
             RaisePropertyChanged(nameof(SelectionRules));
             RaisePropertyChanged(nameof(SelectedBrowserProfile));
             RaisePropertyChanged(nameof(SelectedSelectionRule));
+
+            _addSelectionRuleCommand.RaiseCanExecuteChanged();
+            _removeSelectionRuleCommand.RaiseCanExecuteChanged();
         }
 
         private Task AddSelectionRuleAsync()
