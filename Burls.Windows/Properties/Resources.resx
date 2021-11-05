@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -158,5 +158,11 @@
   </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>Burls</value>
+  </data>
+  <data name="ShellBrowserProfileSetupPage" xml:space="preserve">
+    <value>Browser setup</value>
+  </data>
+  <data name="BrowserProfileSetupPageTitle" xml:space="preserve">
+    <value>Browser setup</value>
   </data>
 </root>

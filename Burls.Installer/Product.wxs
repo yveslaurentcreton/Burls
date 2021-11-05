@@ -1,39 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="$(var.Burls.Windows.TargetName)" Language="1033" Version="0.2.0" Manufacturer="BEzGumpTion" UpgradeCode="4bd619b8-77ab-437e-8607-f6daf13b12b1">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+  <Product Id="*" Name="$(var.Burls.Windows.TargetName)" Language="1033" Version="0.3.0" Manufacturer="BEzGumpTion" UpgradeCode="4bd619b8-77ab-437e-8607-f6daf13b12b1">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate EmbedCab="yes" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
 
-		<Feature Id="f_Burls" Title="Main application" Description="This will install Burls" Level="1">
+    <Feature Id="f_Burls" Title="Main application" Description="This will install Burls" Level="1">
       <ComponentGroupRef Id="cg_Burls"/>
-		</Feature>
-	</Product>
+    </Feature>
+  </Product>
 
-	<Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFiles64Folder">
-				<Directory Id="INSTALLFOLDER" Name="Burls" />
-			</Directory>
-		</Directory>
-	</Fragment>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="$(var.Burls.Windows.TargetName)" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="$(var.Burls.Windows.TargetName)" />
+      </Directory>
+      <Directory Id="LocalAppDataFolder">
+        <Directory Id="BurlsLocalAppDataFolder" Name="$(var.Burls.Windows.TargetName)">
+          <Directory Id="BurlsLocalAppDataConfigurationFolder" Name="Configurations" />
+        </Directory>
+        <Directory Id="OldBurlsLocalAppDataFolder" Name="Burls.Windows" >
+          <Directory Id="OldBurlsLocalAppDataConfigurationFolder" Name="Configurations" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
 
-	<Fragment>
-		<ComponentGroup Id="cg_Burls" Directory="INSTALLFOLDER">
-      <Component Id="c_Burls_Windows">
+  <Fragment>
+    <ComponentGroup Id="cg_Burls" Directory="INSTALLFOLDER">
+      <ComponentRef Id="c_Burls_Windows" />
+      <ComponentRef Id="c_Burls_ApplicationStartMenuShortcut" />
+      <ComponentRef Id="c_Burls_RemoveBurlsLocalAppDataFolder" />
+      <ComponentRef Id="c_Burls_RemoveOldBurlsLocalAppDataFolder" />
+      <ComponentRef Id="c_Burls_Registry" />
+    </ComponentGroup>
+  </Fragment>
+
+  <!--Install the program files-->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="c_Burls_Windows" Guid="0dda5b8c-983e-4002-b585-d044bd305428">
         <File Id="f_Burls_Windows" Name="$(var.Burls.Windows.TargetName).exe" Source="$(var.Burls.Windows.ProjectDir)bin\Release\netcoreapp3.1\publish\$(var.Burls.Windows.TargetName).exe" KeyPath="yes" />
       </Component>
+    </DirectoryRef>
+  </Fragment>
 
-      <ComponentRef Id="c_Burls_Registry" />
-		</ComponentGroup>
-	</Fragment>
+  <!--Install the start menu shortcut-->
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="c_Burls_ApplicationStartMenuShortcut">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="$(var.Burls.Windows.TargetName)" Target="[INSTALLFOLDER]$(var.Burls.Windows.TargetName).exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\$(var.Burls.Windows.TargetName)" Name="shortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--Uninstall all the created user files and config-->
+  <Fragment>
+    <DirectoryRef Id="BurlsLocalAppDataFolder">
+      <Component Id="c_Burls_RemoveBurlsLocalAppDataFolder" Guid="511ca3d1-bc37-4687-971f-314bfb32066b">
+
+        <RemoveFile Id="RemoveAppProperties" Directory="BurlsLocalAppDataConfigurationFolder" Name="AppProperties.json" On="uninstall" />
+        <RemoveFolder Id="RemoveBurlsLocalAppDataConfigurationFolder" Directory="BurlsLocalAppDataConfigurationFolder" On="uninstall" />
+
+        <RemoveFile Id="RemoveDatabase" Name="Burls.sqlite" On="uninstall" />
+
+        <RemoveFolder Id="RemoveBurlsLocalAppDataFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\$(var.Burls.Windows.TargetName)" Name="BurlsLocalAppDataFolder" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <!--Uninstall all the old created user files and config-->
+  <Fragment>
+    <DirectoryRef Id="OldBurlsLocalAppDataFolder">
+      <Component Id="c_Burls_RemoveOldBurlsLocalAppDataFolder" Guid="34188faf-e712-46f0-9334-cc2032b00b82">
+
+        <RemoveFile Id="RemoveOldAppProperties" Directory="OldBurlsLocalAppDataConfigurationFolder" Name="AppProperties.json" On="uninstall" />
+        <RemoveFolder Id="RemoveOldBurlsLocalAppDataConfigurationFolder" Directory="OldBurlsLocalAppDataConfigurationFolder" On="uninstall" />
+
+        <RemoveFolder Id="RemoveOldBurlsLocalAppDataFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\$(var.Burls.Windows.TargetName)" Name="OldBurlsLocalAppDataFolder" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
 
   <Fragment>
     <DirectoryRef Id="TARGETDIR">
-      
+
       <Component Id="c_Burls_Registry">
-        
+
         <RegistryKey Root="HKLM" Key="SOFTWARE\Burls" Action="createAndRemoveOnUninstall" />
 
         <RegistryKey Root="HKLM" Key="SOFTWARE\Burls\Capabilities" Action="create">
@@ -41,7 +102,7 @@
           <RegistryValue Type="string" Name="ApplicationIcon" Value="[INSTALLFOLDER]$(var.Burls.Windows.TargetName).exe,0" />
           <RegistryValue Type="string" Name="ApplicationName" Value="Burls" />
         </RegistryKey>
-        
+
         <RegistryKey Root="HKLM" Key="SOFTWARE\Burls\Capabilities\FileAssociations" Action="create">
           <RegistryValue Type="string" Name=".htm" Value="BurlsURL" />
           <RegistryValue Type="string" Name=".html" Value="BurlsURL" />

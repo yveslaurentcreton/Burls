@@ -11,7 +11,6 @@ using Burls.Windows.Constants;
 using Burls.Windows.Contracts.Services;
 using Burls.Windows.Services;
 using Burls.Windows.Models;
-using Burls.Windows.State;
 using Burls.Windows.ViewModels;
 using Burls.Windows.Views;
 
@@ -21,6 +20,20 @@ using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Unity;
 using Burls.Core.Services;
+using Burls.Persistence;
+using System.ComponentModel;
+using Unity;
+using Burls.Windows.Helpers;
+using AutoMapper;
+using Prism.Regions;
+using Prism.Modularity;
+using System.Collections.ObjectModel;
+using Burls.Application.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
+using MediatR;
+using Burls.Application.Core.Commands;
+using MahApps.Metro.Controls;
+using Burls.Windows.Core;
 
 namespace Burls.Windows
 {
@@ -33,53 +46,67 @@ namespace Burls.Windows
     public partial class App : PrismApplication
     {
         private string[] _startUpArgs;
-        public string RequestUrl { get; private set; }
 
         public App()
         {
         }
-
-        protected override Window CreateShell() => Container.Resolve<ShellWindow>();
-
-        protected override async void OnInitialized()
+        
+        protected override Window CreateShell()
         {
-            var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
-            persistAndRestoreService.RestoreData();
+            // Init application
+            var mediator = Container.Resolve<IMediator>();
+            mediator.Send(new ApplicationInitializeCommand(_startUpArgs)).Wait();
 
+            // Init theme
             var themeSelectorService = Container.Resolve<IThemeSelectorService>();
             themeSelectorService.SetTheme();
 
-            base.OnInitialized();
-            await Task.CompletedTask;
+            // Create shell
+            return MainWindow = InitializeShell() as ShellWindow;
+        }
+
+        private Window InitializeShell()
+        {
+            var regionManager = Container.Resolve<IRegionManager>();
+
+            // Add flyouts
+            regionManager.RegisterViewWithRegion(Regions.FlyoutRegion, typeof(ProfileSelectionRuleCreateDialog));
+
+            // Create shell
+            MainWindow = Container.Resolve<ShellWindow>();
+
+            return MainWindow;
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             _startUpArgs = e.Args;
-            RequestUrl = _startUpArgs?.FirstOrDefault();
 
             base.OnStartup(e);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IServiceProvider, UnityProvider>();
+            
+            containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommandsProxy>();
+            containerRegistry.RegisterSingleton<IFlyoutService, FlyoutService>();
+
             // Core Services
             containerRegistry.Register<IFileService, FileService>();
 
-            // State
-            containerRegistry.RegisterSingleton<IBrowserStore, BrowserStore>();
-
             // App Services
-            containerRegistry.Register<IApplicationInfoService, ApplicationInfoService>();
+            containerRegistry.Register<IApplicationService, ApplicationService>();
             containerRegistry.Register<ISystemService, SystemService>();
             containerRegistry.Register<IPersistAndRestoreService, PersistAndRestoreService>();
             containerRegistry.Register<IThemeSelectorService, ThemeSelectorService>();
-            containerRegistry.Register<IBrowserService, BrowserService>();
 
             // Views
+            containerRegistry.RegisterForNavigation<BrowserProfileSelectionPage, BrowserProfileSelectionViewModel>(PageKeys.BrowserProfileSelection);
+            containerRegistry.RegisterForNavigation<BrowserProfileSetupPage, BrowserProfileSetupViewModel>(PageKeys.BrowserProfileSetup);
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsViewModel>(PageKeys.Settings);
-            containerRegistry.RegisterForNavigation<SelectBrowserPage, SelectBrowserViewModel>(PageKeys.SelectBrowser);
             containerRegistry.RegisterForNavigation<ShellWindow, ShellViewModel>();
+            containerRegistry.RegisterForNavigation<ProfileSelectionRuleCreateDialog, ProfileSelectionRuleCreateViewModel>();
 
             // Configuration
             var configuration = BuildConfiguration();
@@ -87,9 +114,14 @@ namespace Burls.Windows
                 .GetSection(nameof(AppConfig))
                 .Get<AppConfig>();
 
-            // Register configurations to IoC
-            containerRegistry.RegisterInstance<IConfiguration>(configuration);
-            containerRegistry.RegisterInstance<AppConfig>(appConfig);
+            containerRegistry.RegisterInstance(configuration);
+            containerRegistry.RegisterInstance(appConfig);
+
+            // Register services
+            containerRegistry.RegisterServices(services =>
+            {
+                services.AddPresentationServices(configuration);
+            });
         }
 
         private IConfiguration BuildConfiguration()
@@ -104,8 +136,8 @@ namespace Burls.Windows
 
         private void OnExit(object sender, ExitEventArgs e)
         {
-            var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
-            persistAndRestoreService.PersistData();
+            var mediator = Container.Resolve<IMediator>();
+            mediator.Send(new ApplicationFinalizeCommand()).Wait();
         }
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
