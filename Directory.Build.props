@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
-		<Version>0.3.0</Version>
-		<AssemblyVersion>0.3.0</AssemblyVersion>
+		<Version>0.4.0</Version>
+		<AssemblyVersion>0.4.0</AssemblyVersion>
 		<Authors>BEzGumpTion</Authors>
 		<Company>BEzGumpTion</Company>
 		<Product>Burls</Product>
