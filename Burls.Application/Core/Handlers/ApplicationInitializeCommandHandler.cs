@@ -45,7 +45,7 @@ namespace Burls.Application.Core.Handlers
 
             // Init vars
             var startUpArgs = request.StartUpArgs;
-            var requestUrl = startUpArgs?.FirstOrDefault();
+            var requestUrl = startUpArgs?.Skip(1).FirstOrDefault();
             var applicationMode = requestUrl.IsUrl() ? ApplicationMode.Select : ApplicationMode.Settings;
 
             _logger.LogInformation($"Determined startup arguments: {startUpArgs}");

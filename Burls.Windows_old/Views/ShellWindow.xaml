@@ -63,7 +63,7 @@
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl x:Name="flyoutsControlRegion" />
     </controls:MetroWindow.Flyouts>
-    
+
     <controls:MetroWindow.Resources>
         <templateSelectors:MenuItemTemplateSelector
             x:Key="MenuItemTemplateSelector">

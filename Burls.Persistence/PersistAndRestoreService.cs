@@ -56,7 +56,7 @@ namespace Burls.Persistence
 
         public void RestoreData()
         {
-            RestoreProperties();
+            //RestoreProperties();
             _context.Database.EnsureCreated();
         }
 
