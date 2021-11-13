@@ -9,8 +9,10 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -26,6 +28,7 @@ namespace Burls.Windows
     public sealed partial class MainWindow : BurlsWindow
     {
         public MainViewModel ViewModel { get; set; }
+        public IBurlsPage CurrentPage => ContentFrame.Content as IBurlsPage;
 
         private readonly INavigationService _navigationService;
         private readonly IServiceProvider _serviceProvider;
@@ -40,16 +43,17 @@ namespace Burls.Windows
             _serviceProvider = serviceProvider;
         }
 
-        public void Navigate(Type pageType)
+        public void Navigate(string pageKey, Type pageType, Type viewModelType)
         {
             // Change content of the contentFrame
             ContentFrame.Navigate(pageType);
             var page = ContentFrame.Content as IBurlsPage;
-            page.SetViewModel(_serviceProvider.GetService(typeof(BrowserProfileSelectionViewModel)));
+            page.ViewModelBase = _serviceProvider.GetService(viewModelType) as IViewModel;
+            RaisePropertyChanged(nameof(CurrentPage));
 
             // Update the navigation if needed
             var menuItems = MainNavigation.MenuItems.Concat(MainNavigation.FooterMenuItems);
-            var selectedItem = menuItems.FirstOrDefault(x => (x as NavigationViewItem).Tag.ToString().Equals(pageType.Name));
+            var selectedItem = menuItems.FirstOrDefault(x => (x as NavigationViewItem).Tag.ToString().Equals(pageKey));
 
             if (MainNavigation.SelectedItem != selectedItem)
             {

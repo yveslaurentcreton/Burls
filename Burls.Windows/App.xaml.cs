@@ -2,6 +2,7 @@
 using Burls.Application.Core.Services;
 using Burls.Core.Services;
 using Burls.Persistence;
+using Burls.Windows.Constants;
 using Burls.Windows.Models;
 using Burls.Windows.Pages;
 using Burls.Windows.Services;
@@ -99,6 +100,9 @@ namespace Burls.Windows
             // Managers
             services.AddSingleton<INavigationManager, NavigationManager>();
 
+            // Stores
+            services.AddScoped<INavigationStore, NavigationStore>();
+
             // Windows
             services.AddSingleton<MainWindow>();
 
@@ -141,13 +145,11 @@ namespace Burls.Windows
 
             // Open window
             var type = typeof(MainWindow).GetMember(nameof(MainWindow.ViewModel)).GetType();
-            var viewModel = _serviceProvider.GetService(type);
             var mainWindow = _serviceProvider.GetService<MainWindow>();
-            mainWindow.DataContext = viewModel;
             mainWindow.Activate();
 
             // Set home page
-            _serviceProvider.GetService<INavigationService>().Navigate(nameof(BrowserProfileSelectionPage));
+            _serviceProvider.GetService<INavigationService>().Navigate(PageKeys.BrowserProfileSelection);
         }
 
     }

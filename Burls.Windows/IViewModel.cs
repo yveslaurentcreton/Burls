@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Burls.Windows
 {
-    public interface IBurlsPage
+    public interface IViewModel
     {
-        string Title { get; }
-        IViewModel ViewModelBase { get; set; }
     }
 }

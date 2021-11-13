@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Burls.Windows.ViewModels;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -18,8 +19,12 @@ using Windows.Foundation.Collections;
 
 namespace Burls.Windows.Pages
 {
-    public sealed partial class SettingsPage : Page
+    public sealed partial class SettingsPage : Page, IBurlsPage
     {
+        public string Title => "Settings";
+        public SettingsViewModel ViewModel => ViewModelBase as SettingsViewModel;
+        public IViewModel ViewModelBase { get; set; }
+
         public SettingsPage()
         {
             this.InitializeComponent();

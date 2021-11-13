@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Burls.Windows
+namespace Burls.Windows.ViewModels
 {
-    public interface IBurlsPage
+    public class SettingsViewModel : IViewModel
     {
-        string Title { get; }
-        IViewModel ViewModelBase { get; set; }
+        
     }
 }

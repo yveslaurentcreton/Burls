@@ -8,11 +8,11 @@ namespace Burls.Windows.Services
 {
     public class NavigationEventArgs : EventArgs
     {
-        public string PageName { get; set; }
+        public string PageKey { get; set; }
 
         public NavigationEventArgs(string pageName)
         {
-            PageName = pageName;
+            PageKey = pageName;
         }
     }
 }
