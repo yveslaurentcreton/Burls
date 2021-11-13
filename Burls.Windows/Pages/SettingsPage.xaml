@@ -8,6 +8,23 @@
     mc:Ignorable="d">
 
     <Grid>
+        <Expander HorizontalAlignment="Stretch" Height="75">
+            <Expander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
+                    <SymbolIcon Grid.Column="0" Symbol="View" Margin="-36 0 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    
+                    <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
+                        <TextBlock Text="App theme" />
+                        <HyperlinkButton Content="Windows color settings" NavigateUri="http://www.microsoft.com" />
+                    </StackPanel>
+                </Grid>
+            </Expander.Header>
+        </Expander>
     </Grid>
 </Page>

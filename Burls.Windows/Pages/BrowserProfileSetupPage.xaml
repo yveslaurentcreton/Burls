@@ -3,11 +3,49 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Burls.Windows.Pages"
+    xmlns:domain="using:Burls.Domain"
+    xmlns:converter="using:Burls.Windows.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <converter:SelectionRuleToStringConverter x:Name="SelectionRuleToStringConverter" />
+
+        <DataTemplate x:Key="BrowserProfileTemplate" x:DataType="domain:BrowserProfile">
+            <Expander HorizontalAlignment="Stretch" >
+                <Expander.Header>
+                    <Grid Height="75" Margin="0 0 16 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="34" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Height="16" Width="16" VerticalAlignment="Center" HorizontalAlignment="Left" Source="{x:Bind IconPath}"/>
+                        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind Browser.Name}" />
+                            <TextBlock Text="{x:Bind Profile.Name}" />
+                        </StackPanel>
+
+                        <ToggleSwitch OnContent="Enabled" OffContent="Disabled" Grid.Column="2" HorizontalAlignment="Right" FlowDirection="RightToLeft" IsOn="True" />
+                    </Grid>
+                </Expander.Header>
+                <Expander.Content>
+                    <StackPanel Margin="48 0 48 0">
+                        <ListView SelectionMode="None" ItemTemplate="{StaticResource BrowserProfileRuleTemplate}" ItemsSource="{x:Bind Profile.SelectionRules}" />
+                    </StackPanel>
+                </Expander.Content>
+            </Expander>
+        </DataTemplate>
+        <DataTemplate x:Key="BrowserProfileRuleTemplate" x:DataType="domain:SelectionRule" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <TextBlock Text="{x:Bind Converter={StaticResource SelectionRuleToStringConverter}, Path=}" TextAlignment="Left" HorizontalAlignment="Left" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid>
-        <TextBlock Text="Welcome to BrowserProfileSetupPage" />
+        <ListView SelectionMode="None" ItemTemplate="{StaticResource BrowserProfileTemplate}" ItemsSource="{x:Bind ViewModel.BrowserState.BrowserProfiles}" />
     </Grid>
 </Page>

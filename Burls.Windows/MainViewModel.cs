@@ -8,11 +8,8 @@ namespace Burls.Windows
 {
     public class MainViewModel
     {
-        public string Name { get; set; }
-
-        public MainViewModel(string name)
+        public MainViewModel()
         {
-            Name = name;
         }
     }
 }

@@ -5,7 +5,6 @@
     xmlns:local="using:Burls.Windows"
     xmlns:core="using:Burls.Windows.Core"
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
-    xmlns:selectors="using:Burls.Windows.TemplateSelectors"
     xmlns:i="using:Microsoft.UI.Composition.Interactions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -44,6 +43,6 @@
 
             </NavigationViewItem>
         </NavigationView.FooterMenuItems>
-        <Frame x:Name="ContentFrame" Margin="58 0 0 0"/>
+        <Frame x:Name="ContentFrame" Margin="58 12 58 0"/>
     </NavigationView>
 </core:BurlsWindow>

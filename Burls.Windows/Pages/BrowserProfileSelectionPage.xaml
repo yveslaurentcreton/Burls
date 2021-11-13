@@ -22,7 +22,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="46" />
+            <RowDefinition Height="48" />
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="{x:Bind ViewModel.BrowserState.RequestUrl}" />
@@ -48,7 +48,7 @@
             </GridView.ItemTemplate>
         </GridView>
 
-        <CheckBox Grid.Row="2" Margin="0 0 10 10" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Remember selected browser profile for url domain">
+        <CheckBox Grid.Row="2" Margin="0 0 10 10" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Remember selected browser profile for url domain" IsChecked="{x:Bind ViewModel.BrowserState.SaveRequestUrl, Mode=TwoWay}">
             <CheckBox.KeyboardAccelerators>
                 <KeyboardAccelerator Key="Space" />
             </CheckBox.KeyboardAccelerators>
