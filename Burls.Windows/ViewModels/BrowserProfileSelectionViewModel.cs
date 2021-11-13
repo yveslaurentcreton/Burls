@@ -1,6 +1,7 @@
 ﻿using Burls.Application.Browsers.Services;
 using Burls.Application.Browsers.State;
 using Burls.Domain;
+using Burls.Windows.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -18,7 +18,7 @@ namespace Burls.Windows.Services
 
         public void Shutdown()
         {
-            System.Windows.Application.Current.Shutdown();
+            Microsoft.UI.Xaml.Application.Current.Exit();
         }
 
         public Version GetVersion()

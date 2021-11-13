@@ -1,4 +1,5 @@
-﻿using Burls.Windows.Services;
+﻿using Burls.Windows.Core;
+using Burls.Windows.Services;
 using Burls.Windows.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;

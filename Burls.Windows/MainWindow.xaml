@@ -1,8 +1,9 @@
-﻿<local:BurlsWindow
+﻿<core:BurlsWindow
     x:Class="Burls.Windows.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Burls.Windows"
+    xmlns:core="using:Burls.Windows.Core"
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:selectors="using:Burls.Windows.TemplateSelectors"
     xmlns:i="using:Microsoft.UI.Composition.Interactions"
@@ -45,4 +46,4 @@
         </NavigationView.FooterMenuItems>
         <Frame x:Name="ContentFrame" Margin="58 0 0 0"/>
     </NavigationView>
-</local:BurlsWindow>
+</core:BurlsWindow>

@@ -13,7 +13,6 @@
 	<WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="ContentDialogContent.xaml" />
     <None Remove="Pages\BrowserProfileSelectionPage.xaml" />
     <None Remove="Pages\BrowserProfileSetupPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
@@ -63,12 +62,6 @@
 
   <ItemGroup>
     <Page Update="Pages\BrowserProfileSetupPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="ContentDialogContent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

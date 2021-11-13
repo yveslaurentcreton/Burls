@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Burls.Windows
+namespace Burls.Windows.Core
 {
     public class BurlsWindow : Window, INotifyPropertyChanged
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Burls.Windows
+namespace Burls.Windows.Core
 {
     public class RelayCommand<TParameter> : ICommand
         where TParameter : class
