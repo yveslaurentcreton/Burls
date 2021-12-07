@@ -1,6 +1,8 @@
 ﻿using Burls.Windows.Core;
 using Burls.Windows.Services;
 using Burls.Windows.ViewModels;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -15,6 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 

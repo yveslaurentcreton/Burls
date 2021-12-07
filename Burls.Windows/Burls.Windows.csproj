@@ -13,9 +13,16 @@
 	<WindowsPackageType>None</WindowsPackageType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Controls\BurlsGroup\BurlsGroup.xaml" />
+    <None Remove="Controls\BurlsItem\BurlsItem.xaml" />
     <None Remove="Pages\BrowserProfileSelectionPage.xaml" />
     <None Remove="Pages\BrowserProfileSetupPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
+    <None Remove="Styles\TextBlock.xaml" />
+    <None Remove="Themes\Colors.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Themes\Generic.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -36,8 +43,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview3" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.20348.19" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" />
     <PackageReference Include="NLog" Version="4.7.9" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.7.1" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -52,6 +59,22 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+	  <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Themes\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\BurlsGroup\BurlsGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Controls\BurlsItem\BurlsItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
