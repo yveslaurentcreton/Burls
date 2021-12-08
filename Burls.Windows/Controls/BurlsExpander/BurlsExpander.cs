@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Burls.Windows.Controls.BurlsExpander
+namespace Burls.Windows.Controls
 {
     public class BurlsExpander : Expander
     {

@@ -26,7 +26,6 @@
         </NavigationView.MenuItemTemplateSelector>-->
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="Globe" Content="Select browser" Tag="BrowserProfileSelection" />
-            <NavigationViewItem Icon="Manage" Content="Browser setup" Tag="BrowserProfileSetup" />
         </NavigationView.MenuItems>
         <NavigationView.FooterMenuItems>
             <NavigationViewItem Content="Settings" Tag="Settings">
@@ -43,6 +42,8 @@
 
             </NavigationViewItem>
         </NavigationView.FooterMenuItems>
-        <Frame x:Name="ContentFrame" Margin="58 12 58 0"/>
+        <ScrollViewer>
+            <Frame x:Name="ContentFrame" Margin="58 12 58 0"/>
+        </ScrollViewer>
     </NavigationView>
 </core:BurlsWindow>

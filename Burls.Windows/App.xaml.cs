@@ -112,7 +112,6 @@ namespace Burls.Windows
             // ViewModels
             services.AddScoped<MainViewModel>();
             services.AddScoped<BrowserProfileSelectionViewModel>();
-            services.AddScoped<BrowserProfileSetupViewModel>();
             services.AddScoped<SettingsViewModel>();
 
             // Add application services

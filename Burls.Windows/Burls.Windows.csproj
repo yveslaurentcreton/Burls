@@ -16,10 +16,11 @@
     <None Remove="Controls\BurlsGroup\BurlsGroup.xaml" />
     <None Remove="Controls\BurlsItem\BurlsItem.xaml" />
     <None Remove="Pages\BrowserProfileSelectionPage.xaml" />
-    <None Remove="Pages\BrowserProfileSetupPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
+    <None Remove="Styles\Button.xaml" />
     <None Remove="Styles\TextBlock.xaml" />
     <None Remove="Themes\Colors.xaml" />
+    <None Remove="Themes\SettingsExpanderStyles.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Page Remove="Themes\Generic.xaml" />
@@ -59,6 +60,12 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Themes\SettingsExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Styles\TextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,12 +86,6 @@
 
   <ItemGroup>
     <Page Update="Pages\SettingsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Pages\BrowserProfileSetupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

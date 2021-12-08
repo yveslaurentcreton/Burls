@@ -7,8 +7,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="ms-appx:///Styles/Button.xaml" />
                 <ResourceDictionary Source="ms-appx:///Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="ms-appx:///Themes/Colors.xaml" />
+                <ResourceDictionary Source="ms-appx:///Themes/SettingsExpanderStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <x:Double x:Key="SettingActionControlMinWidth">240</x:Double>

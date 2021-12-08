@@ -63,6 +63,7 @@ namespace Burls.Domain
         }
 
         public int Id { get; protected set; }
+        public int ProfileId { get; protected set; }
         public SelectionRuleParts SelectionRulePart { get; protected set; }
         public SelectionRuleCompareTypes SelectionRuleCompareType { get; protected set; }
         public string Value { get; protected set; }

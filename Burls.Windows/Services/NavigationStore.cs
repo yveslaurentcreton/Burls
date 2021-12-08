@@ -19,14 +19,12 @@ namespace Burls.Windows.Services
             _pageStore = new Dictionary<string, Type>
             {
                 { PageKeys.BrowserProfileSelection, typeof(BrowserProfileSelectionPage) },
-                { PageKeys.BrowserProfileSetup, typeof(BrowserProfileSetupPage) },
                 { PageKeys.Settings, typeof(SettingsPage) }
             };
 
             _viewModelStore = new Dictionary<Type, Type>
             {
                 { typeof(BrowserProfileSelectionPage), typeof(BrowserProfileSelectionViewModel) },
-                { typeof(BrowserProfileSetupPage), typeof(BrowserProfileSetupViewModel) },
                 { typeof(SettingsPage), typeof(SettingsViewModel) }
             };
         }
