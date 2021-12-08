@@ -129,6 +129,7 @@ namespace Burls.Windows
             //services.AddScoped<ISystemService, SystemService>();
             services.AddScoped<IPersistAndRestoreService, PersistAndRestoreService>();
             //services.AddScoped<IThemeSelectorService, ThemeSelectorService>();
+            services.AddScoped<IOperatingSystemService, WindowsService>();
         }
 
         /// <summary>

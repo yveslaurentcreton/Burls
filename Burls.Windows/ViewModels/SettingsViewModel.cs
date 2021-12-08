@@ -10,13 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using static Burls.Domain.SelectionRule;
 using System.Windows.Input;
-using System.Diagnostics;
+using Burls.Application.Core.Services;
 
 namespace Burls.Windows.ViewModels
 {
     public class SettingsViewModel : IViewModel
     {
         private readonly IMediator _mediator;
+        private readonly IOperatingSystemService _operatingSystemService;
 
         public IBrowserState BrowserState { get; set; }
 
@@ -24,19 +25,15 @@ namespace Burls.Windows.ViewModels
         public ICommand AddSelectionRuleCommand { get; set; }
         public ICommand DeleteSelectionRuleCommand { get; set; }
 
-        public SettingsViewModel(IBrowserState browserState, IMediator mediator)
+        public SettingsViewModel(IBrowserState browserState, IMediator mediator, IOperatingSystemService operatingSystemService)
         {
             BrowserState = browserState;
             _mediator = mediator;
 
-            OpenWindowsColorSettingsCommand = new RelayCommand(OpenWindowsColorSettings);
+            _operatingSystemService = operatingSystemService;
+            OpenWindowsColorSettingsCommand = new RelayCommand(_operatingSystemService.OpenColorSettings);
             AddSelectionRuleCommand = new RelayCommand<BrowserProfile>(async (browserProfile) => await AddNewRule(browserProfile));
             DeleteSelectionRuleCommand = new RelayCommand<SelectionRule>(async (selectionRule) => await DeleteRule(selectionRule));
-        }
-
-        private void OpenWindowsColorSettings()
-        {
-            Process.Start(new ProcessStartInfo("ms-settings:colors") { UseShellExecute = true });
         }
 
         public Task AddNewRule(BrowserProfile browserProfile)
