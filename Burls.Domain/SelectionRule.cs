@@ -64,12 +64,13 @@ namespace Burls.Domain
 
         public int Id { get; protected set; }
         public int ProfileId { get; protected set; }
-        public SelectionRuleParts SelectionRulePart { get; protected set; }
-        public SelectionRuleCompareTypes SelectionRuleCompareType { get; protected set; }
-        public string Value { get; protected set; }
+        public SelectionRuleParts SelectionRulePart { get; set; }
+        public SelectionRuleCompareTypes SelectionRuleCompareType { get; set; }
+        public string Value { get; set; }
 
-        public SelectionRule(SelectionRuleParts selectionRulePart, SelectionRuleCompareTypes selectionRuleCompareType, string value)
+        public SelectionRule(int profileId, SelectionRuleParts selectionRulePart, SelectionRuleCompareTypes selectionRuleCompareType, string value)
         {
+            ProfileId = profileId;
             SelectionRulePart = selectionRulePart;
             SelectionRuleCompareType = selectionRuleCompareType;
             Value = value;

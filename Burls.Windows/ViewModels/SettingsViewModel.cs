@@ -8,46 +8,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Burls.Domain.SelectionRule;
 using System.Windows.Input;
 using Burls.Application.Core.Services;
+using static Burls.Domain.SelectionRule;
+using Burls.Windows.ViewModels.Models;
+using Burls.Windows.Services;
+using Burls.Application.Core.Queries;
 
 namespace Burls.Windows.ViewModels
 {
-    public class SettingsViewModel : IViewModel
+    public class SettingsViewModel : ViewModelBase, IViewModel
     {
-        private readonly IMediator _mediator;
         private readonly IOperatingSystemService _operatingSystemService;
+        private readonly IApplicationService _applicationService;
+        private readonly IMediator _mediator;
 
-        public IBrowserState BrowserState { get; set; }
+        public int ThemeIndex { get => (int)_applicationService.GetTheme() ; set { _applicationService.SetTheme((ApplicationTheme)value); } }
+        public string VersionDescription { get; }
+        public IEnumerable<BrowserProfileViewModel> BrowserProfiles { get; set; }
 
         public ICommand OpenWindowsColorSettingsCommand { get; set; }
-        public ICommand AddSelectionRuleCommand { get; set; }
-        public ICommand DeleteSelectionRuleCommand { get; set; }
 
-        public SettingsViewModel(IBrowserState browserState, IMediator mediator, IOperatingSystemService operatingSystemService)
+        public SettingsViewModel(
+            IOperatingSystemService operatingSystemService,
+            IApplicationService applicationService,
+            IBrowserState browserState,
+            IBrowserStateNotificationService browserStateNotificationService,
+            IMediator mediator)
         {
-            BrowserState = browserState;
+            _operatingSystemService = operatingSystemService;
+            _applicationService = applicationService;
             _mediator = mediator;
 
-            _operatingSystemService = operatingSystemService;
+            var version = _mediator.Send(new GetApplicationVersionQuery()).Result.Version;
+            VersionDescription = $"Burls - {version}";
+            BrowserProfiles = browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(browserStateNotificationService, mediator, x)).ToList();
+
             OpenWindowsColorSettingsCommand = new RelayCommand(_operatingSystemService.OpenColorSettings);
-            AddSelectionRuleCommand = new RelayCommand<BrowserProfile>(async (browserProfile) => await AddNewRule(browserProfile));
-            DeleteSelectionRuleCommand = new RelayCommand<SelectionRule>(async (selectionRule) => await DeleteRule(selectionRule));
-        }
-
-        public Task AddNewRule(BrowserProfile browserProfile)
-        {
-            var command = new CreateProfileSelectionRuleCommand(browserProfile.Profile.Id, SelectionRuleParts.Url, SelectionRuleCompareTypes.Contains, "Value");
-
-            return _mediator.Send(command);
-        }
-
-        public Task DeleteRule(SelectionRule selectionRule)
-        {
-            var command = new DeleteProfileSelectionRuleCommand(selectionRule.ProfileId, selectionRule.Id);
-
-            return _mediator.Send(command);
         }
     }
 }

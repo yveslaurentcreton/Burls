@@ -1,8 +1,5 @@
-﻿using Burls.Application.Browsers.Services;
-using Burls.Application.Browsers.State;
-using Burls.Application.Core.Data;
+﻿using Burls.Application.Core.Data;
 using Burls.Application.Profiles.Commands;
-using Burls.Application.Profiles.Notifications;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -13,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Burls.Application.Profiles.Handlers
 {
-    public class DeleteProfileSelectionRuleCommandHandler : IRequestHandler<DeleteProfileSelectionRuleCommand>
+    public class UpdateProfileSelectionRuleCommandHandler : IRequestHandler<UpdateProfileSelectionRuleCommand>
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteProfileSelectionRuleCommandHandler(
+        public UpdateProfileSelectionRuleCommandHandler(
             IMediator mediator,
             IUnitOfWork unitOfWork)
         {
@@ -26,16 +23,16 @@ namespace Burls.Application.Profiles.Handlers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Unit> Handle(DeleteProfileSelectionRuleCommand request, CancellationToken cancellationToken)
-        {
+        public async Task<Unit> Handle(UpdateProfileSelectionRuleCommand request, CancellationToken cancellationToken)
+{
+            // Get the record to update
             var profile = await _unitOfWork.ProfileRepository.GetAsync(request.ProfileId);
             var selectionRule = profile.SelectionRules.Single(x => x.Id == request.SelectionRuleId);
 
-            // Persist changes
-            profile.SelectionRules.Remove(selectionRule);
-
-            // Notify that everything is complete
-            await _mediator.Publish(new ProfileSelectionRuleDeletedNotification(profile, selectionRule), cancellationToken);
+            // Update
+            selectionRule.SelectionRulePart = request.SelectionRulePart;
+            selectionRule.SelectionRuleCompareType = request.SelectionRuleCompareType;
+            selectionRule.Value = request.Value;
 
             return Unit.Value;
         }

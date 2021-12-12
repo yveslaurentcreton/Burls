@@ -1,4 +1,5 @@
 ﻿using Burls.Windows.Core;
+using Burls.Windows.Pages;
 using Burls.Windows.Services;
 using Burls.Windows.ViewModels;
 using Microsoft.UI;
@@ -17,7 +18,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -29,45 +29,51 @@ namespace Burls.Windows
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : BurlsWindow
+    public sealed partial class MainWindow : Window
     {
         public MainViewModel ViewModel { get; set; }
-        public IBurlsPage CurrentPage => ContentFrame.Content as IBurlsPage;
 
-        private readonly INavigationService _navigationService;
+        private readonly ShellPage _shellPage;
         private readonly IServiceProvider _serviceProvider;
+        private bool _shellPageLoaded;
 
-        public MainWindow(MainViewModel viewModel, INavigationService navigationService, IServiceProvider serviceProvider)
+        public MainWindow(MainViewModel viewModel, ShellPage shellPage, IServiceProvider serviceProvider)
         {
             ViewModel = viewModel;
 
             InitializeComponent();
 
-            _navigationService = navigationService;
+            _shellPage = shellPage;
             _serviceProvider = serviceProvider;
+
+            this.Activated += MainWindow_Activated;
+        }
+
+        private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
+        {
+            if (!_shellPageLoaded)
+            {
+                Content = _shellPage;
+                _shellPageLoaded = true;
+            }
         }
 
         public void Navigate(string pageKey, Type pageType, Type viewModelType)
         {
             // Change content of the contentFrame
-            ContentFrame.Navigate(pageType);
-            var page = ContentFrame.Content as IBurlsPage;
+            _shellPage.ContentFrame.Navigate(pageType);
+            var page = _shellPage.ContentFrame.Content as IBurlsPage;
             page.ViewModelBase = _serviceProvider.GetService(viewModelType) as IViewModel;
-            RaisePropertyChanged(nameof(CurrentPage));
+            _shellPage.RefreshUI();
 
             // Update the navigation if needed
-            var menuItems = MainNavigation.MenuItems.Concat(MainNavigation.FooterMenuItems);
+            var menuItems = _shellPage.MainNavigation.MenuItems.Concat(_shellPage.MainNavigation.FooterMenuItems);
             var selectedItem = menuItems.FirstOrDefault(x => (x as NavigationViewItem).Tag.ToString().Equals(pageKey));
 
-            if (MainNavigation.SelectedItem != selectedItem)
+            if (_shellPage.MainNavigation.SelectedItem != selectedItem)
             {
-                MainNavigation.SelectedItem = selectedItem;
+                _shellPage.MainNavigation.SelectedItem = selectedItem;
             }
-        }
-
-        private void MainNavigation_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-            _navigationService.Navigate((args.SelectedItem as NavigationViewItem).Tag.ToString());
         }
     }
 }

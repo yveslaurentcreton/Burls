@@ -20,20 +20,23 @@ namespace Burls.Application.Core.Handlers
     public class ApplicationInitializeCommandHandler : IRequestHandler<ApplicationInitializeCommand>
     {
         private readonly ILogger<ApplicationInitializeCommandHandler> _logger;
-        private readonly IApplicationState _applicationStore;
+        private readonly IApplicationState _applicationState;
+        private readonly IApplicationService _applicationService;
         private readonly IBrowserState _browserState;
         private readonly IPersistAndRestoreService _persistAndRestoreService;
         private readonly IBrowserService _browserService;
 
         public ApplicationInitializeCommandHandler(
             ILogger<ApplicationInitializeCommandHandler> logger,
-            IApplicationState applicationStore,
+            IApplicationState applicationState,
+            IApplicationService applicationService,
             IBrowserState browserState,
             IPersistAndRestoreService persistAndRestoreService,
             IBrowserService browserService)
         {
             _logger = logger;
-            _applicationStore = applicationStore;
+            _applicationState = applicationState;
+            _applicationService = applicationService;
             _browserState = browserState;
             _persistAndRestoreService = persistAndRestoreService;
             _browserService = browserService;
@@ -53,8 +56,8 @@ namespace Burls.Application.Core.Handlers
             _logger.LogInformation($"Determined application mode: {applicationMode}");
 
             // Init the application store
-            _applicationStore.StartUpArgs = startUpArgs;
-            _applicationStore.ApplicationMode = applicationMode;
+            _applicationState.StartUpArgs = startUpArgs;
+            _applicationState.ApplicationMode = applicationMode;
 
             // Restore the saved data
             _logger.LogInformation($"Restoring settings");
@@ -71,7 +74,7 @@ namespace Burls.Application.Core.Handlers
             _browserState.SelectedBrowserProfile = _browserState.BrowserProfiles?.FirstOrDefault();
 
             // Try to auto select
-            if (_applicationStore.ApplicationMode == ApplicationMode.Select)
+            if (_applicationState.ApplicationMode == ApplicationMode.Select)
             {
                 _logger.LogInformation($"Trying to determine the browser and profile to handle the requested url");
 
@@ -91,6 +94,10 @@ namespace Burls.Application.Core.Handlers
                     _logger.LogInformation($"No matching browser found to handle the requested url");
                 }
             }
+
+            // Init theme
+            //var theme = _applicationService.GetTheme();
+            //_applicationService.SetTheme(theme);
 
             return Unit.Value;
         }

@@ -1,5 +1,5 @@
 ﻿using Burls.Application.Core;
-using Burls.Application.Profiles.Responses;
+using Burls.Domain;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,16 +10,18 @@ using static Burls.Domain.SelectionRule;
 
 namespace Burls.Application.Profiles.Commands
 {
-    public class CreateProfileSelectionRuleCommand : IRequest<CreateProfileSelectionRuleResponse>, ITransactionalRequest
+    public class UpdateProfileSelectionRuleCommand : IRequest, ITransactionalRequest
     {
         public int ProfileId { get; }
+        public int SelectionRuleId { get; }
         public SelectionRuleParts SelectionRulePart { get; }
         public SelectionRuleCompareTypes SelectionRuleCompareType { get; }
         public string Value { get; }
 
-        public CreateProfileSelectionRuleCommand(int profileId, SelectionRuleParts selectionRulePart, SelectionRuleCompareTypes selectionRuleCompareType, string value)
+        public UpdateProfileSelectionRuleCommand(int profileId, int selectionRuleId, SelectionRuleParts selectionRulePart, SelectionRuleCompareTypes selectionRuleCompareType, string value)
         {
             ProfileId = profileId;
+            SelectionRuleId = selectionRuleId;
             SelectionRulePart = selectionRulePart;
             SelectionRuleCompareType = selectionRuleCompareType;
             Value = value;

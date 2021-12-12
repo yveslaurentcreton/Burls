@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Burls.Windows.ViewModels
 {
-    public class BrowserProfileSelectionViewModel : IViewModel
+    public class BrowserProfileSelectionViewModel : ViewModelBase, IViewModel
     {
         private readonly IBrowserService _browserService;
 

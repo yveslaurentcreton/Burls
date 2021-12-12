@@ -3,6 +3,7 @@ using Burls.Application.Browsers.State;
 using Burls.Application.Core.Data;
 using Burls.Application.Profiles.Commands;
 using Burls.Application.Profiles.Notifications;
+using Burls.Application.Profiles.Responses;
 using Burls.Domain;
 using MediatR;
 using System;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Burls.Application.Profiles.Handlers
 {
-    public class CreateProfileSelectionRuleCommandHandler : IRequestHandler<CreateProfileSelectionRuleCommand>
+    public class CreateProfileSelectionRuleCommandHandler : IRequestHandler<CreateProfileSelectionRuleCommand, CreateProfileSelectionRuleResponse>
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
@@ -27,16 +28,22 @@ namespace Burls.Application.Profiles.Handlers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Unit> Handle(CreateProfileSelectionRuleCommand request, CancellationToken cancellationToken)
+        public async Task<CreateProfileSelectionRuleResponse> Handle(CreateProfileSelectionRuleCommand request, CancellationToken cancellationToken)
         {
-            var profile = await _unitOfWork.ProfileRepository.GetAsync(request.ProfileId);
-            var selectionRule = new SelectionRule(request.SelectionRulePart, request.SelectionRuleCompareType, request.Value);
+            var selectionRule = new SelectionRule(request.ProfileId, request.SelectionRulePart, request.SelectionRuleCompareType, request.Value);
 
+            // Persist changes
+            var profile = await _unitOfWork.ProfileRepository.GetAsync(request.ProfileId);
             profile.SelectionRules.Add(selectionRule);
 
+            // Notify that everything is complete
             await _mediator.Publish(new ProfileSelectionRuleCreatedNotification(profile, selectionRule), cancellationToken);
-            
-            return Unit.Value;
+
+            return new CreateProfileSelectionRuleResponse()
+            {
+                SelectionRule = selectionRule
+            };
         }
+
     }
 }

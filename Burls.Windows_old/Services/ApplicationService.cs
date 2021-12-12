@@ -2,6 +2,7 @@
 using Burls.Application.Core.Services;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -14,7 +15,7 @@ namespace Burls.Windows.Services
     {
         public void AddProperty(object key, object value) => System.Windows.Application.Current.Properties.Add(key, value);
 
-        public IDictionary GetProperties() => System.Windows.Application.Current.Properties;
+        public IDictionary<string, object> GetProperties() => null;
 
         public void Shutdown()
         {
@@ -27,6 +28,16 @@ namespace Burls.Windows.Services
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var version = FileVersionInfo.GetVersionInfo(assemblyLocation).FileVersion;
             return new Version(version);
+        }
+
+        public ApplicationTheme GetTheme()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTheme(ApplicationTheme theme)
+        {
+            throw new NotImplementedException();
         }
     }
 }

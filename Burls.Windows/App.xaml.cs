@@ -32,6 +32,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -62,6 +63,15 @@ namespace Burls.Windows
             _servicesCollection = new ServiceCollection();
             ConfigureServices(_servicesCollection);
             _serviceProvider = _servicesCollection.BuildServiceProvider();
+
+            // Set application theme
+            var applicationService = _serviceProvider.GetService<IApplicationService>();
+            var theme = applicationService.GetTheme();
+
+            if (Enum.TryParse<Microsoft.UI.Xaml.ApplicationTheme>(theme.ToString(), out var winuiTheme))
+            {
+                RequestedTheme = winuiTheme;
+            }
         }
 
         private IConfiguration BuildConfiguration()
@@ -107,6 +117,7 @@ namespace Burls.Windows
             services.AddSingleton<MainWindow>();
 
             // Pages
+            services.AddSingleton<ShellPage>();
             services.AddScoped<BrowserProfileSelectionPage>();
 
             // ViewModels
@@ -120,6 +131,9 @@ namespace Burls.Windows
             // Add persistence services
             services.AddScoped<IPersistAndRestoreService, PersistAndRestoreService>();
             services.AddPersistenceServices(_configuration);
+
+            // Add state notification services
+            services.AddSingleton<IBrowserStateNotificationService, BrowserStateNotificationService>();
 
             // Core Services
             services.AddScoped<IFileService, FileService>();

@@ -17,6 +17,7 @@
     <None Remove="Controls\BurlsItem\BurlsItem.xaml" />
     <None Remove="Pages\BrowserProfileSelectionPage.xaml" />
     <None Remove="Pages\SettingsPage.xaml" />
+    <None Remove="Pages\ShellPage.xaml" />
     <None Remove="Styles\Button.xaml" />
     <None Remove="Styles\TextBlock.xaml" />
     <None Remove="Themes\Colors.xaml" />
@@ -60,6 +61,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Pages\ShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Themes\SettingsExpanderStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

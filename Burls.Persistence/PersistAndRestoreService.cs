@@ -14,6 +14,7 @@ namespace Burls.Persistence
     {
         private readonly IMediator _mediator;
         private readonly IFileService _fileService;
+        private readonly ISettingsService _settingsService;
         private readonly AppConfig _appConfig;
         private readonly BurlsDbContext _context;
         private readonly string _localAppData;
@@ -22,11 +23,13 @@ namespace Burls.Persistence
         public PersistAndRestoreService(
             IMediator mediator,
             IFileService fileService,
+            ISettingsService settingsService,
             AppConfig appConfig,
             BurlsDbContext context)
         {
             _mediator = mediator;
             _fileService = fileService;
+            _settingsService = settingsService;
             _appConfig = appConfig;
             _context = context;
 
@@ -44,14 +47,15 @@ namespace Burls.Persistence
 
         public void PersistData()
         {
-            var properties = _mediator.Send(new GetAllPropertiesQuery()).Result.Properties;
+            _settingsService.SaveSettings();
+            //var properties = _mediator.Send(new GetAllPropertiesQuery()).Result.Properties;
 
-            if (properties != null)
-            {
-                var folderPath = Path.Combine(_localAppData, _appConfig.ConfigurationsFolder);
-                var fileName = _appConfig.AppPropertiesFileName;
-                _fileService.Save(folderPath, fileName, properties);
-            }
+            //if (properties != null)
+            //{
+            //    var folderPath = Path.Combine(_localAppData, _appConfig.ConfigurationsFolder);
+            //    var fileName = _appConfig.AppPropertiesFileName;
+            //    _fileService.Save(folderPath, fileName, properties);
+            //}
         }
 
         public void RestoreData()
