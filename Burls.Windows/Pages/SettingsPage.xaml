@@ -1,0 +1,215 @@
+﻿<Page
+    x:Class="Burls.Windows.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Burls.Windows.Pages"
+    xmlns:controls="using:Burls.Windows.Controls"
+    xmlns:converters="using:Burls.Windows.Converters"
+    xmlns:models="using:Burls.Windows.ViewModels.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:SelectionRulePartsToStringLowerConverter x:Name="SelectionRulePartsToStringLowerConverter" />
+        <converters:SelectionRuleCompareTypesToStringLowerConverter x:Name="SelectionRuleCompareTypesToStringLowerConverter" />
+
+        <XamlUICommand x:Key="OpenWindowsColorSettingsCommand" Command="{x:Bind ViewModel.OpenWindowsColorSettingsCommand}" />
+    </Page.Resources>
+
+    <StackPanel>
+        <controls:BurlsGroup Header="Version">
+            <controls:BurlsItem Header="{x:Bind ViewModel.VersionDescription}" Icon="&#xE117;">
+                <controls:BurlsItem.Description>
+                    <HyperlinkButton Content="Release notes" NavigateUri="https://github.com/BEzGumpTion/Burls/releases/" />
+                </controls:BurlsItem.Description>
+            </controls:BurlsItem>
+        </controls:BurlsGroup>
+        
+        <controls:BurlsGroup Header="Appearance">
+            <muxc:InfoBar Severity="Informational" Title="A restart of the application may be required for the theme to take effect" IsOpen="True" IsTabStop="True" IsClosable="False" />
+            <controls:BurlsItem Header="App theme" Icon="&#xE790;">
+                <controls:BurlsItem.Description>
+                    <HyperlinkButton Content="Windows color settings" Command="{StaticResource OpenWindowsColorSettingsCommand}"/>
+                </controls:BurlsItem.Description>
+                <controls:BurlsItem.ActionContent>
+                    <ComboBox SelectedIndex="{x:Bind ViewModel.ThemeIndex, Mode=TwoWay}" MinWidth="{StaticResource SettingActionControlMinWidth}">
+                        <ComboBoxItem Content="Windows default"/>
+                        <ComboBoxItem Content="Light"/>
+                        <ComboBoxItem Content="Dark"/>
+                    </ComboBox>
+                </controls:BurlsItem.ActionContent>
+            </controls:BurlsItem>
+        </controls:BurlsGroup>
+
+        <controls:BurlsGroup Header="Browsers">
+            <ListView SelectionMode="None" BorderThickness="0" IsSwipeEnabled="False" ItemsSource="{x:Bind ViewModel.BrowserProfiles, Mode=OneTime}">
+                <!--TODO Fix without the need for negative margins-->
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                        <Setter Property="Margin" Value="-10 0 -10 0" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:BrowserProfileViewModel">
+
+                        <controls:BurlsExpander>
+                            <controls:BurlsExpander.Header>
+
+                                <!--Browser Profile-->
+                                <controls:BurlsItem Margin="0" Header="{x:Bind Browser.Name}" Description="{x:Bind Profile.Name}" Style="{StaticResource ExpanderHeaderSettingStyle}">
+                                    <controls:BurlsItem.Icon>
+                                        <Image Source="{x:Bind IconPath}"/>
+                                    </controls:BurlsItem.Icon>
+                                    <!--<controls:BurlsItem.ActionContent>
+                                        <ToggleSwitch IsOn="True" />
+                                    </controls:BurlsItem.ActionContent>-->
+                                </controls:BurlsItem>
+
+                            </controls:BurlsExpander.Header>
+                            <controls:BurlsExpander.Content>
+
+                                <!--Rules-->
+                                <StackPanel>
+                                    <controls:BurlsItem Header="Rules" Description="A rule defines whether or not a browser will be selected" >
+                                        <controls:BurlsItem.ActionContent>
+                                            <Button Content="Add rule" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind Profile.AddSelectionRuleCommand}" />
+                                        </controls:BurlsItem.ActionContent>
+                                    </controls:BurlsItem>
+                                    <Rectangle Style="{StaticResource ExpanderSeparatorStyle}" />
+                                    <ListView Margin="{StaticResource ExpanderSettingMargin}" SelectionMode="None" ItemsSource="{x:Bind Profile.SelectionRules, Mode=OneWay}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="models:SelectionRuleViewModel" >
+
+                                                <!--<StackPanel>
+                                                    <controls:BurlsItem Style="{StaticResource ExpanderContentSettingStyle}">
+                                                        <controls:BurlsItem.Header>
+                                                        
+                                                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
+                                                            <TextBlock Text="Open browser profile when" Style="{ThemeResource SecondaryTextStyle}" />
+                                                            <TextBlock Text="{x:Bind SelectionRulePart, Mode=OneWay, Converter={StaticResource SelectionRulePartsToStringLowerConverter}}" FontWeight="SemiBold" Style="{ThemeResource SecondaryTextStyle}"/>
+                                                            <TextBlock Text="{x:Bind SelectionRuleCompareType, Mode=OneWay, Converter={StaticResource SelectionRuleCompareTypesToStringLowerConverter}}" FontWeight="SemiBold" Style="{ThemeResource SecondaryTextStyle}"/>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="'" />
+                                                                <TextBlock Text="{x:Bind Value, Mode=OneWay}" FontWeight="SemiBold" Style="{ThemeResource SecondaryTextStyle}"/>
+                                                                <TextBlock Text="'" />
+                                                            </StackPanel>
+                                                        </StackPanel>
+
+                                                    </controls:BurlsItem.Header>
+                                                        <controls:BurlsItem.ActionContent>
+
+                                                            <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="8">
+                                                                <Button Background="Transparent" FontFamily="Segoe MDL2 Assets" Width="40" Height="36" Content="&#xE70F;">
+                                                                    <ToolTipService.ToolTip>
+                                                                        <TextBlock Text="Edit rule"/>
+                                                                    </ToolTipService.ToolTip>
+                                                                    <Button.Flyout>
+                                                                        <Flyout>
+                                                                            <StackPanel Spacing="16" Margin="0,12,0,0">
+                                                                                <ComboBox SelectedIndex="{x:Bind SelectionRulePartIndex, Mode=TwoWay}" Header="Part" Width="240" HorizontalAlignment="Left">
+                                                                                    <ComboBoxItem Content="Url" />
+                                                                                    <ComboBoxItem Content="Hostname" />
+                                                                                    <ComboBoxItem Content="Domain" />
+                                                                                    <ComboBoxItem Content="Subdomain" />
+                                                                                </ComboBox>
+                                                                                <ComboBox SelectedIndex="{x:Bind SelectionRuleCompareTypeIndex, Mode=TwoWay}" Header="Compare type" Width="240">
+                                                                                    <ComboBoxItem Content="Equals" />
+                                                                                    <ComboBoxItem Content="Contains" />
+                                                                                    <ComboBoxItem Content="Starts with" />
+                                                                                    <ComboBoxItem Content="Ends with" />
+                                                                                </ComboBox>
+                                                                                <TextBox Header="Value" Text="{x:Bind Value, Mode=TwoWay}" Width="240" HorizontalAlignment="Left" />
+                                                                            </StackPanel>
+                                                                        </Flyout>
+                                                                    </Button.Flyout>
+                                                                </Button>
+                                                                <Button x:Name="RemoveButton" Background="Transparent" FontFamily="Segoe MDL2 Assets" Width="40" Height="36" Content="&#xE74D;" Command="{x:Bind DeleteSelectionRuleCommand}">
+                                                                    <ToolTipService.ToolTip>
+                                                                        <TextBlock Text="Remove rule"/>
+                                                                    </ToolTipService.ToolTip>
+                                                                </Button>
+                                                            </StackPanel>
+
+                                                        </controls:BurlsItem.ActionContent>
+                                                    </controls:BurlsItem>
+                                                    <Rectangle Style="{StaticResource ExpanderSeparatorStyle}" />
+
+                                                </StackPanel>-->
+
+
+
+                                                <!--Rule-->
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
+                                                        <TextBlock Text="Open browser profile when" Style="{ThemeResource SecondaryTextStyle}" />
+                                                        <TextBlock Text="{x:Bind SelectionRulePart, Mode=OneWay, Converter={StaticResource SelectionRulePartsToStringLowerConverter}}" FontWeight="SemiBold" Style="{ThemeResource SecondaryTextStyle}"/>
+                                                        <TextBlock Text="{x:Bind SelectionRuleCompareType, Mode=OneWay, Converter={StaticResource SelectionRuleCompareTypesToStringLowerConverter}}" FontWeight="SemiBold" Style="{ThemeResource SecondaryTextStyle}"/>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="'" />
+                                                            <TextBlock Text="{x:Bind Value, Mode=OneWay}" FontWeight="SemiBold" Style="{ThemeResource SecondaryTextStyle}"/>
+                                                            <TextBlock Text="'" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+
+                                                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="8">
+                                                        <Button Background="Transparent" FontFamily="Segoe MDL2 Assets" Width="40" Height="36" Content="&#xE70F;">
+                                                            <ToolTipService.ToolTip>
+                                                                <TextBlock Text="Edit rule"/>
+                                                            </ToolTipService.ToolTip>
+                                                            <Button.Flyout>
+                                                                <Flyout>
+                                                                    <StackPanel Spacing="16" Margin="0,12,0,0">
+                                                                        <ComboBox SelectedIndex="{x:Bind SelectionRulePartIndex, Mode=TwoWay}" Header="Part" Width="240" HorizontalAlignment="Left">
+                                                                            <ComboBoxItem Content="Url" />
+                                                                            <ComboBoxItem Content="Hostname" />
+                                                                            <ComboBoxItem Content="Domain" />
+                                                                            <ComboBoxItem Content="Subdomain" />
+                                                                        </ComboBox>
+                                                                        <ComboBox SelectedIndex="{x:Bind SelectionRuleCompareTypeIndex, Mode=TwoWay}" Header="Compare type" Width="240">
+                                                                            <ComboBoxItem Content="Equals" />
+                                                                            <ComboBoxItem Content="Contains" />
+                                                                            <ComboBoxItem Content="Starts with" />
+                                                                            <ComboBoxItem Content="Ends with" />
+                                                                        </ComboBox>
+                                                                        <TextBox Header="Value" Text="{x:Bind Value, Mode=TwoWay}" Width="240" HorizontalAlignment="Left" />
+                                                                    </StackPanel>
+                                                                </Flyout>
+                                                            </Button.Flyout>
+                                                        </Button>
+                                                        <Button x:Name="RemoveButton" Background="Transparent" FontFamily="Segoe MDL2 Assets" Width="40" Height="36" Content="&#xE74D;" Command="{x:Bind DeleteSelectionRuleCommand}">
+                                                            <ToolTipService.ToolTip>
+                                                                <TextBlock Text="Remove rule"/>
+                                                            </ToolTipService.ToolTip>
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                    <Rectangle Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource ExpanderSeparatorStyle}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+
+                            </controls:BurlsExpander.Content>
+                        </controls:BurlsExpander>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </controls:BurlsGroup>
+
+    </StackPanel>
+</Page>

@@ -48,12 +48,12 @@ namespace Burls.Application.Tests.Core.Handlers
             _browserService = new Mock<IBrowserService>();
 
             // Init handler
-            _handler = new ApplicationInitializeCommandHandler(
-                _fakeLogger.Object,
-                _applicationStore.Object,
-                _browserState.Object,
-                _persistAndRestoreService.Object,
-                _browserService.Object);
+            //_handler = new ApplicationInitializeCommandHandler(
+            //    _fakeLogger.Object,
+            //    _applicationStore.Object,
+            //    _browserState.Object,
+            //    _persistAndRestoreService.Object,
+            //    _browserService.Object);
         }
 
         [Fact]

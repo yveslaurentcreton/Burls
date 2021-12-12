@@ -25,7 +25,8 @@ namespace Burls.Persistence
         public void ConfigureServices(IServiceCollection services)
         {
             // MediatR
-            services.AddMediatR(typeof(Startup));
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name.StartsWith("Burls")).ToList();
+            services.AddMediatR(assemblies.ToArray());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>));
 
             // State

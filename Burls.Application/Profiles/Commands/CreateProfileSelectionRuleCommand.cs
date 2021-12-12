@@ -1,4 +1,5 @@
 ﻿using Burls.Application.Core;
+using Burls.Application.Profiles.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using static Burls.Domain.SelectionRule;
 
 namespace Burls.Application.Profiles.Commands
 {
-    public class CreateProfileSelectionRuleCommand : IRequest, ITransactionalRequest
+    public class CreateProfileSelectionRuleCommand : IRequest<CreateProfileSelectionRuleResponse>, ITransactionalRequest
     {
         public int ProfileId { get; }
         public SelectionRuleParts SelectionRulePart { get; }

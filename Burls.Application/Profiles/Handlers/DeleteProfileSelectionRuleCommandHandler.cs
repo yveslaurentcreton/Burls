@@ -29,11 +29,13 @@ namespace Burls.Application.Profiles.Handlers
         public async Task<Unit> Handle(DeleteProfileSelectionRuleCommand request, CancellationToken cancellationToken)
         {
             var profile = await _unitOfWork.ProfileRepository.GetAsync(request.ProfileId);
+            var selectionRule = profile.SelectionRules.Single(x => x.Id == request.SelectionRuleId);
 
-            var selectionRuleToDelete = profile.SelectionRules.Single(x => x.Id == request.SelectionRuleId);
-            profile.SelectionRules.Remove(selectionRuleToDelete);
+            // Persist changes
+            profile.SelectionRules.Remove(selectionRule);
 
-            await _mediator.Publish(new ProfileSelectionRuleDeletedNotification(profile, selectionRuleToDelete), cancellationToken);
+            // Notify that everything is complete
+            await _mediator.Publish(new ProfileSelectionRuleDeletedNotification(profile, selectionRule), cancellationToken);
 
             return Unit.Value;
         }

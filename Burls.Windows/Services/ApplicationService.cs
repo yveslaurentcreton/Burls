@@ -1,24 +1,35 @@
-﻿using Burls.Application.Browsers.Services;
-using Burls.Application.Core.Services;
+﻿using Burls.Application.Core.Services;
+using Burls.Windows.Pages;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace Burls.Windows.Services
 {
     public class ApplicationService : IApplicationService
     {
+        private readonly ISettingsService _settingsService;
+
         public void AddProperty(object key, object value) => System.Windows.Application.Current.Properties.Add(key, value);
 
-        public IDictionary GetProperties() => System.Windows.Application.Current.Properties;
+        public IDictionary<string, object> GetProperties() => null;
+
+        public ApplicationService(ISettingsService settingsService)
+        {
+            _settingsService = settingsService;
+        }
 
         public void Shutdown()
         {
-            System.Windows.Application.Current.Shutdown();
+            Microsoft.UI.Xaml.Application.Current.Exit();
         }
 
         public Version GetVersion()
@@ -27,6 +38,25 @@ namespace Burls.Windows.Services
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var version = FileVersionInfo.GetVersionInfo(assemblyLocation).FileVersion;
             return new Version(version);
+        }
+
+        public ApplicationTheme GetTheme()
+        {
+            var themeName = _settingsService.GetSetting("Theme");
+
+            if (Enum.TryParse<ApplicationTheme>(themeName, out var theme))
+            {
+                return theme;
+            }
+            else
+            {
+                return ApplicationTheme.OsDefault;
+            }
+        }
+
+        public void SetTheme(ApplicationTheme theme)
+        {
+            _settingsService.SetSetting("Theme", theme.ToString());
         }
     }
 }

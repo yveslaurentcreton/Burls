@@ -1,77 +1,50 @@
-﻿using System;
-using System.Windows.Input;
-using Burls.Application.Core.Queries;
-using Burls.Application.Core.Services;
-using Burls.Windows.Contracts.Services;
-using Burls.Windows.Models;
+﻿using Burls.Application.Browsers.State;
+using Burls.Application.Profiles.Commands;
+using Burls.Domain;
+using Burls.Windows.Core;
 using MediatR;
-using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Regions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Burls.Application.Core.Services;
+using static Burls.Domain.SelectionRule;
+using Burls.Windows.ViewModels.Models;
+using Burls.Windows.Services;
+using Burls.Application.Core.Queries;
 
 namespace Burls.Windows.ViewModels
 {
-    // TODO WTS: Change the URL for your privacy policy in the appsettings.json file, currently set to https://YourPrivacyUrlGoesHere
-    public class SettingsViewModel : BindableBase, INavigationAware
+    public class SettingsViewModel : ViewModelBase, IViewModel
     {
+        private readonly IOperatingSystemService _operatingSystemService;
+        private readonly IApplicationService _applicationService;
         private readonly IMediator _mediator;
-        private readonly AppConfig _appConfig;
-        private readonly IThemeSelectorService _themeSelectorService;
-        private readonly ISystemService _systemService;
-        private AppTheme _theme;
-        private string _versionDescription;
-        private ICommand _setThemeCommand;
-        private ICommand _privacyStatementCommand;
 
-        public AppTheme Theme
-        {
-            get { return _theme; }
-            set { SetProperty(ref _theme, value); }
-        }
+        public int ThemeIndex { get => (int)_applicationService.GetTheme() ; set { _applicationService.SetTheme((ApplicationTheme)value); } }
+        public string VersionDescription { get; }
+        public IEnumerable<BrowserProfileViewModel> BrowserProfiles { get; set; }
 
-        public string VersionDescription
-        {
-            get { return _versionDescription; }
-            set { SetProperty(ref _versionDescription, value); }
-        }
-
-        public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new DelegateCommand<string>(OnSetTheme));
-
-        public ICommand PrivacyStatementCommand => _privacyStatementCommand ?? (_privacyStatementCommand = new DelegateCommand(OnPrivacyStatement));
+        public ICommand OpenWindowsColorSettingsCommand { get; set; }
 
         public SettingsViewModel(
-            IMediator mediator,
-            AppConfig appConfig,
-            IThemeSelectorService themeSelectorService,
-            ISystemService systemService)
+            IOperatingSystemService operatingSystemService,
+            IApplicationService applicationService,
+            IBrowserState browserState,
+            IBrowserStateNotificationService browserStateNotificationService,
+            IMediator mediator)
         {
+            _operatingSystemService = operatingSystemService;
+            _applicationService = applicationService;
             _mediator = mediator;
-            _appConfig = appConfig;
-            _themeSelectorService = themeSelectorService;
-            _systemService = systemService;
-        }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
-        {
             var version = _mediator.Send(new GetApplicationVersionQuery()).Result.Version;
             VersionDescription = $"Burls - {version}";
-            Theme = _themeSelectorService.GetCurrentTheme();
+            BrowserProfiles = browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(browserStateNotificationService, mediator, x)).ToList();
+
+            OpenWindowsColorSettingsCommand = new RelayCommand(_operatingSystemService.OpenColorSettings);
         }
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-        }
-
-        private void OnSetTheme(string themeName)
-        {
-            var theme = (AppTheme)Enum.Parse(typeof(AppTheme), themeName);
-            _themeSelectorService.SetTheme(theme);
-        }
-
-        private void OnPrivacyStatement()
-            => _systemService.OpenInWebBrowser(_appConfig.PrivacyStatement);
-
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-            => true;
     }
 }

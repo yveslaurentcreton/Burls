@@ -1,0 +1,33 @@
+# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+
+# All files
+[*]
+indent_style = space
+
+# Xml files
+[*.xml]
+indent_size = 2
+
+# C# files
+[*.cs]
+
+#### Naming styles ####
+
+# Naming styles
+
+dotnet_naming_symbols.private_or_internal_field.applicable_kinds = field
+dotnet_naming_symbols.private_or_internal_field.applicable_accessibilities = internal, private, private_protected
+dotnet_naming_symbols.private_or_internal_field.required_modifiers = 
+
+# Symbol specifications
+
+dotnet_naming_style.underscore_camel_case.required_prefix = _
+dotnet_naming_style.underscore_camel_case.required_suffix = 
+dotnet_naming_style.underscore_camel_case.word_separator = 
+dotnet_naming_style.underscore_camel_case.capitalization = camel_case
+
+# Naming rules
+
+dotnet_naming_rule.private_or_internal_field_should_be_underscore_camel_case.severity = suggestion
+dotnet_naming_rule.private_or_internal_field_should_be_underscore_camel_case.symbols = private_or_internal_field
+dotnet_naming_rule.private_or_internal_field_should_be_underscore_camel_case.style = underscore_camel_case
