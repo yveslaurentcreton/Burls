@@ -14,6 +14,8 @@
     <Page.Resources>
         <converters:SelectionRulePartsToStringLowerConverter x:Name="SelectionRulePartsToStringLowerConverter" />
         <converters:SelectionRuleCompareTypesToStringLowerConverter x:Name="SelectionRuleCompareTypesToStringLowerConverter" />
+        <converters:EnumStringToBoolConverter x:Name="EnumStringToBoolConverter" />
+        <converters:EnumStringToVisibilityConverter x:Name="EnumStringToVisibilityConverter" />
 
         <XamlUICommand x:Key="OpenWindowsColorSettingsCommand" Command="{x:Bind ViewModel.OpenWindowsColorSettingsCommand}" />
     </Page.Resources>
@@ -25,6 +27,50 @@
                     <HyperlinkButton Content="Release notes" NavigateUri="https://github.com/BEzGumpTion/Burls/releases/" />
                 </controls:BurlsItem.Description>
             </controls:BurlsItem>
+
+            <muxc:InfoBar Title="Be aware that this is an unreleased future version. The current latest released version is:" IsClosable="False" Severity="Warning" IsTabStop="{x:Bind ViewModel.VersionStatus, Mode=OneWay, Converter={StaticResource EnumStringToBoolConverter}, ConverterParameter=FutureVersion}"
+                          IsOpen="{x:Bind ViewModel.VersionStatus, Mode=OneWay, Converter={StaticResource EnumStringToBoolConverter}, ConverterParameter=FutureVersion}" Message="{x:Bind ViewModel.LatestVersion, Mode=OneWay}">
+                <muxc:InfoBar.ActionButton>
+                    <HyperlinkButton Content="See releases" NavigateUri="https://github.com/BEzGumpTion/Burls/releases/" Style="{StaticResource TextButtonStyle}" HorizontalAlignment="Right" />
+                </muxc:InfoBar.ActionButton>
+            </muxc:InfoBar>
+
+            <StackPanel  Visibility="{x:Bind ViewModel.VersionStatus, Mode=OneWay, Converter={StaticResource EnumStringToVisibilityConverter}, ConverterParameter=OldVersion}">
+                <muxc:InfoBar Title="An update is available:" IsClosable="False" Severity="Informational" IsTabStop="{x:Bind ViewModel.LatestVersionStatus, Mode=OneWay, Converter={StaticResource EnumStringToBoolConverter}, ConverterParameter=None}"
+                          IsOpen="{x:Bind ViewModel.LatestVersionStatus, Mode=OneWay, Converter={StaticResource EnumStringToBoolConverter}, ConverterParameter=None}" Message="{x:Bind ViewModel.LatestVersion, Mode=OneWay}">
+                    <muxc:InfoBar.Content>
+                        <StackPanel Spacing="16">
+                            <Button Content="Download" Command="{x:Bind ViewModel.DownloadLatestVersionCommand}"/>
+
+                            <StackPanel Visibility="{x:Bind ViewModel.IsDownloadingLatestVersion, Mode=OneWay}" Orientation="Horizontal" Spacing="18" Margin="0,0,0,16">
+                                <muxc:ProgressRing Height="24" Width="24"/>
+                                <TextBlock Text="Downloading..." FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </muxc:InfoBar.Content>
+                    <muxc:InfoBar.ActionButton>
+                        <HyperlinkButton Content="See what's new"  NavigateUri="https://github.com/BEzGumpTion/Burls/releases/" Style="{StaticResource TextButtonStyle}" HorizontalAlignment="Right" />
+                    </muxc:InfoBar.ActionButton>
+                </muxc:InfoBar>
+
+                <muxc:InfoBar Title="An update is ready to install:" IsClosable="False" Severity="Success" IsTabStop="{x:Bind ViewModel.LatestVersionStatus, Mode=OneWay, Converter={StaticResource EnumStringToBoolConverter}, ConverterParameter=Downloaded}"
+                          IsOpen="{x:Bind ViewModel.LatestVersionStatus, Mode=OneWay, Converter={StaticResource EnumStringToBoolConverter}, ConverterParameter=Downloaded}" Message="{x:Bind ViewModel.LatestVersion, Mode=OneWay}">
+                    <muxc:InfoBar.Content>
+                        <StackPanel Spacing="16">
+                            <Button Content="Install" Command="{x:Bind ViewModel.InstallLatestVersionCommand}"/>
+
+                            <StackPanel Visibility="{x:Bind ViewModel.IsDownloadingLatestVersion, Mode=OneWay}" Orientation="Horizontal" Spacing="18" Margin="0,0,0,16">
+                                <muxc:ProgressRing Height="24" Width="24"/>
+                                <TextBlock Text="Downloading..." FontWeight="SemiBold" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </muxc:InfoBar.Content>
+                    <muxc:InfoBar.ActionButton>
+                        <HyperlinkButton Content="See what's new"  NavigateUri="https://github.com/BEzGumpTion/Burls/releases/" Style="{StaticResource TextButtonStyle}" HorizontalAlignment="Right" />
+                    </muxc:InfoBar.ActionButton>
+                </muxc:InfoBar>
+            </StackPanel>
+            
         </controls:BurlsGroup>
         
         <controls:BurlsGroup Header="Appearance">

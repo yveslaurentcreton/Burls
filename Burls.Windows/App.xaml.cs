@@ -102,7 +102,10 @@ namespace Burls.Windows
             });
 
             // Services
+            services.AddScoped<IApplicationService, ApplicationService>();
+            services.AddScoped<IUpdateService, UpdateService>();
             services.AddScoped<INavigationService, NavigationService>();
+            services.AddScoped<IOperatingSystemService, WindowsService>();
 
             // Broadcasters
             services.AddSingleton<INavigationBroadcaster, NavigationBroadcaster>();
@@ -139,11 +142,9 @@ namespace Burls.Windows
             services.AddScoped<IFileService, FileService>();
 
             // App Services
-            services.AddScoped<IApplicationService, ApplicationService>();
             //services.AddScoped<ISystemService, SystemService>();
             services.AddScoped<IPersistAndRestoreService, PersistAndRestoreService>();
             //services.AddScoped<IThemeSelectorService, ThemeSelectorService>();
-            services.AddScoped<IOperatingSystemService, WindowsService>();
         }
 
         /// <summary>
