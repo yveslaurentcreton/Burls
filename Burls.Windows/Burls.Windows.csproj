@@ -49,6 +49,7 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" />
     <PackageReference Include="NLog" Version="4.7.9" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.7.1" />
+    <PackageReference Include="Octokit" Version="0.50.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 

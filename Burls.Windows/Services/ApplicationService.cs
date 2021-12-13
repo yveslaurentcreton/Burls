@@ -1,16 +1,12 @@
 ﻿using Burls.Application.Core.Services;
-using Burls.Windows.Pages;
-using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Storage;
 
 namespace Burls.Windows.Services
 {

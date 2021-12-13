@@ -12,9 +12,9 @@ namespace Burls.Application.Core.Services
         IDictionary<string, object> GetProperties();
         void AddProperty(object key, object value);
         void Shutdown();
-        Version GetVersion();
         ApplicationTheme GetTheme();
         void SetTheme(ApplicationTheme theme);
+        Version GetVersion();
     }
 
     public enum ApplicationTheme
