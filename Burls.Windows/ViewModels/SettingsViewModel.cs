@@ -1,8 +1,6 @@
 ﻿using Burls.Application.Browsers.State;
-using Burls.Application.Profiles.Commands;
 using Burls.Domain;
 using Burls.Windows.Core;
-using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Burls.Application.Core.Services;
-using static Burls.Domain.SelectionRule;
 using Burls.Windows.ViewModels.Models;
 using Burls.Windows.Services;
-using Burls.Application.Core.Queries;
 using System.Windows.Threading;
 using System.Threading;
+using Burls.Application.Browsers.Services;
 
 namespace Burls.Windows.ViewModels
 {
@@ -24,7 +21,6 @@ namespace Burls.Windows.ViewModels
         private readonly IOperatingSystemService _operatingSystemService;
         private readonly IApplicationService _applicationService;
         private readonly IUpdateService _updateService;
-        private readonly IMediator _mediator;
 
         public int ThemeIndex { get => (int)_applicationService.GetTheme(); set { _applicationService.SetTheme((ApplicationTheme)value); } }
         private string _versionDescription;
@@ -46,23 +42,19 @@ namespace Burls.Windows.ViewModels
         public SettingsViewModel(
             IOperatingSystemService operatingSystemService,
             IApplicationService applicationService,
+            IBrowserService browserService,
             IUpdateService updateService,
-            IBrowserState browserState,
-            IBrowserStateNotificationService browserStateNotificationService,
-            IMediator mediator)
+            IBrowserState browserState)
         {
             _operatingSystemService = operatingSystemService;
             _applicationService = applicationService;
             _updateService = updateService;
-            _mediator = mediator;
 
-            var version = _mediator.Send(new GetApplicationVersionQuery()).Result.Version;
-            VersionDescription = $"v{version}";
-            _mediator.Send(new GetApplicationVersionQuery()).ContinueWith(responseTask => VersionDescription = $"v{responseTask.Result.Version}");
+            VersionDescription = $"v{_applicationService.GetVersion()}";
             _updateService.GetVersionStatus().ContinueWith(versionStatusTask => VersionStatus = versionStatusTask.Result, TaskScheduler.FromCurrentSynchronizationContext());
             _updateService.GetLatestVersionInfo().ContinueWith(versionTask => LatestVersion = $"v{versionTask.Result.Version}", TaskScheduler.FromCurrentSynchronizationContext());
             _updateService.GetLatestVersionStatus().ContinueWith(latestVersionStatusTask => LatestVersionStatus = latestVersionStatusTask.Result, TaskScheduler.FromCurrentSynchronizationContext());
-            BrowserProfiles = browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(browserStateNotificationService, mediator, x)).ToList();
+            BrowserProfiles = browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(browserService, x)).ToList();
 
             OpenWindowsColorSettingsCommand = new RelayCommand(_operatingSystemService.OpenColorSettings);
             DownloadLatestVersionCommand = new RelayCommand(async () => await DownloadLatestVersion());

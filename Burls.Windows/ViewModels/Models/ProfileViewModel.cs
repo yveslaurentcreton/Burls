@@ -1,9 +1,8 @@
-﻿using Burls.Application.Profiles.Commands;
+﻿using Burls.Application.Browsers.Services;
 using Burls.Core.Data;
 using Burls.Domain;
 using Burls.Windows.Core;
 using Burls.Windows.Services;
-using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,8 +18,7 @@ namespace Burls.Windows.ViewModels.Models
 {
     public class ProfileViewModel : ViewModelBase, IEntity
     {
-        private readonly IBrowserStateNotificationService _browserStateNotificationService;
-        private readonly IMediator _mediator;
+        private readonly IBrowserService _browserService;
         private readonly Profile _profile;
 
         public int Id => _profile.Id;
@@ -31,42 +29,28 @@ namespace Burls.Windows.ViewModels.Models
 
         public ICommand AddSelectionRuleCommand { get; set; }
 
-        public ProfileViewModel(IBrowserStateNotificationService browserStateNotificationService, IMediator mediator, Profile profile)
+        public ProfileViewModel(IBrowserService browserService, Profile profile)
         {
-            _browserStateNotificationService = browserStateNotificationService;
-            _mediator = mediator;
+            _browserService = browserService;
             _profile = profile;
 
-            SelectionRules = new ObservableCollection<SelectionRuleViewModel>(_profile.SelectionRules.Select(x => new SelectionRuleViewModel(mediator, x)));
+            SelectionRules = new ObservableCollection<SelectionRuleViewModel>(_profile.SelectionRules.Select(x => new SelectionRuleViewModel(browserService, x, DeleteSelectionRule)));
 
-            _browserStateNotificationService.SelectionRuleCreated += _browserStateNotificationService_SelectionRuleCreated;
-            _browserStateNotificationService.SelectionRuleDeleted += _browserStateNotificationService_SelectionRuleDeleted;
-
-            AddSelectionRuleCommand = new RelayCommand(async () => await AddNewSelectionRule());
+            AddSelectionRuleCommand = new RelayCommand(AddNewSelectionRule);
         }
 
-        public Task AddNewSelectionRule()
+        public void AddNewSelectionRule()
         {
-            var command = new CreateProfileSelectionRuleCommand(Id, SelectionRuleParts.Url, SelectionRuleCompareTypes.Contains, "Value");
+            var newSelectionRule = _browserService.AddSelectionRule(_profile, SelectionRuleParts.Url, SelectionRuleCompareTypes.Contains, "Value");
 
-            return _mediator.Send(command);
+            SelectionRules.Add(new SelectionRuleViewModel(_browserService, newSelectionRule, DeleteSelectionRule));
         }
 
-        private void _browserStateNotificationService_SelectionRuleCreated(object sender, SelectionRuleCreatedEventArgs e)
+        public void DeleteSelectionRule(SelectionRule selectionRule, SelectionRuleViewModel selectionRuleViewModel)
         {
-            if (e.SelectionRule.ProfileId == Id)
-            {
-                SelectionRules.Add(new SelectionRuleViewModel(_mediator, e.SelectionRule));
-            }
-        }
+            _browserService.DeleteSelectionRule(_profile, selectionRule);
 
-        private void _browserStateNotificationService_SelectionRuleDeleted(object sender, SelectionRuleDeletedEventArgs e)
-        {
-            if (e.SelectionRule.ProfileId == Id)
-            {
-                var selectionRule = SelectionRules.Single(x => x.Id == e.SelectionRule.Id);
-                SelectionRules.Remove(selectionRule);
-            }
+            SelectionRules.Remove(selectionRuleViewModel);
         }
     }
 }

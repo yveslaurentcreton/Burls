@@ -10,11 +10,12 @@ using System.Windows.Media;
 
 namespace Burls.Domain
 {
+    [Serializable]
     public class Profile : IEntity
     {
-        public int Id { get; protected set; }
-        public string Name { get; protected set; }
-        public string IconPath { get; protected set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string IconPath { get; set; }
 
         public IList<SelectionRule> SelectionRules { get; set; }
 

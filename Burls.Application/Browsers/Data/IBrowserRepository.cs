@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Burls.Application.Browsers.Data
 {
-    public interface IBrowserRepository : IRepository<Browser>
+    public interface IBrowserRepository
     {
         IEnumerable<InstalledBrowser> GetInstalledBrowsers();
+        IEnumerable<Browser> GetBrowsers();
+        void SaveBrowsers();
     }
 }

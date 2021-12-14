@@ -1,7 +1,7 @@
-﻿using Burls.Domain;
+﻿using Burls.Application.Browsers.Services;
+using Burls.Domain;
 using Burls.Windows.Core;
 using Burls.Windows.Services;
-using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,7 +14,7 @@ namespace Burls.Windows.ViewModels.Models
 {
     public class BrowserProfileViewModel : ViewModelBase
     {
-        private BrowserProfile _browserProfile;
+        private readonly BrowserProfile _browserProfile;
 
         public string Name => _browserProfile.Name;
         public string IconPath => _browserProfile.IconPath;
@@ -23,12 +23,12 @@ namespace Burls.Windows.ViewModels.Models
         public BrowserViewModel Browser { get; }
         public ProfileViewModel Profile { get; }
 
-        public BrowserProfileViewModel(IBrowserStateNotificationService browserStateNotificationService, IMediator mediator, BrowserProfile browserProfile)
+        public BrowserProfileViewModel(IBrowserService browserService, BrowserProfile browserProfile)
         {
             _browserProfile = browserProfile;
 
-            Browser = new BrowserViewModel(browserStateNotificationService, mediator, _browserProfile.Browser);
-            Profile = new ProfileViewModel(browserStateNotificationService, mediator, _browserProfile.Profile);
+            Browser = new BrowserViewModel(browserService, _browserProfile.Browser);
+            Profile = new ProfileViewModel(browserService, _browserProfile.Profile);
         }
 
         public void NavigateToUrl(string url)

@@ -1,8 +1,7 @@
-﻿using Burls.Application.Profiles.Commands;
+﻿using Burls.Application.Browsers.Services;
 using Burls.Domain;
 using Burls.Domain.Core.Extensions;
 using Burls.Windows.Core;
-using MediatR;
 using Nager.PublicSuffix;
 using System;
 using System.Collections.Generic;
@@ -18,8 +17,9 @@ namespace Burls.Windows.ViewModels.Models
 {
     public class SelectionRuleViewModel : ViewModelBase
     {
-        private readonly IMediator _mediator;
+        private readonly IBrowserService _browserService;
         private readonly SelectionRule _selectionRule;
+        private readonly Action<SelectionRule, SelectionRuleViewModel> _deleteSelectionRuleAction;
 
         public int Id => _selectionRule.Id;
         public int ProfileId => _selectionRule.ProfileId;
@@ -31,12 +31,12 @@ namespace Burls.Windows.ViewModels.Models
 
         public ICommand DeleteSelectionRuleCommand { get; set; }
 
-        public SelectionRuleViewModel(IMediator mediator, SelectionRule selectionRule)
+        public SelectionRuleViewModel(IBrowserService browserService, SelectionRule selectionRule, Action<SelectionRule, SelectionRuleViewModel> deleteSelectionRuleAction)
         {
-            _mediator = mediator;
+            _browserService = browserService;
             _selectionRule = selectionRule;
-
-            DeleteSelectionRuleCommand = new RelayCommand(async () => await DeleteSelectionRule());
+            _deleteSelectionRuleAction = deleteSelectionRuleAction;
+            DeleteSelectionRuleCommand = new RelayCommand(DeleteSelectionRule);
         }
 
         public bool IsMatch(string urlToMatch)
@@ -46,18 +46,12 @@ namespace Burls.Windows.ViewModels.Models
 
         public void UpdateSelectionRule()
         {
-            Task.Run(() => {
-                var command = new UpdateProfileSelectionRuleCommand(ProfileId, Id, _selectionRule.SelectionRulePart, _selectionRule.SelectionRuleCompareType, Value);
-
-                return _mediator.Send(command);
-            }).Wait();
+            _browserService.UpdateSelectionRule(_selectionRule);
         }
 
-        public Task DeleteSelectionRule()
+        public void DeleteSelectionRule()
         {
-            var command = new DeleteProfileSelectionRuleCommand(ProfileId, Id);
-
-            return _mediator.Send(command);
+            _deleteSelectionRuleAction(_selectionRule, this);
         }
     }
 }

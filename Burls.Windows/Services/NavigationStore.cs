@@ -11,8 +11,8 @@ namespace Burls.Windows.Services
 {
     public class NavigationStore : INavigationStore
     {
-        private Dictionary<string, Type> _pageStore;
-        private Dictionary<Type, Type> _viewModelStore;
+        private readonly Dictionary<string, Type> _pageStore;
+        private readonly Dictionary<Type, Type> _viewModelStore;
 
         public NavigationStore()
         {

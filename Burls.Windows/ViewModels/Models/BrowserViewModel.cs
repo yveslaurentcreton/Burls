@@ -1,8 +1,8 @@
-﻿using Burls.Core.Data;
+﻿using Burls.Application.Browsers.Services;
+using Burls.Core.Data;
 using Burls.Domain;
 using Burls.Windows.Core;
 using Burls.Windows.Services;
-using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,11 +28,11 @@ namespace Burls.Windows.ViewModels.Models
 
         public virtual ObservableCollection<ProfileViewModel> Profiles { get; protected set; }
 
-        public BrowserViewModel(IBrowserStateNotificationService browserStateNotificationService, IMediator mediator, Browser browser)
+        public BrowserViewModel(IBrowserService browserService, Browser browser)
         {
             _browser = browser;
 
-            Profiles = new ObservableCollection<ProfileViewModel>(_browser.Profiles.Select(x => new ProfileViewModel(browserStateNotificationService, mediator, x)));
+            Profiles = new ObservableCollection<ProfileViewModel>(_browser.Profiles.Select(x => new ProfileViewModel(browserService, x)));
         }
 
         public string GetProfileArgument(Profile profile)

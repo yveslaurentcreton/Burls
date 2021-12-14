@@ -9,8 +9,6 @@ namespace Burls.Application.Browsers.State
     {
         string RequestUrl { get; set; }
         bool SaveRequestUrl { get; set; }
-        IEnumerable<BrowserProfile> BrowserProfiles { get; set; }
-        BrowserProfile SelectedBrowserProfile { get; set; }
-        SelectionRule SelectedSelectionRule { get; set; }
+        IEnumerable<BrowserProfile> BrowserProfiles { get; }
     }
 }

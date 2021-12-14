@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="$(var.Burls.Windows.TargetName)" Language="1033" Version="0.3.0" Manufacturer="BEzGumpTion" UpgradeCode="4bd619b8-77ab-437e-8607-f6daf13b12b1">
+  <Product Id="*" Name="$(var.Burls.Windows.TargetName)" Language="1033" Version="0.4.0" Manufacturer="BEzGumpTion" UpgradeCode="4bd619b8-77ab-437e-8607-f6daf13b12b1">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -44,7 +44,50 @@
   <Fragment>
     <DirectoryRef Id="INSTALLFOLDER">
       <Component Id="c_Burls_Windows" Guid="0dda5b8c-983e-4002-b585-d044bd305428">
-        <File Id="f_Burls_Windows" Name="$(var.Burls.Windows.TargetName).exe" Source="$(var.Burls.Windows.ProjectDir)bin\Release\netcoreapp3.1\publish\$(var.Burls.Windows.TargetName).exe" KeyPath="yes" />
+          <File Id="Nager_PublicSuffix" Name="Nager.PublicSuffix.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Nager.PublicSuffix.dll" KeyPath="no" />
+          <File Id="Newtonsoft_Json" Name="Newtonsoft.Json.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Newtonsoft.Json.dll" KeyPath="no" />
+          <File Id="NLog" Name="NLog.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\NLog.dll" KeyPath="no" />
+          <File Id="NLog_Extensions_Logging" Name="NLog.Extensions.Logging.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\NLog.Extensions.Logging.dll" KeyPath="no" />
+          <File Id="Octokit" Name="Octokit.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Octokit.dll" KeyPath="no" />
+          <File Id="WinRT_Runtime" Name="WinRT.Runtime.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\WinRT.Runtime.dll" KeyPath="no" />
+          <File Id="appsettings_json" Name="appsettings.json" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\appsettings.json" KeyPath="no" />
+          <File Id="Burls_deps_json" Name="Burls.deps.json" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.deps.json" KeyPath="no" />
+          <File Id="Burls_runtimeconfig_json" Name="Burls.runtimeconfig.json" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.runtimeconfig.json" KeyPath="no" />
+          <File Id="resources_pri" Name="resources.pri" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\resources.pri" KeyPath="no" />
+          <File Id="f_Burls_Windows" Name="$(var.Burls.Windows.TargetName).exe" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\$(var.Burls.Windows.TargetName).exe" KeyPath="yes" />
+          <File Id="AutoMapper" Name="AutoMapper.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.dll" KeyPath="no" />
+          <File Id="AutoMapper_Extensions_Microsoft_DependencyInjection" Name="AutoMapper.Extensions.Microsoft.DependencyInjection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.Extensions.Microsoft.DependencyInjection.dll" KeyPath="no" />
+          <File Id="Burls_Application" Name="Burls.Application.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Application.dll" KeyPath="no" />
+          <File Id="Burls_Core" Name="Burls.Core.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Core.dll" KeyPath="no" />
+          <File Id="Burls" Name="Burls.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.dll" KeyPath="no" />
+          <File Id="Burls_Domain" Name="Burls.Domain.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Domain.dll" KeyPath="no" />
+          <File Id="Burls_Persistence" Name="Burls.Persistence.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Persistence.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Configuration_Abstractions" Name="Microsoft.Extensions.Configuration.Abstractions.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.Abstractions.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Configuration_Binder" Name="Microsoft.Extensions.Configuration.Binder.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.Binder.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Configuration_CommandLine" Name="Microsoft.Extensions.Configuration.CommandLine.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.CommandLine.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Configuration" Name="Microsoft.Extensions.Configuration.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Configuration_FileExtensions" Name="Microsoft.Extensions.Configuration.FileExtensions.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.FileExtensions.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Configuration_Json" Name="Microsoft.Extensions.Configuration.Json.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.Json.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_DependencyInjection_Abstractions" Name="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_DependencyInjection" Name="Microsoft.Extensions.DependencyInjection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.DependencyInjection.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_FileProviders_Abstractions" Name="Microsoft.Extensions.FileProviders.Abstractions.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.FileProviders.Abstractions.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_FileProviders_Physical" Name="Microsoft.Extensions.FileProviders.Physical.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.FileProviders.Physical.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_FileSystemGlobbing" Name="Microsoft.Extensions.FileSystemGlobbing.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.FileSystemGlobbing.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Logging_Abstractions" Name="Microsoft.Extensions.Logging.Abstractions.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Logging.Abstractions.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Logging" Name="Microsoft.Extensions.Logging.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Logging.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Options" Name="Microsoft.Extensions.Options.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Options.dll" KeyPath="no" />
+          <File Id="Microsoft_Extensions_Primitives" Name="Microsoft.Extensions.Primitives.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Primitives.dll" KeyPath="no" />
+          <File Id="Microsoft_InteractiveExperiences_Projection" Name="Microsoft.InteractiveExperiences.Projection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.InteractiveExperiences.Projection.dll" KeyPath="no" />
+          <File Id="Microsoft_Windows_ApplicationModel_DynamicDependency_Projection" Name="Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" KeyPath="no" />
+          <File Id="Microsoft_Windows_ApplicationModel_Resources_Projection" Name="Microsoft.Windows.ApplicationModel.Resources.Projection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.Resources.Projection.dll" KeyPath="no" />
+          <File Id="Microsoft_Windows_ApplicationModel_WindowsAppRuntime_Projection" Name="Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" KeyPath="no" />
+          <File Id="Microsoft_Windows_AppLifecycle_Projection" Name="Microsoft.Windows.AppLifecycle.Projection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.AppLifecycle.Projection.dll" KeyPath="no" />
+          <File Id="Microsoft_Windows_SDK_NET" Name="Microsoft.Windows.SDK.NET.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.SDK.NET.dll" KeyPath="no" />
+          <File Id="Microsoft_Windows_System_Power_Projection" Name="Microsoft.Windows.System.Power.Projection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.System.Power.Projection.dll" KeyPath="no" />
+          <File Id="Microsoft_WindowsAppRuntime_Bootstrap" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="no" />
+          <File Id="Microsoft_WindowsAppRuntime_Bootstrap_Net" Name="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" KeyPath="no" />
+          <File Id="Microsoft_WinUI" Name="Microsoft.WinUI.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WinUI.dll" KeyPath="no" />
+          <File Id="MintPlayer_PlatformBrowser" Name="MintPlayer.PlatformBrowser.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\MintPlayer.PlatformBrowser.dll" KeyPath="no" />
       </Component>
     </DirectoryRef>
   </Fragment>

@@ -1,8 +1,7 @@
 ﻿using Burls.Application.Browsers.Services;
 using Burls.Application.Browsers.State;
+using Burls.Application.Core.Services;
 using Burls.Application.Core.State;
-using Burls.Application.PipelineBehaviors;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -24,17 +23,15 @@ namespace Burls.Persistence
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // MediatR
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name.StartsWith("Burls")).ToList();
-            services.AddMediatR(assemblies.ToArray());
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>));
-
             // State
-            services.AddScoped<IApplicationState, ApplicationState>();
-            services.AddScoped<IBrowserState, BrowserState>();
+            services.AddSingleton<IApplicationState, ApplicationState>();
+            services.AddSingleton<IBrowserState, BrowserState>();
 
             // Services
+            services.AddScoped<IApplicationLifetimeService, ApplicationLifetimeService>();
             services.AddScoped<IBrowserService, BrowserService>();
+            services.AddScoped<ISettingsService, SettingsService>();
+            services.AddScoped<IPathService, PathService>();
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using Burls.Application.Core.State;
+﻿using Burls.Application.Browsers.Services;
+using Burls.Application.Core.State;
 using Burls.Domain;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,9 @@ namespace Burls.Application.Browsers.State
 {
     public class BrowserState : StateBase, IBrowserState
     {
+        private readonly Lazy<IEnumerable<Browser>> _lazyBrowsers;
+        private readonly Lazy<IEnumerable<BrowserProfile>> _lazyBrowserProfiles;
+
         public string RequestUrl { get; set; }
 
         private bool _saveRequestUrl;
@@ -19,25 +23,13 @@ namespace Burls.Application.Browsers.State
             set { _saveRequestUrl = value; RaiseStateChanged(); }
         }
 
-        private IEnumerable<BrowserProfile> _browserProfiles;
-        public IEnumerable<BrowserProfile> BrowserProfiles
-        {
-            get { return _browserProfiles; }
-            set { _browserProfiles = value; RaiseStateChanged(); }
-        }
+        public IEnumerable<Browser> Browsers { get => _lazyBrowsers.Value; }
+        public IEnumerable<BrowserProfile> BrowserProfiles { get => _lazyBrowserProfiles.Value; }
 
-        private BrowserProfile _selectedBrowserProfile;
-        public BrowserProfile SelectedBrowserProfile
+        public BrowserState(IBrowserService browserService)
         {
-            get { return _selectedBrowserProfile; }
-            set { _selectedBrowserProfile = value; RaiseStateChanged(); }
-        }
-
-        private SelectionRule _selectedSelectionRule;
-        public SelectionRule SelectedSelectionRule
-        {
-            get { return _selectedSelectionRule; }
-            set { _selectedSelectionRule = value; RaiseStateChanged(); }
+            _lazyBrowsers = new Lazy<IEnumerable<Browser>>(browserService.GetBrowsers());
+            _lazyBrowserProfiles = new Lazy<IEnumerable<BrowserProfile>>(browserService.GetBrowserProfiles());
         }
     }
 }

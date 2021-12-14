@@ -1,11 +1,10 @@
 ﻿namespace Burls.Windows.Models
 {
-    public class AppConfig
+    public class AppSettings
     {
         public string ConfigurationsFolder { get; set; }
-
-        public string AppPropertiesFileName { get; set; }
-
+        public string SettingsFileName { get; set; }
+        public string BrowsersFileName { get; set; }
         public string PrivacyStatement { get; set; }
     }
 }

@@ -1,53 +1,45 @@
 ﻿using Burls.Application.Browsers.Services;
 using Burls.Application.Browsers.State;
-using Burls.Application.Core.Commands;
-using Burls.Application.Core.Services;
 using Burls.Application.Core.State;
 using Burls.Core.Extensions;
-using MediatR;
 using Microsoft.Extensions.Logging;
-using Nager.PublicSuffix;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace Burls.Application.Core.Handlers
+namespace Burls.Application.Core.Services
 {
-    public class ApplicationInitializeCommandHandler : IRequestHandler<ApplicationInitializeCommand>
+    public class ApplicationLifetimeService : IApplicationLifetimeService
     {
-        private readonly ILogger<ApplicationInitializeCommandHandler> _logger;
+        private readonly ILogger<ApplicationLifetimeService> _logger;
         private readonly IApplicationState _applicationState;
-        private readonly IApplicationService _applicationService;
         private readonly IBrowserState _browserState;
-        private readonly IPersistAndRestoreService _persistAndRestoreService;
         private readonly IBrowserService _browserService;
+        private readonly IPathService _pathService;
 
-        public ApplicationInitializeCommandHandler(
-            ILogger<ApplicationInitializeCommandHandler> logger,
+        public ApplicationLifetimeService(
+            ILogger<ApplicationLifetimeService> logger,
             IApplicationState applicationState,
-            IApplicationService applicationService,
             IBrowserState browserState,
-            IPersistAndRestoreService persistAndRestoreService,
-            IBrowserService browserService)
+            IBrowserService browserService,
+            IPathService pathService)
         {
             _logger = logger;
             _applicationState = applicationState;
-            _applicationService = applicationService;
             _browserState = browserState;
-            _persistAndRestoreService = persistAndRestoreService;
             _browserService = browserService;
+            _pathService = pathService;
         }
 
-        public async Task<Unit> Handle(ApplicationInitializeCommand request, CancellationToken cancellationToken)
-        {
+        public async Task Initialize(string[] startUpArgs)
+{
             _logger.LogInformation("Initializing application");
 
             // Init vars
-            var startUpArgs = request.StartUpArgs;
+            AppDomain.CurrentDomain.SetData("DataDirectory", _pathService.ApplicationDataFolder);
+
             var requestUrl = startUpArgs?.Skip(1).FirstOrDefault();
             var applicationMode = requestUrl.IsUrl() ? ApplicationMode.Select : ApplicationMode.Settings;
 
@@ -59,19 +51,12 @@ namespace Burls.Application.Core.Handlers
             _applicationState.StartUpArgs = startUpArgs;
             _applicationState.ApplicationMode = applicationMode;
 
-            // Restore the saved data
-            _logger.LogInformation($"Restoring settings");
-            _persistAndRestoreService.InitDataDirectory();
-            _persistAndRestoreService.RestoreData();
-
             // Init browsers
             _logger.LogInformation($"Initializing browsers with their profiles");
-            await _browserService.InitializeBrowsersAsync();
+            _browserService.SyncBrowsers();
 
             // Init the browser store
             _browserState.RequestUrl = requestUrl;
-            _browserState.BrowserProfiles = _browserService.GetBrowserProfilesAsync().Result;
-            _browserState.SelectedBrowserProfile = _browserState.BrowserProfiles?.FirstOrDefault();
 
             // Try to auto select
             if (_applicationState.ApplicationMode == ApplicationMode.Select)
@@ -94,12 +79,6 @@ namespace Burls.Application.Core.Handlers
                     _logger.LogInformation($"No matching browser found to handle the requested url");
                 }
             }
-
-            // Init theme
-            //var theme = _applicationService.GetTheme();
-            //_applicationService.SetTheme(theme);
-
-            return Unit.Value;
         }
     }
 }

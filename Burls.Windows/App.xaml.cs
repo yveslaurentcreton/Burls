@@ -1,24 +1,15 @@
-﻿using Burls.Application.Core.Commands;
+﻿using Burls.Application.Browsers.Data;
+using Burls.Application.Browsers.Services;
 using Burls.Application.Core.Services;
-using Burls.Core.Services;
 using Burls.Persistence;
 using Burls.Windows.Constants;
 using Burls.Windows.Models;
 using Burls.Windows.Pages;
 using Burls.Windows.Services;
 using Burls.Windows.ViewModels;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
 using NLog.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -28,6 +19,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -54,7 +46,7 @@ namespace Burls.Windows
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             // Create configuration
             _configuration = BuildConfiguration();
@@ -63,6 +55,14 @@ namespace Burls.Windows
             _servicesCollection = new ServiceCollection();
             ConfigureServices(_servicesCollection);
             _serviceProvider = _servicesCollection.BuildServiceProvider();
+
+            // Init application
+            Task.Run(() => 
+            {
+                var applicationLifetimeService = _serviceProvider.GetService<IApplicationLifetimeService>();
+                var startUpArgs = Environment.GetCommandLineArgs();
+                applicationLifetimeService.Initialize(startUpArgs).Wait();
+            });
 
             // Set application theme
             var applicationService = _serviceProvider.GetService<IApplicationService>();
@@ -88,7 +88,7 @@ namespace Burls.Windows
         {
             // Configuration
             services.AddSingleton(_configuration);
-            services.AddSingleton(_configuration.GetSection(nameof(AppConfig)).Get<AppConfig>());
+            services.AddSingleton(_configuration.GetSection(nameof(AppSettings)).Get<AppSettings>());
 
             // Automapper
             services.AddAutoMapper(typeof(App));
@@ -124,7 +124,6 @@ namespace Burls.Windows
             services.AddScoped<BrowserProfileSelectionPage>();
 
             // ViewModels
-            services.AddScoped<MainViewModel>();
             services.AddScoped<BrowserProfileSelectionViewModel>();
             services.AddScoped<SettingsViewModel>();
 
@@ -132,19 +131,10 @@ namespace Burls.Windows
             services.AddApplicationServices(_configuration);
 
             // Add persistence services
-            services.AddScoped<IPersistAndRestoreService, PersistAndRestoreService>();
             services.AddPersistenceServices(_configuration);
 
             // Add state notification services
             services.AddSingleton<IBrowserStateNotificationService, BrowserStateNotificationService>();
-
-            // Core Services
-            services.AddScoped<IFileService, FileService>();
-
-            // App Services
-            //services.AddScoped<ISystemService, SystemService>();
-            services.AddScoped<IPersistAndRestoreService, PersistAndRestoreService>();
-            //services.AddScoped<IThemeSelectorService, ThemeSelectorService>();
         }
 
         /// <summary>
@@ -154,16 +144,10 @@ namespace Burls.Windows
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            // Init application
-            var mediator = _serviceProvider.GetService<IMediator>();
-            mediator.Send(new ApplicationInitializeCommand(Environment.GetCommandLineArgs())).Wait();
-
             _serviceProvider.GetService<INavigationManager>().Subscribe();
 
             // Open window
-            var type = typeof(MainWindow).GetMember(nameof(MainWindow.ViewModel)).GetType();
-            var mainWindow = _serviceProvider.GetService<MainWindow>();
-            mainWindow.Activate();
+            _serviceProvider.GetService<MainWindow>().Activate();
 
             // Set home page
             _serviceProvider.GetService<INavigationService>().Navigate(PageKeys.BrowserProfileSelection);

@@ -11,15 +11,16 @@ using System.Windows.Media;
 
 namespace Burls.Domain
 {
+    [Serializable]
     public class Browser : IEntity
     {
-        public int Id { get; protected set; }
-        public string Name { get; protected set; }
-        public string ExecutablePath { get; protected set; }
-        public string IconPath { get; protected set; }
-        public int IconIndex { get; protected set; }
-        public string ProfileArgumentName { get; protected set; }
-        public virtual ICollection<Profile> Profiles { get; protected set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string ExecutablePath { get; set; }
+        public string IconPath { get; set; }
+        public int IconIndex { get; set; }
+        public string ProfileArgumentName { get; set; }
+        public virtual ICollection<Profile> Profiles { get; set; }
 
         protected Browser() { }
 

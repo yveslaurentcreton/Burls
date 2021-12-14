@@ -1,4 +1,5 @@
 ﻿using Burls.Application.Core.Services;
+using Burls.Application.Core.State;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +13,16 @@ namespace Burls.Windows.Services
 {
     public class ApplicationService : IApplicationService
     {
+        private readonly IApplicationState _applicationState;
         private readonly ISettingsService _settingsService;
 
         public void AddProperty(object key, object value) => System.Windows.Application.Current.Properties.Add(key, value);
 
         public IDictionary<string, object> GetProperties() => null;
 
-        public ApplicationService(ISettingsService settingsService)
+        public ApplicationService(IApplicationState applicationState, ISettingsService settingsService)
         {
+            _applicationState = applicationState;
             _settingsService = settingsService;
         }
 
@@ -38,7 +41,8 @@ namespace Burls.Windows.Services
 
         public ApplicationTheme GetTheme()
         {
-            var themeName = _settingsService.GetSetting("Theme");
+            var settings = _applicationState.Settings;
+            var themeName = settings.Theme;
 
             if (Enum.TryParse<ApplicationTheme>(themeName, out var theme))
             {
@@ -52,7 +56,8 @@ namespace Burls.Windows.Services
 
         public void SetTheme(ApplicationTheme theme)
         {
-            _settingsService.SetSetting("Theme", theme.ToString());
+            _applicationState.Settings.Theme = theme.ToString();
+            _settingsService.SaveSettings(_applicationState.Settings);
         }
     }
 }

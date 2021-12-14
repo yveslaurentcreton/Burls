@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Burls.Domain
 {
+    [Serializable]
     public class SelectionRule
     {
         public enum SelectionRuleParts
@@ -62,8 +63,8 @@ namespace Burls.Domain
             return domainInfo;
         }
 
-        public int Id { get; protected set; }
-        public int ProfileId { get; protected set; }
+        public int Id { get; set; }
+        public int ProfileId { get; set; }
         public SelectionRuleParts SelectionRulePart { get; set; }
         public SelectionRuleCompareTypes SelectionRuleCompareType { get; set; }
         public string Value { get; set; }
