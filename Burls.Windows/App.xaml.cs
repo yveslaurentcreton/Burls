@@ -39,6 +39,7 @@ namespace Burls.Windows
         private readonly IConfiguration _configuration;
         private readonly IServiceCollection _servicesCollection;
         private readonly IServiceProvider _serviceProvider;
+        private readonly Task _initTask;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -57,11 +58,11 @@ namespace Burls.Windows
             _serviceProvider = _servicesCollection.BuildServiceProvider();
 
             // Init application
-            Task.Run(() => 
+            _initTask = Task.Run(async () =>
             {
                 var applicationLifetimeService = _serviceProvider.GetService<IApplicationLifetimeService>();
                 var startUpArgs = Environment.GetCommandLineArgs();
-                applicationLifetimeService.Initialize(startUpArgs).Wait();
+                await applicationLifetimeService.Initialize(startUpArgs);
             });
 
             // Set application theme
@@ -145,6 +146,9 @@ namespace Burls.Windows
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             _serviceProvider.GetService<INavigationManager>().Subscribe();
+
+            // Check if all the initialization is completed
+            Task.WaitAll(_initTask);
 
             // Open window
             _serviceProvider.GetService<MainWindow>().Activate();

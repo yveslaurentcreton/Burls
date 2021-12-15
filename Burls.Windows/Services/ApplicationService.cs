@@ -16,10 +16,6 @@ namespace Burls.Windows.Services
         private readonly IApplicationState _applicationState;
         private readonly ISettingsService _settingsService;
 
-        public void AddProperty(object key, object value) => System.Windows.Application.Current.Properties.Add(key, value);
-
-        public IDictionary<string, object> GetProperties() => null;
-
         public ApplicationService(IApplicationState applicationState, ISettingsService settingsService)
         {
             _applicationState = applicationState;
@@ -28,7 +24,7 @@ namespace Burls.Windows.Services
 
         public void Shutdown()
         {
-            Microsoft.UI.Xaml.Application.Current.Exit();
+            Environment.Exit(0);
         }
 
         public Version GetVersion()

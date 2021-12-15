@@ -9,8 +9,6 @@ namespace Burls.Application.Core.Services
 {
     public interface IApplicationService
     {
-        IDictionary<string, object> GetProperties();
-        void AddProperty(object key, object value);
         void Shutdown();
         ApplicationTheme GetTheme();
         void SetTheme(ApplicationTheme theme);
