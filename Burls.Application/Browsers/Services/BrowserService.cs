@@ -92,7 +92,7 @@ namespace Burls.Application.Browsers.Services
             {
                 // Sync browsers
                 var installedBrowsers = _browserRepository.GetInstalledBrowsers();
-                var browsers = _browserRepository.GetBrowsers().ToList();
+                var browsers = _browserRepository.GetBrowsers();
 
                 // Remove old browsers
                 var browsersToRemove = browsers.Where(b => !installedBrowsers.Any(i => i.Name.Equals(b.Name, StringComparison.CurrentCultureIgnoreCase))).ToList();

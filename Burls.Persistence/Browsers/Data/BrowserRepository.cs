@@ -18,16 +18,21 @@ namespace Burls.Persistence.Browsers.Data
     public class BrowserRepository : IBrowserRepository
     {
         private readonly IPathService _pathService;
-        private readonly Lazy<IEnumerable<Browser>> _lazyBrowsers;
+        private readonly Lazy<ICollection<Browser>> _lazyBrowsers;
 
         public BrowserRepository(IPathService pathService)
         {
-            _lazyBrowsers = new Lazy<IEnumerable<Browser>>(() =>
+            _lazyBrowsers = new Lazy<ICollection<Browser>>(() =>
             {
-                var json = File.ReadAllText(_pathService.BrowsersFileName);
-                var browsers = JsonConvert.DeserializeObject<IEnumerable<Browser>>(json).ToList();
+                List<Browser> browsers = null;
 
-                return browsers;
+                if (File.Exists(_pathService.BrowsersFileName))
+                {
+                    var json = File.ReadAllText(_pathService.BrowsersFileName);
+                    browsers = JsonConvert.DeserializeObject<ICollection<Browser>>(json).ToList();
+                }
+
+                return browsers ?? new List<Browser>();
             });
             _pathService = pathService;
         }
@@ -66,16 +71,20 @@ namespace Burls.Persistence.Browsers.Data
             }).ToList();
         }
 
-        public IEnumerable<Browser> GetBrowsers()
+        public ICollection<Browser> GetBrowsers()
         {
             return _lazyBrowsers.Value;
         }
 
         public void SaveBrowsers()
         {
-            var browsers = _lazyBrowsers.Value;
+            var browsers = GetBrowsers();
             var json = JsonConvert.SerializeObject(browsers);
-            File.WriteAllText(_pathService.BrowsersFileName, json);
+            var fileName = _pathService.BrowsersFileName;
+            var directoryName = Path.GetDirectoryName(fileName);
+            if (!Directory.Exists(directoryName))
+                Directory.CreateDirectory(directoryName);
+            File.WriteAllText(fileName, json);
         }
     }
 }

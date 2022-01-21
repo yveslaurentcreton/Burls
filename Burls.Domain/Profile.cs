@@ -21,6 +21,7 @@ namespace Burls.Domain
 
         protected Profile()
         {
+            SelectionRules = new List<SelectionRule>();
         }
     }
 }

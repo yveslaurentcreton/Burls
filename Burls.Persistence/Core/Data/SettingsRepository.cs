@@ -41,7 +41,11 @@ namespace Burls.Persistence.Core.Data
         public void SaveSettings(Settings settings)
 {
             var json = JsonConvert.SerializeObject(settings);
-            File.WriteAllText(_pathService.SettingsFileName, json);
+            var fileName = _pathService.SettingsFileName;
+            var directoryName = Path.GetDirectoryName(fileName);
+            if (!Directory.Exists(directoryName))
+                Directory.CreateDirectory(directoryName);
+            File.WriteAllText(fileName, json);
         }
     }
 }

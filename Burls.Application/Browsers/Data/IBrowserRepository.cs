@@ -11,7 +11,7 @@ namespace Burls.Application.Browsers.Data
     public interface IBrowserRepository
     {
         IEnumerable<InstalledBrowser> GetInstalledBrowsers();
-        IEnumerable<Browser> GetBrowsers();
+        ICollection<Browser> GetBrowsers();
         void SaveBrowsers();
     }
 }
