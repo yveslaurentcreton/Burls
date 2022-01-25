@@ -90,11 +90,26 @@
         </controls:BurlsGroup>
 
         <controls:BurlsGroup Header="Browsers">
-            <controls:BurlsItem Header="Synchronize browser information" Icon="&#xE777;">
-                <controls:BurlsItem.ActionContent>
-                    <Button Content="Check now" Command="{x:Bind ViewModel.SyncBrowserInfoCommand}" />
-                </controls:BurlsItem.ActionContent>
-            </controls:BurlsItem>
+            <controls:BurlsExpander>
+                <controls:BurlsExpander.Header>
+                    
+                    <controls:BurlsItem Header="Synchronize browser information" Icon="&#xE777;" Style="{StaticResource ExpanderHeaderSettingStyle}">
+                        <controls:BurlsItem.ActionContent>
+                            <Button Content="Check now" Command="{x:Bind ViewModel.SyncBrowserInfoCommand}" />
+                        </controls:BurlsItem.ActionContent>
+                    </controls:BurlsItem>
+                    
+                </controls:BurlsExpander.Header>
+                <controls:BurlsExpander.Content>
+                    
+                    <controls:BurlsItem Margin="0" Header="Auto synchronize" Description="Auto synchronize the browser information on application startup">
+                        <controls:BurlsItem.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.AutoSyncBrowsersOnStartup, Mode=TwoWay}" />
+                        </controls:BurlsItem.ActionContent>
+                    </controls:BurlsItem>
+                    
+                </controls:BurlsExpander.Content>
+            </controls:BurlsExpander>
             <ListView SelectionMode="None" BorderThickness="0" IsSwipeEnabled="False" ItemsSource="{x:Bind ViewModel.BrowserProfiles, Mode=OneTime}">
                 <!--TODO Fix without the need for negative margins-->
                 <ListView.ItemContainerStyle>

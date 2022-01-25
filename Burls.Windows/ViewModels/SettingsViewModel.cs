@@ -15,6 +15,7 @@ using System.Threading;
 using Burls.Application.Browsers.Services;
 using System.Collections.ObjectModel;
 using Burls.Windows.Mappings;
+using Burls.Application.Core.State;
 
 namespace Burls.Windows.ViewModels
 {
@@ -22,6 +23,8 @@ namespace Burls.Windows.ViewModels
     {
         private readonly IOperatingSystemService _operatingSystemService;
         private readonly IApplicationService _applicationService;
+        private readonly IApplicationState _applicationState;
+        private readonly ISettingsService _settingsService;
         private readonly IBrowserService _browserService;
         private readonly IUpdateService _updateService;
         private readonly IBrowserState _browserState;
@@ -37,6 +40,7 @@ namespace Burls.Windows.ViewModels
         public LatestVersionStatus LatestVersionStatus { get => _latestVersionStatus; private set { _latestVersionStatus = value; OnPropertyChanged(); } }
         private bool _isDownloadingLatestVersion;
         public bool IsDownloadingLatestVersion { get => _isDownloadingLatestVersion; private set { _isDownloadingLatestVersion = value; OnPropertyChanged(); } }
+        public bool AutoSyncBrowsersOnStartup { get => _applicationState.Settings.AutoSyncBrowsersOnStartup == true; set { _applicationState.Settings.AutoSyncBrowsersOnStartup = value; _settingsService.SaveSettings(_applicationState.Settings); } }
         public ObservableCollection<BrowserProfileViewModel> BrowserProfiles { get; set; }
 
         public ICommand OpenWindowsColorSettingsCommand { get; set; }
@@ -47,12 +51,16 @@ namespace Burls.Windows.ViewModels
         public SettingsViewModel(
             IOperatingSystemService operatingSystemService,
             IApplicationService applicationService,
+            IApplicationState applicationState,
+            ISettingsService settingsService,
             IBrowserService browserService,
             IUpdateService updateService,
             IBrowserState browserState)
         {
             _operatingSystemService = operatingSystemService;
             _applicationService = applicationService;
+            _applicationState = applicationState;
+            _settingsService = settingsService;
             _browserService = browserService;
             _updateService = updateService;
             _browserState = browserState;
