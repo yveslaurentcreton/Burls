@@ -63,7 +63,6 @@ namespace Burls.Domain
             return domainInfo;
         }
 
-        public int Id { get; set; }
         public int ProfileId { get; set; }
         public SelectionRuleParts SelectionRulePart { get; set; }
         public SelectionRuleCompareTypes SelectionRuleCompareType { get; set; }

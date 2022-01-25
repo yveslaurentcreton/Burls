@@ -76,7 +76,7 @@ namespace Burls.Application.Browsers.Services
             return availableShortcuts;
         }
 
-        public void SyncBrowsers()
+        public void SyncBrowsers(bool force = false)
         {
             var settings = _applicationState.Settings;
             var autoSyncBrowsersOnStartup = settings.AutoSyncBrowsersOnStartup;
@@ -88,7 +88,7 @@ namespace Burls.Application.Browsers.Services
                 _settingsService.SaveSettings(settings);
             }
 
-            if (autoSyncBrowsersOnStartup == true)
+            if (autoSyncBrowsersOnStartup == true || force)
             {
                 // Sync browsers
                 var installedBrowsers = _browserRepository.GetInstalledBrowsers();

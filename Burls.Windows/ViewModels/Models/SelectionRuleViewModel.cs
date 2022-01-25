@@ -21,7 +21,6 @@ namespace Burls.Windows.ViewModels.Models
         private readonly SelectionRule _selectionRule;
         private readonly Action<SelectionRule, SelectionRuleViewModel> _deleteSelectionRuleAction;
 
-        public int Id => _selectionRule.Id;
         public int ProfileId => _selectionRule.ProfileId;
         public SelectionRuleParts SelectionRulePart { get { return _selectionRule.SelectionRulePart; } set { _selectionRule.SelectionRulePart = value; UpdateSelectionRule(); OnPropertyChanged(); } }
         public int SelectionRulePartIndex { get { return (int)SelectionRulePart; } set { SelectionRulePart = (SelectionRuleParts)value; UpdateSelectionRule(); OnPropertyChanged(); } }

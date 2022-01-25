@@ -9,7 +9,7 @@ namespace Burls.Application.Browsers.Services
     {
         IEnumerable<Browser> GetBrowsers();
         IEnumerable<BrowserProfile> GetBrowserProfiles();
-        void SyncBrowsers();
+        void SyncBrowsers(bool force = false);
         SelectionRule AddSelectionRule(Profile profile, SelectionRule.SelectionRuleParts selectionRulePart, SelectionRule.SelectionRuleCompareTypes selectionRuleCompareType, string value);
         void UpdateSelectionRule(SelectionRule selectionRule);
         void DeleteSelectionRule(Profile profile, SelectionRule selectionRule);

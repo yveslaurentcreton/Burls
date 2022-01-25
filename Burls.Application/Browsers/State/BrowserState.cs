@@ -11,8 +11,10 @@ namespace Burls.Application.Browsers.State
 {
     public class BrowserState : StateBase, IBrowserState
     {
-        private readonly Lazy<IEnumerable<Browser>> _lazyBrowsers;
-        private readonly Lazy<IEnumerable<BrowserProfile>> _lazyBrowserProfiles;
+        private readonly IBrowserService _browserService;
+
+        private Lazy<IEnumerable<Browser>> _lazyBrowsers;
+        private Lazy<IEnumerable<BrowserProfile>> _lazyBrowserProfiles;
 
         public string RequestUrl { get; set; }
 
@@ -28,8 +30,30 @@ namespace Burls.Application.Browsers.State
 
         public BrowserState(IBrowserService browserService)
         {
-            _lazyBrowsers = new Lazy<IEnumerable<Browser>>(browserService.GetBrowsers());
-            _lazyBrowserProfiles = new Lazy<IEnumerable<BrowserProfile>>(browserService.GetBrowserProfiles());
+            _browserService = browserService;
+
+            CreateLazyBrowsers();
+            CreateLazyBrowserProfiles();
+        }
+
+        private void CreateLazyBrowsers()
+        {
+            _lazyBrowsers = new Lazy<IEnumerable<Browser>>(_browserService.GetBrowsers());
+        }
+
+        private void CreateLazyBrowserProfiles()
+        {
+            _lazyBrowserProfiles = new Lazy<IEnumerable<BrowserProfile>>(_browserService.GetBrowserProfiles());
+        }
+
+        public void RefreshBrowsers()
+        {
+            CreateLazyBrowsers();
+        }
+
+        public void RefreshBrowserProfiles()
+        {
+            CreateLazyBrowserProfiles();
         }
     }
 }

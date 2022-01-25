@@ -13,6 +13,8 @@ using Burls.Windows.Services;
 using System.Windows.Threading;
 using System.Threading;
 using Burls.Application.Browsers.Services;
+using System.Collections.ObjectModel;
+using Burls.Windows.Mappings;
 
 namespace Burls.Windows.ViewModels
 {
@@ -20,7 +22,9 @@ namespace Burls.Windows.ViewModels
     {
         private readonly IOperatingSystemService _operatingSystemService;
         private readonly IApplicationService _applicationService;
+        private readonly IBrowserService _browserService;
         private readonly IUpdateService _updateService;
+        private readonly IBrowserState _browserState;
 
         public int ThemeIndex { get => (int)_applicationService.GetTheme(); set { _applicationService.SetTheme((ApplicationTheme)value); } }
         private string _versionDescription;
@@ -33,11 +37,12 @@ namespace Burls.Windows.ViewModels
         public LatestVersionStatus LatestVersionStatus { get => _latestVersionStatus; private set { _latestVersionStatus = value; OnPropertyChanged(); } }
         private bool _isDownloadingLatestVersion;
         public bool IsDownloadingLatestVersion { get => _isDownloadingLatestVersion; private set { _isDownloadingLatestVersion = value; OnPropertyChanged(); } }
-        public IEnumerable<BrowserProfileViewModel> BrowserProfiles { get; set; }
+        public ObservableCollection<BrowserProfileViewModel> BrowserProfiles { get; set; }
 
         public ICommand OpenWindowsColorSettingsCommand { get; set; }
         public ICommand DownloadLatestVersionCommand { get; set; }
         public ICommand InstallLatestVersionCommand { get; set; }
+        public ICommand SyncBrowserInfoCommand { get; set; }
 
         public SettingsViewModel(
             IOperatingSystemService operatingSystemService,
@@ -48,17 +53,37 @@ namespace Burls.Windows.ViewModels
         {
             _operatingSystemService = operatingSystemService;
             _applicationService = applicationService;
+            _browserService = browserService;
             _updateService = updateService;
+            _browserState = browserState;
 
             VersionDescription = $"v{_applicationService.GetVersion()}";
             _updateService.GetVersionStatus().ContinueWith(versionStatusTask => VersionStatus = versionStatusTask.Result, TaskScheduler.FromCurrentSynchronizationContext());
             _updateService.GetLatestVersionInfo().ContinueWith(versionTask => LatestVersion = $"v{versionTask.Result.Version}", TaskScheduler.FromCurrentSynchronizationContext());
             _updateService.GetLatestVersionStatus().ContinueWith(latestVersionStatusTask => LatestVersionStatus = latestVersionStatusTask.Result, TaskScheduler.FromCurrentSynchronizationContext());
-            BrowserProfiles = browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(browserService, x)).ToList();
 
             OpenWindowsColorSettingsCommand = new RelayCommand(_operatingSystemService.OpenColorSettings);
             DownloadLatestVersionCommand = new RelayCommand(async () => await DownloadLatestVersion());
             InstallLatestVersionCommand = new RelayCommand(async () => await _updateService.InstallLatestVersion());
+            SyncBrowserInfoCommand = new RelayCommand(SyncBrowserInfo);
+
+            BrowserProfiles = new ObservableCollection<BrowserProfileViewModel>();
+
+            LoadBrowserProfiles();
+        }
+
+        private void SyncBrowserInfo()
+        {
+            _browserService.SyncBrowsers(true);
+            _browserState.RefreshBrowserProfiles();
+            LoadBrowserProfiles();
+        }
+
+        private void LoadBrowserProfiles()
+        {
+            BrowserProfiles.Clear();
+
+            _browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(_browserService, x)).ToList().ForEach(x => BrowserProfiles.Add(x));
         }
 
         private async Task DownloadLatestVersion()

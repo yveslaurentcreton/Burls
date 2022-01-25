@@ -12,7 +12,7 @@ namespace Burls.Windows.Mappings
         public BrowserProfile()
         {
             CreateMap<InstalledBrowser, Browser>()
-                .ForMember(b => b.Profiles, opt => opt.PreCondition((i, b, c) => b.Id == 0));
+                .ForMember(b => b.Profiles, opt => opt.Ignore());
         }
     }
 }

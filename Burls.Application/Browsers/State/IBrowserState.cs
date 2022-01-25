@@ -10,5 +10,7 @@ namespace Burls.Application.Browsers.State
         string RequestUrl { get; set; }
         bool SaveRequestUrl { get; set; }
         IEnumerable<BrowserProfile> BrowserProfiles { get; }
+
+        void RefreshBrowserProfiles();
     }
 }

@@ -90,13 +90,18 @@
         </controls:BurlsGroup>
 
         <controls:BurlsGroup Header="Browsers">
+            <controls:BurlsItem Header="Synchronize browser information" Icon="&#xE777;">
+                <controls:BurlsItem.ActionContent>
+                    <Button Content="Check now" Command="{x:Bind ViewModel.SyncBrowserInfoCommand}" />
+                </controls:BurlsItem.ActionContent>
+            </controls:BurlsItem>
             <ListView SelectionMode="None" BorderThickness="0" IsSwipeEnabled="False" ItemsSource="{x:Bind ViewModel.BrowserProfiles, Mode=OneTime}">
                 <!--TODO Fix without the need for negative margins-->
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-                        <Setter Property="Margin" Value="-10 0 -10 0" />
+                        <Setter Property="Margin" Value="-12 0 -12 0" />
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
