@@ -1,4 +1,5 @@
-﻿using Burls.Application.Browsers.Data;
+﻿using AutoMapper.EquivalencyExpression;
+using Burls.Application.Browsers.Data;
 using Burls.Application.Browsers.Services;
 using Burls.Application.Core.Services;
 using Burls.Persistence;
@@ -47,10 +48,12 @@ namespace Burls.Windows
         /// </summary>
         public App()
         {
+            RegisterUnhandledExceptionLogging();
+            
             InitializeComponent();
 
-            // Create configuration
-            _configuration = BuildConfiguration();
+           // Create configuration
+           _configuration = BuildConfiguration();
 
             // Register services
             _servicesCollection = new ServiceCollection();
@@ -92,7 +95,7 @@ namespace Burls.Windows
             services.AddSingleton(_configuration.GetSection(nameof(AppSettings)).Get<AppSettings>());
 
             // Automapper
-            services.AddAutoMapper(typeof(App));
+            services.AddAutoMapper(cfg => { cfg.AddCollectionMappers(); }, typeof(App));
 
             // Logging
             services.AddLogging(loggingBuilder =>
@@ -157,5 +160,31 @@ namespace Burls.Windows
             _serviceProvider.GetService<INavigationService>().Navigate(PageKeys.BrowserProfileSelection);
         }
 
+        private void RegisterUnhandledExceptionLogging()
+        {
+            UnhandledException += (sender, e) => HandleUnhandledException(e.Exception, e.Message);
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) => HandleUnhandledException(e.ExceptionObject as Exception);
+            TaskScheduler.UnobservedTaskException += (sender, e) => HandleUnhandledException(e.Exception);
+        }
+
+        private void HandleUnhandledException(Exception exception, string message = "An unexpected error occurred.")
+        {
+            NLog.LogManager.Configuration = GetNLogLoggingConfiguration();
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+
+            logger.Error(exception, message);
+        }
+
+        public static NLogLoggingConfiguration GetNLogLoggingConfiguration()
+        {
+            var appLocation = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var config = new ConfigurationBuilder()
+                .SetBasePath(appLocation)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddCommandLine(Environment.GetCommandLineArgs())
+                .Build();
+
+            return new NLogLoggingConfiguration(config.GetSection("NLog"));
+        }
     }
 }

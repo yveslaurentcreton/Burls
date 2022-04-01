@@ -11,8 +11,7 @@ namespace Burls.Windows.Mappings
     {
         public BrowserProfile()
         {
-            CreateMap<InstalledBrowser, Browser>()
-                .ForMember(b => b.Profiles, opt => opt.Ignore());
+            CreateMap<InstalledBrowser, Browser>();
         }
     }
 }

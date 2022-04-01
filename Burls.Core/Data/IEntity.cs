@@ -8,6 +8,5 @@ namespace Burls.Core.Data
 {
     public interface IEntity
     {
-        int Id { get; }
     }
 }

@@ -63,14 +63,14 @@ namespace Burls.Domain
             return domainInfo;
         }
 
-        public int ProfileId { get; set; }
+        public string ProfileName { get; set; }
         public SelectionRuleParts SelectionRulePart { get; set; }
         public SelectionRuleCompareTypes SelectionRuleCompareType { get; set; }
         public string Value { get; set; }
 
-        public SelectionRule(int profileId, SelectionRuleParts selectionRulePart, SelectionRuleCompareTypes selectionRuleCompareType, string value)
+        public SelectionRule(string profileName, SelectionRuleParts selectionRulePart, SelectionRuleCompareTypes selectionRuleCompareType, string value)
         {
-            ProfileId = profileId;
+            ProfileName = profileName;
             SelectionRulePart = selectionRulePart;
             SelectionRuleCompareType = selectionRuleCompareType;
             Value = value;

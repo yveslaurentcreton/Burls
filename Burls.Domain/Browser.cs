@@ -20,7 +20,7 @@ namespace Burls.Domain
         public string IconPath { get; set; }
         public int IconIndex { get; set; }
         public string ProfileArgumentName { get; set; }
-        public virtual ICollection<Profile> Profiles { get; set; }
+        public ICollection<Profile> Profiles { get; set; }
 
         protected Browser() { }
 

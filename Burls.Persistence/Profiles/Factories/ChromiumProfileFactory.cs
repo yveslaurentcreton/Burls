@@ -1,4 +1,5 @@
 ﻿using Burls.Domain;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,13 +16,18 @@ namespace Burls.Persistence.Profiles.Factories
             return (new DirectoryInfo(GetUserDataPath()))
                 .EnumerateDirectories()
                 .SelectMany(x => x.EnumerateDirectories("Storage"))
-                .Select(x => GetProfile(x.Parent.Name))
-                .ToList();
+                .Select(x => {
+                    var preferencesJson = File.ReadAllText(Path.Combine(x.Parent.FullName, "Preferences"));
+                    dynamic preferences = JObject.Parse(preferencesJson);
+                    string profileName = preferences.profile.name;
+                    profileName = string.IsNullOrEmpty(profileName) ? x.Parent.Name : profileName;
+                    return GetProfile(x.Parent.Name, profileName);
+                }).ToList();
         }
 
-        protected virtual InstalledProfile GetProfile(string name)
+        protected virtual InstalledProfile GetProfile(string name, string displayName)
         {
-            return new InstalledProfile(name);
+            return new InstalledProfile(name, displayName);
         }
 
         protected abstract string GetUserDataPath();

@@ -19,13 +19,11 @@ namespace Burls.Persistence.Profiles.Factories
             return userData;
         }
 
-        protected override InstalledProfile GetProfile(string name)
+        protected override InstalledProfile GetProfile(string name, string displayName)
         {
             var iconPath = Path.Combine(GetUserDataPath(), name, "Google Profile.ico");
 
-            return new InstalledProfile(
-                name,
-                iconPath);
+            return new InstalledProfile(name, displayName, iconPath);
         }
     }
 }

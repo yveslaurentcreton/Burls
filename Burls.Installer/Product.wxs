@@ -46,6 +46,7 @@
       <Component Id="c_Burls_Windows" Guid="0dda5b8c-983e-4002-b585-d044bd305428">
         <File Id="appsettings_json" Name="appsettings.json" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\appsettings.json" KeyPath="no" />
         <File Id="AutoMapper" Name="AutoMapper.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.dll" KeyPath="no" />
+        <File Id="AutoMapper_Collection" Name="AutoMapper.Collection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.Collection.dll" KeyPath="no" />
         <File Id="AutoMapper_Extensions_Microsoft_DependencyInjection" Name="AutoMapper.Extensions.Microsoft.DependencyInjection.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.Extensions.Microsoft.DependencyInjection.dll" KeyPath="no" />
         <File Id="Burls_Application" Name="Burls.Application.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Application.dll" KeyPath="no" />
         <File Id="Burls_Core" Name="Burls.Core.dll" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Core.dll" KeyPath="no" />

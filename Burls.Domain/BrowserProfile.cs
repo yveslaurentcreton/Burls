@@ -19,7 +19,7 @@ namespace Burls.Domain
 
         public BrowserProfile(Browser browser, Profile profile, string shortcut = null)
         {
-            Name = $"{browser.Name} - {profile.Name}";
+            Name = $"{browser.Name} - {profile.DisplayName}";
             Browser = browser;
             Profile = profile;
             Shortcut = shortcut;

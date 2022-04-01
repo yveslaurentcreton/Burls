@@ -21,8 +21,7 @@ namespace Burls.Windows.ViewModels.Models
         private readonly IBrowserService _browserService;
         private readonly Profile _profile;
 
-        public int Id => _profile.Id;
-        public string Name => _profile.Name;
+        public string DisplayName => _profile.DisplayName;
         public string IconPath => _profile.IconPath;
 
         public ObservableCollection<SelectionRuleViewModel> SelectionRules { get; }

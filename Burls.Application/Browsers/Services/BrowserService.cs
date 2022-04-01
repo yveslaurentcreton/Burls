@@ -180,7 +180,7 @@ namespace Burls.Application.Browsers.Services
         public SelectionRule AddSelectionRule(Profile profile, SelectionRule.SelectionRuleParts selectionRulePart, SelectionRule.SelectionRuleCompareTypes selectionRuleCompareType, string value)
         {
             var newSelectionRule = new SelectionRule(
-                profile.Id,
+                profile.Name,
                 selectionRulePart,
                 selectionRuleCompareType,
                 value);

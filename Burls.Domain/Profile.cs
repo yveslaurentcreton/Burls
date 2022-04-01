@@ -13,8 +13,8 @@ namespace Burls.Domain
     [Serializable]
     public class Profile : IEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
+        public string DisplayName { get; set; }
         public string IconPath { get; set; }
 
         public IList<SelectionRule> SelectionRules { get; set; }

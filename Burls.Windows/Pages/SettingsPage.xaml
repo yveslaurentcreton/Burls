@@ -126,7 +126,7 @@
                             <controls:BurlsExpander.Header>
 
                                 <!--Browser Profile-->
-                                <controls:BurlsItem Margin="0" Header="{x:Bind Browser.Name}" Description="{x:Bind Profile.Name}" Style="{StaticResource ExpanderHeaderSettingStyle}">
+                                <controls:BurlsItem Margin="0" Header="{x:Bind Browser.Name}" Description="{x:Bind Profile.DisplayName}" Style="{StaticResource ExpanderHeaderSettingStyle}">
                                     <controls:BurlsItem.Icon>
                                         <Image Source="{x:Bind IconPath}"/>
                                     </controls:BurlsItem.Icon>

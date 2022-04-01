@@ -11,20 +11,22 @@ namespace Burls.Domain
     public class InstalledProfile
     {
         public string Name { get; protected set; }
+        public string DisplayName { get; protected set; }
         public string IconPath { get; protected set; }
 
         public static InstalledProfile Default()
         {
-            return new InstalledProfile() { Name = "Default" };
+            return new InstalledProfile() { Name = "Default", DisplayName = "Default" };
         }
 
         private InstalledProfile()
         {
         }
 
-        public InstalledProfile(string name, string iconPath = null)
+        public InstalledProfile(string name, string displayName, string iconPath = null)
         {
             Name = name;
+            DisplayName = displayName;
             IconPath = iconPath;
         }
     }
