@@ -16,6 +16,7 @@
         <converters:SelectionRuleCompareTypesToStringLowerConverter x:Name="SelectionRuleCompareTypesToStringLowerConverter" />
         <converters:EnumStringToBoolConverter x:Name="EnumStringToBoolConverter" />
         <converters:EnumStringToVisibilityConverter x:Name="EnumStringToVisibilityConverter" />
+        <converters:IconPathToImageSourceConverter x:Name="IconPathToImageSourceConverter" />
 
         <XamlUICommand x:Key="OpenWindowsColorSettingsCommand" Command="{x:Bind ViewModel.OpenWindowsColorSettingsCommand}" />
     </Page.Resources>
@@ -128,7 +129,7 @@
                                 <!--Browser Profile-->
                                 <controls:BurlsItem Margin="0" Header="{x:Bind Browser.Name}" Description="{x:Bind Profile.DisplayName}" Style="{StaticResource ExpanderHeaderSettingStyle}">
                                     <controls:BurlsItem.Icon>
-                                        <Image Source="{x:Bind IconPath}"/>
+                                        <Image Source="{x:Bind IconPath, Converter={StaticResource IconPathToImageSourceConverter}}"/>
                                     </controls:BurlsItem.Icon>
                                     <!--<controls:BurlsItem.ActionContent>
                                         <ToggleSwitch IsOn="True" />

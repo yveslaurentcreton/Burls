@@ -14,6 +14,7 @@
     <Page.Resources>
         <converter:ShortcutToVirtualKeyConverter x:Name="ShortcutToVirtualKeyConverter" />
         <converter:ShortcutToNumPadVirtualKeyConverter x:Name="ShortcutToNumPadVirtualKeyConverter" />
+        <converter:IconPathToImageSourceConverter x:Name="IconPathToImageSourceConverter" />
 
         <XamlUICommand x:Key="ShutdownCommand" Command="{x:Bind ViewModel.ShutdownCommand}" />
         <XamlUICommand x:Key="UseBrowserProfileCommand" Command="{x:Bind ViewModel.UseBrowserProfileCommand}" />
@@ -40,7 +41,7 @@
                     <Button Height="180" Width="180" Command="{StaticResource UseBrowserProfileCommand}" CommandParameter="{x:Bind}">
                         <Button.Content>
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="{x:Bind IconPath}" Height="48" Width="48" />
+                                <Image Source="{x:Bind IconPath, Converter={StaticResource IconPathToImageSourceConverter}}" Height="48" Width="48" />
                                 <TextBlock Text="{x:Bind Browser.Name}" Margin="0 4 0 0" HorizontalAlignment="Center" TextAlignment="Center" />
                                 <TextBlock Text="{x:Bind Profile.DisplayName}" Margin="0 0 0 0" HorizontalAlignment="Center" TextAlignment="Center" />
                                 <TextBlock Text="{x:Bind Shortcut}" Margin="0 8 0 0" HorizontalAlignment="Center" TextAlignment="Center" />

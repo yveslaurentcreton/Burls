@@ -11,6 +11,7 @@ using System.Windows.Media;
 
 namespace Burls.Domain
 {
+    [DebuggerDisplay("{Name}")]
     [Serializable]
     public class Browser : IEntity
     {

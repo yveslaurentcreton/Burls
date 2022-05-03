@@ -39,6 +39,8 @@ namespace Burls.Windows
         {
             InitializeComponent();
 
+            Title = "Burls";
+
             _shellPage = shellPage;
             _serviceProvider = serviceProvider;
 

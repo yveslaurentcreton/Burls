@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Media;
 
 namespace Burls.Domain
 {
+    [DebuggerDisplay("{Name}")]
     [Serializable]
     public class Profile : IEntity
     {

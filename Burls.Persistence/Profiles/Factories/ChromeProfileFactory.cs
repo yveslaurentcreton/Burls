@@ -23,6 +23,11 @@ namespace Burls.Persistence.Profiles.Factories
         {
             var iconPath = Path.Combine(GetUserDataPath(), name, "Google Profile.ico");
 
+            if (!File.Exists(iconPath))
+            {
+                iconPath = null;
+            }
+
             return new InstalledProfile(name, displayName, iconPath);
         }
     }

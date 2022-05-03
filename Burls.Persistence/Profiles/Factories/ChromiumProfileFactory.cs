@@ -15,13 +15,13 @@ namespace Burls.Persistence.Profiles.Factories
         {
             return (new DirectoryInfo(GetUserDataPath()))
                 .EnumerateDirectories()
-                .SelectMany(x => x.EnumerateDirectories("Storage"))
+                .SelectMany(x => x.EnumerateFiles("Preferences"))
                 .Select(x => {
-                    var preferencesJson = File.ReadAllText(Path.Combine(x.Parent.FullName, "Preferences"));
+                    var preferencesJson = File.ReadAllText(x.FullName);
                     dynamic preferences = JObject.Parse(preferencesJson);
                     string profileName = preferences.profile.name;
-                    profileName = string.IsNullOrEmpty(profileName) ? x.Parent.Name : profileName;
-                    return GetProfile(x.Parent.Name, profileName);
+                    profileName = string.IsNullOrEmpty(profileName) ? x.DirectoryName : profileName;
+                    return GetProfile(x.DirectoryName, profileName);
                 }).ToList();
         }
 
