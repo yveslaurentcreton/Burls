@@ -27,10 +27,5 @@ namespace Burls.Domain
             Shortcut = shortcut;
             IconPath = !string.IsNullOrEmpty(profile.IconPath) ? profile.IconPath : browser.IconPath;
         }
-
-        public void NavigateToUrl(string url)
-        {
-            Browser.NavigateToUrl(url, Profile);
-        }
     }
 }

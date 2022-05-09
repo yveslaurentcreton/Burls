@@ -20,8 +20,8 @@ namespace Burls.Persistence.Profiles.Factories
                     var preferencesJson = File.ReadAllText(x.FullName);
                     dynamic preferences = JObject.Parse(preferencesJson);
                     string profileName = preferences.profile.name;
-                    profileName = string.IsNullOrEmpty(profileName) ? x.DirectoryName : profileName;
-                    return GetProfile(x.DirectoryName, profileName);
+                    profileName = string.IsNullOrEmpty(profileName) ? x.Directory.Name : profileName;
+                    return GetProfile(x.Directory.Name, profileName);
                 }).ToList();
         }
 

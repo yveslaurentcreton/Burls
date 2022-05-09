@@ -30,10 +30,5 @@ namespace Burls.Windows.ViewModels.Models
             Browser = new BrowserViewModel(browserService, _browserProfile.Browser);
             Profile = new ProfileViewModel(browserService, _browserProfile.Profile);
         }
-
-        public void NavigateToUrl(string url)
-        {
-            _browserProfile.NavigateToUrl(url);
-        }
     }
 }

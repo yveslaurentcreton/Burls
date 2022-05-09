@@ -39,10 +39,5 @@ namespace Burls.Windows.ViewModels.Models
         {
             return _browser.GetProfileArgument(profile);
         }
-
-        public void NavigateToUrl(string url, Profile profile)
-        {
-            _browser.NavigateToUrl(url, profile);
-        }
     }
 }

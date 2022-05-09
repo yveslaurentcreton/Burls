@@ -15,6 +15,7 @@ namespace Burls.Application.Browsers.Services
 {
     public class BrowserService : IBrowserService
     {
+        private readonly IOperatingSystemService _operatingSystemService;
         private readonly IBrowserRepository _browserRepository;
         private readonly AutoMapper.IMapper _mapper;
         private readonly IApplicationState _applicationState;
@@ -22,12 +23,14 @@ namespace Burls.Application.Browsers.Services
         private readonly IApplicationService _applicationService;
 
         public BrowserService(
+            IOperatingSystemService operatingSystemService,
             IBrowserRepository browserRepository,
             AutoMapper.IMapper mapper,
             IApplicationState applicationState,
             ISettingsService settingsService,
             IApplicationService applicationService)
         {
+            _operatingSystemService = operatingSystemService;
             _browserRepository = browserRepository;
             _mapper = mapper;
             _applicationState = applicationState;
@@ -172,8 +175,7 @@ namespace Burls.Application.Browsers.Services
                     requestDomain);
             }
 
-            browserProfile.NavigateToUrl(requestUrl);
-
+            _operatingSystemService.NavigateToUrl(browserProfile, requestUrl);
             _applicationService.Shutdown();
         }
 

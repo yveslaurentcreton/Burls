@@ -36,15 +36,5 @@ namespace Burls.Domain
 
             return profileArgument;
         }
-
-        public void NavigateToUrl(string url, Profile profile)
-        {
-            var profileArgument = GetProfileArgument(profile);
-            var urlArgument = $"\"{url}\"";
-            var argumentList = new List<string>() { profileArgument, urlArgument };
-            var arguments = string.Join(' ', argumentList);
-
-            Process.Start(ExecutablePath, arguments);
-        }
     }
 }
