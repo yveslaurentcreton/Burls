@@ -105,7 +105,7 @@
                     
                     <controls:BurlsItem Margin="0" Header="Auto synchronize" Description="Auto synchronize the browser information on application startup">
                         <controls:BurlsItem.ActionContent>
-                            <ToggleSwitch IsOn="{x:Bind ViewModel.AutoSyncBrowsersOnStartup, Mode=TwoWay}" />
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.AutoSyncBrowsersOnStarup, Mode=TwoWay}" />
                         </controls:BurlsItem.ActionContent>
                     </controls:BurlsItem>
                     
@@ -143,7 +143,7 @@
                                 <StackPanel>
                                     <controls:BurlsItem Header="Rules" Description="A rule defines whether or not a browser will be selected" >
                                         <controls:BurlsItem.ActionContent>
-                                            <Button Content="Add rule" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind Profile.AddSelectionRuleCommand}" />
+                                            <Button Content="Add rule" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind Profile.AddNewSelectionRuleCommand}" />
                                         </controls:BurlsItem.ActionContent>
                                     </controls:BurlsItem>
                                     <Rectangle Style="{StaticResource ExpanderSeparatorStyle}" />

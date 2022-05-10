@@ -15,7 +15,7 @@ using System.Windows.Media;
 
 namespace Burls.Windows.ViewModels.Models
 {
-    public class BrowserViewModel : ViewModelBase, IEntity
+    public class BrowserViewModel : IEntity
     {
         private readonly Browser _browser;
 

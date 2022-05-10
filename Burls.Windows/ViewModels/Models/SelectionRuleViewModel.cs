@@ -2,20 +2,21 @@
 using Burls.Domain;
 using Burls.Domain.Core.Extensions;
 using Burls.Windows.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Nager.PublicSuffix;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using static Burls.Domain.SelectionRule;
 
 namespace Burls.Windows.ViewModels.Models
 {
-    public class SelectionRuleViewModel : ViewModelBase
+    [INotifyPropertyChanged]
+    public partial class SelectionRuleViewModel
     {
         private readonly IBrowserService _browserService;
         private readonly SelectionRule _selectionRule;
@@ -27,14 +28,11 @@ namespace Burls.Windows.ViewModels.Models
         public int SelectionRuleCompareTypeIndex { get { return (int)SelectionRuleCompareType; } set { SelectionRuleCompareType = (SelectionRuleCompareTypes)value; UpdateSelectionRule(); OnPropertyChanged(); } }
         public string Value { get { return _selectionRule.Value; } set { _selectionRule.Value = value; UpdateSelectionRule(); OnPropertyChanged(); } }
 
-        public ICommand DeleteSelectionRuleCommand { get; set; }
-
         public SelectionRuleViewModel(IBrowserService browserService, SelectionRule selectionRule, Action<SelectionRule, SelectionRuleViewModel> deleteSelectionRuleAction)
         {
             _browserService = browserService;
             _selectionRule = selectionRule;
             _deleteSelectionRuleAction = deleteSelectionRuleAction;
-            DeleteSelectionRuleCommand = new RelayCommand(DeleteSelectionRule);
         }
 
         public bool IsMatch(string urlToMatch)
@@ -47,9 +45,7 @@ namespace Burls.Windows.ViewModels.Models
             _browserService.UpdateSelectionRule(_selectionRule);
         }
 
-        public void DeleteSelectionRule()
-        {
-            _deleteSelectionRuleAction(_selectionRule, this);
-        }
+        [ICommand]
+        public void DeleteSelectionRule() => _deleteSelectionRuleAction(_selectionRule, this);
     }
 }

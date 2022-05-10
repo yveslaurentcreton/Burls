@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace Burls.Windows.ViewModels.Models
 {
-    public class BrowserProfileViewModel : ViewModelBase
+    public class BrowserProfileViewModel
     {
         private readonly BrowserProfile _browserProfile;
 
