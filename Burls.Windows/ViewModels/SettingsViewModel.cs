@@ -17,11 +17,13 @@ using Burls.Windows.Mappings;
 using Burls.Application.Core.State;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using AutoMapper;
+using CommunityToolkit.Mvvm.Messaging;
+using Burls.Windows.ViewModels.Models.Messages;
 
 namespace Burls.Windows.ViewModels
 {
-    [INotifyPropertyChanged]
-    public partial class SettingsViewModel : IViewModel
+    public partial class SettingsViewModel : ObservableRecipient, IViewModel
     {
         private readonly IOperatingSystemService _operatingSystemService;
         private readonly IApplicationService _applicationService;
@@ -70,6 +72,19 @@ namespace Burls.Windows.ViewModels
             BrowserProfiles = new ObservableCollection<BrowserProfileViewModel>();
 
             LoadBrowserProfiles();
+
+            IsActive = true;
+        }
+
+        protected override void OnActivated()
+        {
+            Messenger.Register<SettingsViewModel, SelectionRuleRemoved>(this, RemoveSelectionRule);
+        }
+
+        private void RemoveSelectionRule(SettingsViewModel recipient, SelectionRuleRemoved message)
+{
+            var profile = _browserState.BrowserProfiles.Select(bp => bp.Profile).Single(p => p.SelectionRules.Contains(message.SelectionRule));
+            _browserService.DeleteSelectionRule(profile, message.SelectionRule);
         }
 
         [ICommand]
@@ -84,7 +99,7 @@ namespace Burls.Windows.ViewModels
         {
             BrowserProfiles.Clear();
 
-            _browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(_browserService, x)).ToList().ForEach(x => BrowserProfiles.Add(x));
+            _browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(x)).ToList().ForEach(x => BrowserProfiles.Add(x));
         }
 
         [ICommand]

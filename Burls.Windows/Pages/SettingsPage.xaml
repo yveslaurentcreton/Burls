@@ -143,7 +143,7 @@
                                 <StackPanel>
                                     <controls:BurlsItem Header="Rules" Description="A rule defines whether or not a browser will be selected" >
                                         <controls:BurlsItem.ActionContent>
-                                            <Button Content="Add rule" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind Profile.AddNewSelectionRuleCommand}" />
+                                            <Button Content="Add rule" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind Profile.CreateSelectionRuleCommand}" />
                                         </controls:BurlsItem.ActionContent>
                                     </controls:BurlsItem>
                                     <Rectangle Style="{StaticResource ExpanderSeparatorStyle}" />
@@ -210,16 +210,7 @@
 
 
                                                 <!--Rule-->
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="*" />
-                                                        <RowDefinition Height="Auto" />
-                                                    </Grid.RowDefinitions>
+                                                <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="*,Auto">
 
                                                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Spacing="4">
                                                         <TextBlock Text="Open browser profile when" Style="{ThemeResource SecondaryTextStyle}" />
@@ -257,7 +248,7 @@
                                                                 </Flyout>
                                                             </Button.Flyout>
                                                         </Button>
-                                                        <Button x:Name="RemoveButton" Background="Transparent" FontFamily="Segoe MDL2 Assets" Width="40" Height="36" Content="&#xE74D;" Command="{x:Bind DeleteSelectionRuleCommand}">
+                                                        <Button x:Name="RemoveButton" Background="Transparent" FontFamily="Segoe MDL2 Assets" Width="40" Height="36" Content="&#xE74D;" Command="{x:Bind RemoveCommand}">
                                                             <ToolTipService.ToolTip>
                                                                 <TextBlock Text="Remove rule"/>
                                                             </ToolTipService.ToolTip>

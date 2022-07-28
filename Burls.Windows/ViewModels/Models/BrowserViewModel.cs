@@ -28,16 +28,11 @@ namespace Burls.Windows.ViewModels.Models
 
         public virtual ObservableCollection<ProfileViewModel> Profiles { get; protected set; }
 
-        public BrowserViewModel(IBrowserService browserService, Browser browser)
+        public BrowserViewModel(Browser browser)
         {
             _browser = browser;
 
-            Profiles = new ObservableCollection<ProfileViewModel>(_browser.Profiles.Select(x => new ProfileViewModel(browserService, x)));
-        }
-
-        public string GetProfileArgument(Profile profile)
-        {
-            return _browser.GetProfileArgument(profile);
+            Profiles = new ObservableCollection<ProfileViewModel>(_browser.Profiles.Select(p => new ProfileViewModel(p)));
         }
     }
 }

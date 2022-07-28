@@ -23,12 +23,12 @@ namespace Burls.Windows.ViewModels.Models
         public BrowserViewModel Browser { get; }
         public ProfileViewModel Profile { get; }
 
-        public BrowserProfileViewModel(IBrowserService browserService, BrowserProfile browserProfile)
+        public BrowserProfileViewModel(BrowserProfile browserProfile)
         {
             _browserProfile = browserProfile;
 
-            Browser = new BrowserViewModel(browserService, _browserProfile.Browser);
-            Profile = new ProfileViewModel(browserService, _browserProfile.Profile);
+            Browser = new BrowserViewModel(_browserProfile.Browser);
+            Profile = new ProfileViewModel(_browserProfile.Profile);
         }
     }
 }
