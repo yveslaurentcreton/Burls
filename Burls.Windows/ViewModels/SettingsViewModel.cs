@@ -76,17 +76,6 @@ namespace Burls.Windows.ViewModels
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
-            Messenger.Register<SettingsViewModel, SelectionRuleRemoved>(this, RemoveSelectionRule);
-        }
-
-        private void RemoveSelectionRule(SettingsViewModel recipient, SelectionRuleRemoved message)
-{
-            var profile = _browserState.BrowserProfiles.Select(bp => bp.Profile).Single(p => p.SelectionRules.Contains(message.SelectionRule));
-            _browserService.DeleteSelectionRule(profile, message.SelectionRule);
-        }
-
         [RelayCommand]
         private void SyncBrowserInfo()
         {
