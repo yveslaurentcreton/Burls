@@ -42,12 +42,16 @@ namespace Burls.Windows
         private readonly IServiceProvider _serviceProvider;
         private readonly Task _initTask;
 
+        public static new App Current;
+        
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
+            Current = this;
+            
             RegisterUnhandledExceptionLogging();
             
             InitializeComponent();
@@ -140,6 +144,8 @@ namespace Burls.Windows
             // Add state notification services
             services.AddSingleton<IBrowserStateNotificationService, BrowserStateNotificationService>();
         }
+
+        public T GetService<T>() => _serviceProvider.GetService<T>();
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

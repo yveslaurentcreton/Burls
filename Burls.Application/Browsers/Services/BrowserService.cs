@@ -163,7 +163,7 @@ namespace Burls.Application.Browsers.Services
             }
         }
 
-        public async Task UseBrowserProfileAsync(BrowserProfile browserProfile, string requestUrl, bool saveRequestUrl)
+        public Task UseBrowserProfileAsync(BrowserProfile browserProfile, string requestUrl, bool saveRequestUrl)
         {
             if (saveRequestUrl)
             {
@@ -177,6 +177,8 @@ namespace Burls.Application.Browsers.Services
 
             _operatingSystemService.NavigateToUrl(browserProfile, requestUrl);
             _applicationService.Shutdown();
+
+            return Task.CompletedTask;
         }
 
         public SelectionRule AddSelectionRule(Profile profile, SelectionRule.SelectionRuleParts selectionRulePart, SelectionRule.SelectionRuleCompareTypes selectionRuleCompareType, string value)

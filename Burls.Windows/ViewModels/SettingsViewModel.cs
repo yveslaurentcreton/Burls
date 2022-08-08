@@ -17,11 +17,13 @@ using Burls.Windows.Mappings;
 using Burls.Application.Core.State;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using AutoMapper;
+using CommunityToolkit.Mvvm.Messaging;
+using Burls.Windows.ViewModels.Models.Messages;
 
 namespace Burls.Windows.ViewModels
 {
-    [INotifyPropertyChanged]
-    public partial class SettingsViewModel : IViewModel
+    public partial class SettingsViewModel : ObservableRecipient, IViewModel
     {
         private readonly IOperatingSystemService _operatingSystemService;
         private readonly IApplicationService _applicationService;
@@ -70,9 +72,11 @@ namespace Burls.Windows.ViewModels
             BrowserProfiles = new ObservableCollection<BrowserProfileViewModel>();
 
             LoadBrowserProfiles();
+
+            IsActive = true;
         }
 
-        [ICommand]
+        [RelayCommand]
         private void SyncBrowserInfo()
         {
             _browserService.SyncBrowsers(true);
@@ -84,13 +88,13 @@ namespace Burls.Windows.ViewModels
         {
             BrowserProfiles.Clear();
 
-            _browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(_browserService, x)).ToList().ForEach(x => BrowserProfiles.Add(x));
+            _browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(x)).ToList().ForEach(x => BrowserProfiles.Add(x));
         }
 
-        [ICommand]
+        [RelayCommand]
         private void OpenWindowsColorSettings() => _operatingSystemService.OpenColorSettings();
 
-        [ICommand]
+        [RelayCommand]
         private async Task DownloadLatestVersion()
         {
             IsDownloadingLatestVersion = true;
@@ -102,7 +106,7 @@ namespace Burls.Windows.ViewModels
             LatestVersionStatus = await _updateService.GetLatestVersionStatus();
         }
 
-        [ICommand]
+        [RelayCommand]
         private async Task InstallLatestVersion() => await _updateService.InstallLatestVersion();
     }        
 }

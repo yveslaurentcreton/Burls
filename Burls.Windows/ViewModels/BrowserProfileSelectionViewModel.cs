@@ -26,10 +26,10 @@ namespace Burls.Windows.ViewModels
             _applicationService = applicationService;
         }
 
-        [ICommand]
+        [RelayCommand]
         private void Shutdown() => _applicationService.Shutdown();
 
-        [ICommand]
+        [RelayCommand]
         private Task UseBrowserProfile(BrowserProfile browserProfile) => _browserService.UseBrowserProfileAsync(browserProfile, BrowserState.RequestUrl, BrowserState.SaveRequestUrl);
     }
 }
