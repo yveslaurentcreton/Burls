@@ -66,13 +66,13 @@ namespace Burls.Windows.ViewModels.Models
         partial void OnSelectionRuleCompareTypeIndexChanged(int value) => SelectionRuleCompareType = (SelectionRuleCompareTypes)value;
         partial void OnValueChanged(string value) => _selectionRule.Value = value;
 
-        [ICommand]
+        [RelayCommand]
         public void Update()
         {
             _browserService.UpdateSelectionRule(_selectionRule);
         }
 
-        [ICommand]
+        [RelayCommand]
         public void Remove()
         {
             var profile = _browserState.BrowserProfiles.Select(bp => bp.Profile).Single(p => p.SelectionRules.Contains(_selectionRule));

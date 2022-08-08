@@ -52,7 +52,7 @@ namespace Burls.Windows.ViewModels.Models
                 SelectionRules.Remove(selectionRule);
         }
 
-        [ICommand]
+        [RelayCommand]
         public void CreateSelectionRule()
         {
             var selectionRule = _browserService.AddSelectionRule(_profile, SelectionRuleParts.Url, SelectionRuleCompareTypes.Contains, "Value");

@@ -87,7 +87,7 @@ namespace Burls.Windows.ViewModels
             _browserService.DeleteSelectionRule(profile, message.SelectionRule);
         }
 
-        [ICommand]
+        [RelayCommand]
         private void SyncBrowserInfo()
         {
             _browserService.SyncBrowsers(true);
@@ -102,10 +102,10 @@ namespace Burls.Windows.ViewModels
             _browserState.BrowserProfiles.Select(x => new BrowserProfileViewModel(x)).ToList().ForEach(x => BrowserProfiles.Add(x));
         }
 
-        [ICommand]
+        [RelayCommand]
         private void OpenWindowsColorSettings() => _operatingSystemService.OpenColorSettings();
 
-        [ICommand]
+        [RelayCommand]
         private async Task DownloadLatestVersion()
         {
             IsDownloadingLatestVersion = true;
@@ -117,7 +117,7 @@ namespace Burls.Windows.ViewModels
             LatestVersionStatus = await _updateService.GetLatestVersionStatus();
         }
 
-        [ICommand]
+        [RelayCommand]
         private async Task InstallLatestVersion() => await _updateService.InstallLatestVersion();
     }        
 }
