@@ -1,0 +1,991 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmpF82FCA80BBAF44D285C97F10993DEEE6" Guid="{DFBC4E0B-02B0-4B28-BAE2-5BA64326716A}">
+                <File Id="fil840B80AC19861C7F9F04FBDCFAE331CE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\appsettings.json" />
+            </Component>
+            <Component Id="cmp13DFA42DF3760778D23B852435E68952" Guid="{D31D6D98-274B-48DE-A0FB-1A2485827435}">
+                <File Id="filABAAC862E00E4A4B427B18BE99C6CE75" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.Collection.dll" />
+            </Component>
+            <Component Id="cmpFD65F52CD5EC0B46A750F8EEFC3D4422" Guid="{674A6EB6-46F1-4426-B61D-BE303D8C7DA4}">
+                <File Id="fil1F7E777B326B02F60B86F747002F8605" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.dll" />
+            </Component>
+            <Component Id="cmpEB2E40E88926DC89EC075540B80AB621" Guid="{2F15E32E-53D7-43E3-9678-AB0392D4390B}">
+                <File Id="filC441414431F328D12BCA0097EE3C2B3A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\AutoMapper.Extensions.Microsoft.DependencyInjection.dll" />
+            </Component>
+            <Component Id="cmpC7819919599C9B13C084538151B02204" Guid="{6658249F-737F-4B93-AAF0-8B20540205EB}">
+                <File Id="filB0AF3EE211F2EDD9E7AB961C0F194062" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Application.dll" />
+            </Component>
+            <Component Id="cmpC0451F04B68FBCEAB34F7C95E0606C2A" Guid="{117AD20A-E445-41C3-B15A-63CB2A303B98}">
+                <File Id="filE094FBDC8231ACF79B12B1DDE82313F1" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Application.pdb" />
+            </Component>
+            <Component Id="cmp77BB293E1B475220F79C67D1D80AF116" Guid="{D85D687B-5E1A-499E-A9AE-84D19635A9AE}">
+                <File Id="fil745C099664ACD42B07D00BE49B3CAFF4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Core.dll" />
+            </Component>
+            <Component Id="cmp038A0E894F7DF22D674DD8D5845A3347" Guid="{C89E17A8-8F7F-478C-85E3-1D4CD859EE30}">
+                <File Id="fil31A7DE8A4DA96CA67DB6035698AE24A6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Core.pdb" />
+            </Component>
+            <Component Id="cmpD768082E95892DA6C0847E96D731EC15" Guid="{425C4A75-BD48-443A-BAD5-F79A5C803964}">
+                <File Id="fil513F31444572F246CF70C4C08D8CF7F6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.deps.json" />
+            </Component>
+            <Component Id="cmp22AB00E1A744EF6DE53AE5B6AFE2113A" Guid="{94974FD6-3FBC-47D7-B403-945A8F062C21}">
+                <File Id="filB8B75FBDF8ECC9057B2C6D6DE170F1F0" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.dll" />
+            </Component>
+            <Component Id="cmpF891771E8AE8052D1D694E836641241D" Guid="{73B22D49-364F-4AE3-BD3C-79E130E92AEA}">
+                <File Id="fil39570A42F66BC18503454883AE4A71B8" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Domain.dll" />
+            </Component>
+            <Component Id="cmpD856DF8252952B9408B3BBDCFC73FEC8" Guid="{F2FD8E90-DD37-43B5-96A3-E4699F0E82DF}">
+                <File Id="fil8415B2E2F2CE0228CC7C30118D6550DF" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Domain.pdb" />
+            </Component>
+            <Component Id="cmp224D02550DA9787CD7B41AE610832D0F" Guid="{2420AC34-7519-46FE-93DA-0B18DFB65DC6}">
+                <File Id="fil0BF050742B632AEEF6121620F748FC4F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.exe" />
+            </Component>
+            <Component Id="cmp21C4AE12341C50E77751E5B485DAF3C1" Guid="{DB8F2294-CF79-46E3-93C6-0E519E0783CD}">
+                <File Id="filAB6714FF93D5D29E8351721F91DFB7F7" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.pdb" />
+            </Component>
+            <Component Id="cmpFFF9C44485E0AC27AF1535D996FCD1F9" Guid="{0F432C5C-9DB3-4531-A0FC-13235CA00A6F}">
+                <File Id="fil6CD69BF41512C5B08E7B88B1C4CE1118" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Persistence.dll" />
+            </Component>
+            <Component Id="cmpA17138BC0852BAED36C5CD2A0E99DA8A" Guid="{0E83D1E2-6C61-49D3-8B9E-82D85181A229}">
+                <File Id="fil4AAE351F292C19EFCD59AC6D31FBE2F9" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.Persistence.pdb" />
+            </Component>
+            <Component Id="cmp14A5A9C603CEC62875B6E9947A401AF1" Guid="{524D2179-953B-416F-AD3C-76FF7952667A}">
+                <File Id="filA45FAB45A00E59525FC82B96F25A2BE3" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Burls.runtimeconfig.json" />
+            </Component>
+            <Component Id="cmp269D78649FD9F330C5C591512326A7FF" Guid="{60B9A390-581B-4F84-8A79-74EEDD70C900}">
+                <File Id="filE112EAA7BB8AB4BA3E56159E0DDCC58E" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\CommunityToolkit.Mvvm.dll" />
+            </Component>
+            <Component Id="cmpAED255B9519732184DE0D532AED15063" Guid="{AA9666E2-FDBC-4A33-84EA-857D875EE61D}">
+                <File Id="filDA1DB6B53B20E7733ADDAA79454B508D" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\CoreMessagingXP.dll" />
+            </Component>
+            <Component Id="cmp526FB3AE9C1B64725F95EA823EE0E71D" Guid="{8C895DAF-2A61-416D-959E-822ACD420E66}">
+                <File Id="fil1152037CE63950596D29DA05425982B6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\dcompi.dll" />
+            </Component>
+            <Component Id="cmpF595040057839ADF2721ADD93A6E0267" Guid="{A58F6680-77C4-4A07-8D9D-4044641AD49C}">
+                <File Id="fil43D4FDF2079AD1085078F2D3FF656E5A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\dwmcorei.dll" />
+            </Component>
+            <Component Id="cmp1BB38A11730AE945B02AA1BFAF28A30B" Guid="{24556051-00B3-4EF2-B580-2C3DA75A19B9}">
+                <File Id="fil034C519B34D136AF199B8C756C2FAE81" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\DwmSceneI.dll" />
+            </Component>
+            <Component Id="cmp657A4267560BB8EC2FA402C0B9B899E5" Guid="{155FDD8F-4F70-4412-8122-5A45780B2E8E}">
+                <File Id="fil329ABFB8B9127566DAF829AAE9DD54BE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\DWriteCore.dll" />
+            </Component>
+            <Component Id="cmpBB9D3ED17127492F89E958831A3A02ED" Guid="{A68429A4-08B7-4622-86DC-FCDFC115D5D8}">
+                <File Id="fil9BEE35ABBA46C5AB7C9CDA4C5B4F1045" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\marshal.dll" />
+            </Component>
+            <Component Id="cmp06F5AE1888C956EB1EAE32EF65C65864" Guid="{596B530C-56DA-42CF-BF96-68EB5423828B}">
+                <File Id="filC0DBC99C91B25EE1312AF804CEA22B36" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.DirectManipulation.dll" />
+            </Component>
+            <Component Id="cmpDC19BA21EFF423B27F8787A2AB8F2B3C" Guid="{0933A356-6CEC-4496-89C9-06395F3731C6}">
+                <File Id="filF6767F9D22B6D46DD3A2FC798B5F23DE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp85A16DDDD438C8839C302EEFF54E8E0C" Guid="{C53BB90A-6EC2-4565-BD2B-FC98BFECFE67}">
+                <File Id="fil52FC3D526CBD9DC330C6FE3380563F0C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.Binder.dll" />
+            </Component>
+            <Component Id="cmp4A61E3F01E16F7C35D22D304DE7C3D7D" Guid="{6FC373F9-9350-48BF-BA16-EB753CCDF50C}">
+                <File Id="filB3B34A4CDA6A327AC31CAD64389BC80C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.CommandLine.dll" />
+            </Component>
+            <Component Id="cmpC2B3CC4C105FBF588A9EBBD45742C349" Guid="{C5FC04B9-FA94-4315-8DE0-17B9673C2966}">
+                <File Id="filE9F345539532616C2BEF86BE1CEB83E2" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.dll" />
+            </Component>
+            <Component Id="cmp0F72FDFC2B5DABBEED0952957424C516" Guid="{30090F44-88DB-41AA-B4AC-5712ACFA4811}">
+                <File Id="fil732B9D1BB8B2BA629B3802CB721B7E55" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.FileExtensions.dll" />
+            </Component>
+            <Component Id="cmp191446DEBB621CC91C2B2E713F085F01" Guid="{F96D082F-EEFA-4BAF-92A6-AA02BEB454BB}">
+                <File Id="fil0CC9532B169036B73874B81A5F9C8F97" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Configuration.Json.dll" />
+            </Component>
+            <Component Id="cmp198468A4AE980CD6955CB6EB86083726" Guid="{3970DD89-FA5E-4FBC-8A38-CE92375CEE77}">
+                <File Id="fil02E4E4D119BFC4831CEA5A71F1288443" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp493E9BC44885B6BC5C57BDB1302C40D9" Guid="{DF2CCA85-934F-4365-B3FD-44E4567C294C}">
+                <File Id="filA40291A4FBD4719B6995DEB783A39A65" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.DependencyInjection.dll" />
+            </Component>
+            <Component Id="cmp0209E8308C907CAD5474151F7C6836F5" Guid="{EC25E5E9-1595-4D77-B2D7-FA4DFAC79414}">
+                <File Id="fil1036FDFADEB4E1F1FB133485A70A0DD4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.FileProviders.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp6361EE614B62630DD923390326EAF03C" Guid="{0B5E6687-5A1E-4931-939D-3DD7DE7D5AC7}">
+                <File Id="fil1B3C0C67DC448F84DA45630529031E78" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.FileProviders.Physical.dll" />
+            </Component>
+            <Component Id="cmp1E5A63B6F657DD090469973A1C3D2C59" Guid="{080E59F6-CAB2-4D0C-8F68-4BBC8B7DC473}">
+                <File Id="fil931DDF3633F4CABF1422600B672C70DE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.FileSystemGlobbing.dll" />
+            </Component>
+            <Component Id="cmp8C674FD6A69988A60A77A4CEE0F53781" Guid="{8D229467-4176-4DFC-9892-E31E9A1BD0CB}">
+                <File Id="fil72342637E9F74EE945317D4603CEBA2F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Logging.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp835034F744990576E31C2DBC7C9293BF" Guid="{1CE01BE4-2C20-4D50-9AA1-96E6E8E398F0}">
+                <File Id="fil71DD299EE7649E964200A4127797D1C0" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Logging.dll" />
+            </Component>
+            <Component Id="cmp3279C150AE8DF554FD7EEE2085672A2B" Guid="{D78C57BA-7CB1-45CB-8E0C-E6423B3EACF7}">
+                <File Id="filA8D1F5D61FD7BC25099F707CBF5B1F24" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Options.dll" />
+            </Component>
+            <Component Id="cmp946145B53A7DCDFA822B0EFD2314FAB6" Guid="{40F789A6-1A08-4011-B69C-C4C5EC189B16}">
+                <File Id="fil773F29942324AAB2A7E1977E1AC63609" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Extensions.Primitives.dll" />
+            </Component>
+            <Component Id="cmpFAFA1E76C3FCC6B03C2356B7EAD0DBDB" Guid="{AFF585D3-C215-4DF7-9924-FA7ACABC0FDF}">
+                <File Id="fil5F611B3DB72A8AAA855C479B0BD1ED00" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Foundation.winmd" />
+            </Component>
+            <Component Id="cmpD9D87FA54509AB188B8C3924AF6E3A03" Guid="{E151D1BE-D534-4C47-B41D-BAA900505DEC}">
+                <File Id="filD450C473C81D3B3903421450D60238EA" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Graphics.winmd" />
+            </Component>
+            <Component Id="cmp5D3FA887F5136E46E491F65D9C5460ED" Guid="{7C1907FD-ABD7-4BDF-AB40-0D66A3D86285}">
+                <File Id="fil6ACC3587ED720D6993DDC661145F805F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.InputStateManager.dll" />
+            </Component>
+            <Component Id="cmp6D16CC6E020D35989F1BBCF1C1C368C6" Guid="{1C019CAE-2C70-4A91-AD1F-3CAA1E323B29}">
+                <File Id="filEE2072FD7166119BFCA5E6B5A4BC0977" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.InteractiveExperiences.Projection.dll" />
+            </Component>
+            <Component Id="cmp0839A40C3843F519D68B0BD054EBF7C1" Guid="{1D2C847C-1CB0-4F67-8FD0-3B7E2C5CA244}">
+                <File Id="filFF44E6CF5E3BB9D0E37CC55D84C6A11A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Internal.FrameworkUdk.dll" />
+            </Component>
+            <Component Id="cmp524AB317E1F1E1446096141977034717" Guid="{89B9492D-3A7A-4726-9FE5-3909390385AE}">
+                <File Id="fil210E0EE285655534A36E8B7EE7381E9B" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Composition.OSSupport.dll" />
+            </Component>
+            <Component Id="cmpC56A435CDB1A8C5DC24A5EE08CF973F1" Guid="{7752EDA9-0A23-4066-B9DB-52D81285E17A}">
+                <File Id="fil8DB60962DCF609DE97AF466CC2DC313A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Input.dll" />
+            </Component>
+            <Component Id="cmp9EC4F7205246708AF18C6E38A1471159" Guid="{0B47EF08-2F7A-478B-8824-42FF4CBD6753}">
+                <File Id="filD63A807E7F545E3A4716C9F08064E69F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Text.winmd" />
+            </Component>
+            <Component Id="cmpBD548B11860471AACE9BFBE0A66DF4CC" Guid="{23AA902D-AE8F-4261-B603-FD37C85447B7}">
+                <File Id="fil099F6D554EE0B0A13FACBDF18C5A654E" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Windowing.Core.dll" />
+            </Component>
+            <Component Id="cmp47365E3063F6CD32D2934B4B74B36C93" Guid="{8B464937-2E44-459F-9FC8-284ECFF10B7D}">
+                <File Id="fil59E77C0E71F3DF322F0ACDD5FF05AD58" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.winmd" />
+            </Component>
+            <Component Id="cmp70E28C3AAE545DFF3A440D53E188B72C" Guid="{4DB7FC40-9738-400A-87B3-5EC6451894BB}">
+                <File Id="fil73E9024A3E7878254429F629CCEDADE8" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Xaml.Controls.dll" />
+            </Component>
+            <Component Id="cmp762DA720D2D995D5712BA9CCDD3773BB" Guid="{EEAA7F9B-ED3C-4B72-86DE-4ADE5057DB8F}">
+                <File Id="fil36C2A47DCAAABB64347FBE5811BC6947" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Xaml.Controls.pri" />
+            </Component>
+            <Component Id="cmpA9D8D1D3751B36300BE0AD48A8574775" Guid="{8AE30EE5-AAF1-4BBC-865A-3BCE83235945}">
+                <File Id="fil5F8446D4678F6AF100904EC0512845FE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.ui.xaml.dll" />
+            </Component>
+            <Component Id="cmp734794FF3E2B890369FC6F61ABF969DA" Guid="{0F5835B3-5D80-4F4F-9FFB-D644EA3FCDCA}">
+                <File Id="fil1803C19470BF8C02B8F0A225D9FAC76F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Xaml.Internal.dll" />
+            </Component>
+            <Component Id="cmp9300BC0EDB0F33E79D9C73185929722F" Guid="{2458F4C9-287A-4289-BD29-637AFF4DE44A}">
+                <File Id="fil2FE407292157B0BF73B8A03C03BAEEFC" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Xaml.Phone.dll" />
+            </Component>
+            <Component Id="cmpDFE3ED7A6C8AD7262EB265F149451E4D" Guid="{AF1A0B41-0558-4E4C-95A7-5D427E000382}">
+                <File Id="filE3D0E2A4CF0D6DC64079FB8B653CEACD" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.ui.xaml.resources.19h1.dll" />
+            </Component>
+            <Component Id="cmp79BED09A11BCFA2959BEAAAE0E80DBCF" Guid="{A0B197A6-13C8-4B08-BC1F-37F0CD77C4D7}">
+                <File Id="fil1F6D3999AEF71AE49F6787ADE7F394AD" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.ui.xaml.resources.common.dll" />
+            </Component>
+            <Component Id="cmpA4D84A707FC5521D786B31BCA5FA175A" Guid="{F74A85BE-7341-4A51-A3D1-4F2E3FA4325E}">
+                <File Id="fil35C624BC456595671BA9A46016A58A63" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Xaml.winmd" />
+            </Component>
+            <Component Id="cmp57D856C08E480EBC080FF86FAEB1DDA3" Guid="{DBA3F389-1F08-48DD-A3F1-A30DF2467386}">
+                <File Id="fil75A9AC5DE23858DE4AD4EE64AEAE4B4A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Web.WebView2.Core.dll" />
+            </Component>
+            <Component Id="cmp6C222876D8128B51B24D36D317A7265C" Guid="{C06E9EF6-8C09-47D9-9B48-CCA7AF2A853F}">
+                <File Id="fil861579C4C686D3BB1B991A419D5C0AB8" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Web.WebView2.Core.winmd" />
+            </Component>
+            <Component Id="cmp3B4A4E68A8916F10E057C64DCC9101A2" Guid="{7A647676-4A1D-4223-9A2A-C40E681A0D09}">
+                <File Id="fil00C67A68048660876465DF77E74AA2EA" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" />
+            </Component>
+            <Component Id="cmpBEAF94964CE45A7FC21FE61ABFD9BF61" Guid="{9424F1E5-A7E4-4266-B4B7-2FBDC4A0B501}">
+                <File Id="filCCA660CF0913419D694D55EB8272F00F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.DynamicDependency.winmd" />
+            </Component>
+            <Component Id="cmp29ED12E754D8E78AB1F1768864892A6B" Guid="{F1449ECF-8752-43A2-8E39-A3BC0AE470A4}">
+                <File Id="filCE04402B3027CC4EDF2CAB2A1462DDBD" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.Resources.dll" />
+            </Component>
+            <Component Id="cmpFC40A96231D4742B46282E916A215F18" Guid="{046D2353-51AA-446E-A359-6DDEAD081FCF}">
+                <File Id="fil3237DCFAA63907B2318F549BBB41C194" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.Resources.Projection.dll" />
+            </Component>
+            <Component Id="cmp391A5EE3312408C56A3CCB4C685E9542" Guid="{88E99429-B6E7-4E48-9ADF-8ED4C015CD60}">
+                <File Id="fil1FDBD39641A5812F8223D84F3BF2A427" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.Resources.winmd" />
+            </Component>
+            <Component Id="cmpBE11DC195E68C4B61A03D5E224F6E301" Guid="{7D169AF3-E28B-4813-B660-01498762260C}">
+                <File Id="filDA12B686B7F76B111AC9C08FB6EAAD94" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" />
+            </Component>
+            <Component Id="cmp51410DCEF2055A404C1271320BAD8EB5" Guid="{437CA3C6-33E5-4D3A-B447-8FBD3EA07AC7}">
+                <File Id="fil347DC2D2C3F8F5B9FBD5452CF14B0CAC" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.winmd" />
+            </Component>
+            <Component Id="cmpAD6AC2F951F30234C560193BED5CE3FF" Guid="{62E81C6C-1A6C-4E6B-82AF-EC73D93B0884}">
+                <File Id="filB8E03F08DEE96DB0E7FA870DF8250C23" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.AppLifecycle.Projection.dll" />
+            </Component>
+            <Component Id="cmp2A2D8EE38C7FD5C54943A5F9EBC9DC93" Guid="{796EECA5-33C0-4446-BC2B-CFAAF36BDDDD}">
+                <File Id="fil567431F862A8336F4D1A394C3BAF6069" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.AppLifecycle.winmd" />
+            </Component>
+            <Component Id="cmpF18AC71FC2BB5B87372410046807D67F" Guid="{EFBD40A7-EEC2-4637-8EF7-32C9A51B9DF6}">
+                <File Id="fil8E0D5D66FA479B0C0D48B125B868EDA2" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.AppNotifications.Projection.dll" />
+            </Component>
+            <Component Id="cmpE106E4D2EB2AA8C92BD03751102EC8EA" Guid="{AB5B2C04-E2B3-4249-9DCE-D212FCB98866}">
+                <File Id="fil8F077CAC8406223CCB8C363522BAA5C7" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.AppNotifications.winmd" />
+            </Component>
+            <Component Id="cmpAC3239EC74C647D5D74BD36CAA4F64EB" Guid="{6666826B-3BFC-43CB-946F-04A90E892D2C}">
+                <File Id="filEB4E739B97014F310DF98893898C15C7" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.PushNotifications.Projection.dll" />
+            </Component>
+            <Component Id="cmp0D8669A437D61758FD4375C71D74ABD4" Guid="{D343A289-6C5C-4152-827A-10BC5B26723F}">
+                <File Id="fil9FEDF678DBC912986DCF272B7DD071AF" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.PushNotifications.winmd" />
+            </Component>
+            <Component Id="cmp5A07035FA52F4F9E1424BE35CC16915F" Guid="{EC57886B-453F-4124-A789-8436D211925F}">
+                <File Id="fil72C197D43EC7996E816CEB4279B7388C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.SDK.NET.dll" />
+            </Component>
+            <Component Id="cmpC09E619A9E5EE4338C7192F704A1FBAE" Guid="{C91C5422-9928-42AD-9514-05D4C6FD2F6C}">
+                <File Id="filBC9868F214E54FE5030066203478B58B" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.System.Power.Projection.dll" />
+            </Component>
+            <Component Id="cmp63CF5AF0BB00F9F7BAAD865ED057A08B" Guid="{46620702-E0DA-4F79-8A1B-F6A6E9317088}">
+                <File Id="fil4F47AEA2194276ED141C29DB6114096D" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.System.Power.winmd" />
+            </Component>
+            <Component Id="cmp317E2A7342DA4CA080CB2B73EE07FCFE" Guid="{DC00AC4A-C5A1-4A43-9C47-B32B5C899AD0}">
+                <File Id="fil0189B600527C391BB5CE16844822306C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.System.Projection.dll" />
+            </Component>
+            <Component Id="cmp008E641F81C1729BF9BBAB88A7929F3C" Guid="{4F028F64-7968-456F-948A-40299D43887B}">
+                <File Id="fil107D06DA87910DC5A1C4AD41EA88957F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.Windows.System.winmd" />
+            </Component>
+            <Component Id="cmp673A5FF45CDAFAAF147DD6FEC1DFB2DD" Guid="{172B9902-B10A-431D-B424-FF82F30725D5}">
+                <File Id="fil9FD5615AFCA68FDD29802EABC7A02F8B" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WindowsAppRuntime.Bootstrap.dll" />
+            </Component>
+            <Component Id="cmp65E35E1ECCB6C88CBA6C753F9B6EAD2C" Guid="{99BA552A-F4ED-4211-A9C6-E5E7A6FD7936}">
+                <File Id="fil92B6A60392E325AF8AC5F2DDAD1E1947" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" />
+            </Component>
+            <Component Id="cmp7805875504899DB1967EDA97584004B5" Guid="{388BDD12-966A-4F6E-9705-D22AAF07E55F}">
+                <File Id="filB794ADE49A5793D05051947DBC8BFA89" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WindowsAppRuntime.dll" />
+            </Component>
+            <Component Id="cmp612A0967963D6C1925C583B6DF75363B" Guid="{CD10A8C3-C46D-42B6-9644-078257EC2696}">
+                <File Id="fil49F9305585D0066DA1CA2E744BD04470" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WindowsAppRuntime.Insights.Resource.dll" />
+            </Component>
+            <Component Id="cmp4D4B793198F23C2A2DCDB9CBEF442794" Guid="{41DD5DA9-A986-42CD-B327-F51BF3B4DD84}">
+                <File Id="fil66B8F08DDE92B9C72ADAD06C91164AE6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WindowsAppRuntime.Release.Net.dll" />
+            </Component>
+            <Component Id="cmp701FDBE630B5C6570F2B1304CC7E3E38" Guid="{C9F988D2-734E-44D5-B97E-2E60AB95DC45}">
+                <File Id="filCFB36CCA71DD72B813AFE770280F0A2E" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.WinUI.dll" />
+            </Component>
+            <Component Id="cmp436C6723014A012D419B7E157C41E704" Guid="{3224E13D-CBCE-4696-A9D5-B65F95577497}">
+                <File Id="fil0E6ED0C37E0C00D85E23202BE98A7D48" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\MintPlayer.PlatformBrowser.dll" />
+            </Component>
+            <Component Id="cmp3B0A3686DEFAE476106730528914B274" Guid="{59EB0471-26FF-4BF7-8F40-E52EDEC68299}">
+                <File Id="filFA9CBE52BBA8609B5A722D0E9F13BB88" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\MRM.dll" />
+            </Component>
+            <Component Id="cmpB6AC401F2BFFAAC9587DECE1049F81C8" Guid="{E457CC3F-541A-48F6-B56B-0A4BC7B41997}">
+                <File Id="fil4FD3949E9DDEF54E9A64A5444F1BC489" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Nager.PublicSuffix.dll" />
+            </Component>
+            <Component Id="cmpBC4FC00A26E7D32479D42D3411317FC5" Guid="{68AAF295-F921-4E1A-99F3-E4854D75D60C}">
+                <File Id="fil90A8AAD9FC612906D405476D61CEA3F4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Newtonsoft.Json.dll" />
+            </Component>
+            <Component Id="cmpB7F1EBE42DCB1051B92D42C1EF84E2F9" Guid="{9A43166B-6C04-41C0-A075-0CB8584D44C0}">
+                <File Id="filA09ADF42C6343B9B7C7780D266455CC4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\NLog.dll" />
+            </Component>
+            <Component Id="cmp4387649DAD23EB7D89C77DC64718A932" Guid="{0F6E6FA3-9919-4B7E-BB1B-E8108657F88F}">
+                <File Id="fil57B300FDC47BDE7F084BFB62C027FAB8" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\NLog.Extensions.Logging.dll" />
+            </Component>
+            <Component Id="cmpE33D03E621A9BBA053187D6C3AD388FC" Guid="{9C60686A-60B0-4600-BED1-7FD46F8C1632}">
+                <File Id="filCDDE76FA99EB4F03424CD53D7E2E94AF" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Octokit.dll" />
+            </Component>
+            <Component Id="cmp3F85BD971B64F71377D11D1A00BD26C2" Guid="{2F4D8301-42A5-4D79-8BB2-E998A30171F7}">
+                <File Id="fil40ECFA275B8F91B57F6C2426E896E234" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\PInvoke.Kernel32.dll" />
+            </Component>
+            <Component Id="cmp93564B490C637E0462828E29BA75DB2B" Guid="{BC758B08-A393-469D-8564-3263FD38D677}">
+                <File Id="filC0D4D9B85D27DE8E2C0CD016148E73A0" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\PInvoke.User32.dll" />
+            </Component>
+            <Component Id="cmp6D67B004F42A1248BEB124DBEDCE5D9F" Guid="{5A0CA528-CCF6-4BEB-8B07-16FF522E5D47}">
+                <File Id="fil58A8A682F8E3673EC253A9D6EE8E13FB" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\PInvoke.Windows.Core.dll" />
+            </Component>
+            <Component Id="cmp91DFA4EA1697C231A3E544CCA814B165" Guid="{36438395-53BA-4ADA-89A2-BFC7C00459DC}">
+                <File Id="fil1DC9DC06FBFA124D920613B6CE889BD2" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\PInvoke.Windows.ShellScalingApi.dll" />
+            </Component>
+            <Component Id="cmpF15F86B2638D16FD271D966C7E11D202" Guid="{D30D7571-CFD3-41C7-8AF1-D94849AE71EF}">
+                <File Id="filF41A30CCF20055E16AF13A0105A5A59A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\PushNotificationsLongRunningTask.ProxyStub.dll" />
+            </Component>
+            <Component Id="cmpF919932423CC33F941D9CE51CC85C59C" Guid="{3061F5DB-48A9-42DB-88F1-8C4381AD815D}">
+                <File Id="filBBF6D6E6D6DE951E7618C57E0594BE6A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\resources.pri" />
+            </Component>
+            <Component Id="cmp2FF21B51EE6CE7787750EF2970000EF2" Guid="{6278D51D-B37C-4AED-9080-AE2F5872DB0E}">
+                <File Id="fil229BA0DB89AFB6E7379F1E838A9042BE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Validation.dll" />
+            </Component>
+            <Component Id="cmpD8955D1CF65AFD7709378BA54E68930E" Guid="{0A3515C9-C42C-4F97-9DCB-38DEC9E7A2F3}">
+                <File Id="fil999DAD9A10A2C9842A73BC608D88D422" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\WindowsAppRuntime.png" />
+            </Component>
+            <Component Id="cmp1A4E00432773E1807A73892E88F4713C" Guid="{03C3D0A7-547E-45C6-992E-46FFC26B1E94}">
+                <File Id="filA0A4C770DD457AD80674563318D77A79" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\WindowsAppSdk.AppxDeploymentExtensions.Desktop.dll" />
+            </Component>
+            <Component Id="cmp33C30AAD37872CE4355CA33B0DDA2127" Guid="{5241D789-DD5E-4771-B60D-2ACE908E2374}">
+                <File Id="filEBB43C021EAE67A8D0F42ED495F441FF" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\WinRT.Runtime.dll" />
+            </Component>
+            <Component Id="cmp85EE906FAD27826E64B8BAB8C7AB79E5" Guid="{BCE52392-2F30-45BB-A830-4E4F411A5999}">
+                <File Id="filCAC00E97338ECDE7C3240A0DBD3D13FB" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\WinUIEdit.dll" />
+            </Component>
+            <Component Id="cmp4C2CC6B798D54B815104D4756261EE23" Guid="{90268D9D-8CFA-4560-942B-D16575AA582D}">
+                <File Id="fil1209E49FAAB39CDA58172D81FFEB19C4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\wuceffectsi.dll" />
+            </Component>
+            <Directory Id="dirB84F7735C3BA8CFE7C87319A7ABFCCB1" Name="af-ZA">
+                <Component Id="cmp68B65A61EF4876B66D25C42163CEFE73" Guid="{262DC9B9-DF7E-47E1-81E6-0D70AAD8364A}">
+                    <File Id="fil849F64BBEBCE51CE8DE281D9C27D069A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\af-ZA\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp7F3F9EACFCF0C3E228B9C6AD4D048F5B" Guid="{C1E97412-098D-486C-A1C5-45B46F78242D}">
+                    <File Id="fil8ACFE9465214CBFD47FD0D8D92BD7E0D" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\af-ZA\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir342837CAF938E0C2A90493365ED5F6FA" Name="ar-SA">
+                <Component Id="cmpDF684F009BB39A9539952FC73FDB57DA" Guid="{CB0D153C-63DC-46BC-B150-990D1F8B9107}">
+                    <File Id="fil350A16C65F09CCF9991E1A8050601B57" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ar-SA\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpB7867CE535B3ADDFE80CA91FC2539D4D" Guid="{B8C4C14F-3B21-4630-BF55-C16D5EF9E272}">
+                    <File Id="fil547438D823B11EAF17157F794E497B90" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ar-SA\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir255FF5B8D788DF72079B7157C76CE356" Name="az-Latn-AZ">
+                <Component Id="cmpB90E2B38CF0AE373C2E61D5EA5B194C6" Guid="{EBB3EB9E-668C-4050-9BA1-37C1984B0E91}">
+                    <File Id="filCD234FD6BEDB7D0FD548C651B51F41C0" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\az-Latn-AZ\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpAD0D33A670278D926DFB5A4164F2B5FC" Guid="{70C92874-971C-4FAB-A299-C961CED9F4E0}">
+                    <File Id="filBC5468461C6ACE2D2D9607A0E8D9DF20" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\az-Latn-AZ\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir0C7B9E61F936AA89A4F6224040C9932F" Name="bg-BG">
+                <Component Id="cmpBCAC19A34A834CDC5022D612A6D6BF46" Guid="{E771AC8F-15C5-4AC8-9122-84F74A053318}">
+                    <File Id="fil70339920C59B8EE062DD305E6732B2B0" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\bg-BG\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp5F0EE96CF4C3CC52F386377849348D04" Guid="{7DAA247F-56BC-472A-9981-D33DA03224BA}">
+                    <File Id="fil4652341EC2B9F1C862B7069BA25D3C62" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\bg-BG\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir52A879D85171EF1CF7CF480AABFB43E2" Name="bs-Latn-BA">
+                <Component Id="cmp912E75EA58691FB7B49864D8AEE0CBFC" Guid="{5D8C91D3-C698-47A0-8882-AA7C821E8414}">
+                    <File Id="fil15195F8BB23DA467A1EBBD33BE6ABC82" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\bs-Latn-BA\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpD84B194ECAA584941BE9FD823C2AD4CF" Guid="{52B212A4-70BB-4825-A36D-C11407C7976B}">
+                    <File Id="fil06B73F06637D2536BDE050E2CD7EB011" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\bs-Latn-BA\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir3AC91777364664279954680D11761783" Name="ca-ES">
+                <Component Id="cmp9153216D997C2BA0162936A31FB7332F" Guid="{0014DCBE-F95E-4A23-BD40-80F62C9E2912}">
+                    <File Id="filD7BFC5B21B8EA3A0890A66C223B313CA" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ca-ES\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp35090A61E8C3021004327799804FCF0E" Guid="{77445945-B0CF-4386-9493-B7B549B2899A}">
+                    <File Id="fil6E38EEFDB39BA356A47714A5629BA02E" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ca-ES\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir685A0806E2E8E14FA0BEED541D816845" Name="cs-CZ">
+                <Component Id="cmp78BBD25080738593531A5460BA6DC8FF" Guid="{758A2887-CE84-4BDE-8095-55B13BD8FEF5}">
+                    <File Id="fil17E168CF9F63D03C5FE4EC88C0A9E820" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\cs-CZ\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp83B53E452EC33C47892B43F4790FB403" Guid="{8001456B-47F6-4184-A7C3-E2BA780FCFE1}">
+                    <File Id="fil1D6EF3A821AFA4F2E65A30C58F456F2B" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\cs-CZ\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir2961D9AFD83790E1C3AB97D14A56490F" Name="cy-GB">
+                <Component Id="cmpFE3F04A8F6EF1EF711A19B7F987A9EA6" Guid="{58B32FA8-79B9-45E6-8368-15A7127D25F1}">
+                    <File Id="filE074C77BB16C5C4F54AA33B5438B7A2C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\cy-GB\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp446493B984DAC16020890E14F5BDEF9E" Guid="{C4AFBC14-1F67-4B32-B8B0-46A2BA247A68}">
+                    <File Id="fil02ACD9DE77CECA1259960F8E1A2B2C35" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\cy-GB\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirC97839A687F38507CBDC8308C8F3E352" Name="da-DK">
+                <Component Id="cmp24B6C9AA392708EA32F8FA787D778CE7" Guid="{13CC882C-7D7D-465B-A88E-C584BD0E0D4A}">
+                    <File Id="fil46D6931A041C034CBF66DF5792D7D279" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\da-DK\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp49D0978BB4049C5F7B64A311CD5C4668" Guid="{CBE6B50B-0B9B-4890-9774-63C23C1832E6}">
+                    <File Id="fil5495CB5E8CFC0C88454CB3D8450A2727" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\da-DK\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirA4D3CBE83CC778D611403A81761AECB0" Name="de-DE">
+                <Component Id="cmp156EF4FACC15D2FA29B9A113C6B804B0" Guid="{FEEABE31-58CB-400D-AEBB-204633319084}">
+                    <File Id="fil08A1DBF1E0E272C39C7F3B39105BA44A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\de-DE\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp32814F35040C0F5E0B052ABB37EE668C" Guid="{43BC3080-BA59-442B-BD73-A7A075B1D09B}">
+                    <File Id="fil0952B20EAB785CC9D49E22A1CBE42D68" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\de-DE\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirFBAAE6FE9751C9F0994B48E58B9C8E06" Name="el-GR">
+                <Component Id="cmp8D55D119FB18C41150A19AAAB9A72379" Guid="{7B7560A9-A9D9-4064-A2F8-07CBF291CD3F}">
+                    <File Id="fil5523D1858E0C00B9BEE37D52C4B287A4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\el-GR\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp9F2142F3BBD0B81B922AE7561221ECE4" Guid="{0652E282-731B-4C92-9E97-BFAA3B26B99C}">
+                    <File Id="fil54602325E3AF3B3D5768A9D3A6E89201" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\el-GR\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir80583300DBB612F929EAA607E86402CD" Name="en-GB">
+                <Component Id="cmpA2567E45592342D3D669055AF4F05545" Guid="{76FF4DBA-42E0-4F7C-9E28-5D2613E5FE25}">
+                    <File Id="fil5945F8FD99111382DB527CB373D32110" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\en-GB\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp0D2FDD5B42E513558EA42C68BEC7C94E" Guid="{71F29695-47F7-4DA1-AC8B-5C174851B12B}">
+                    <File Id="fil136B0FFDA9AC05DDBA121DDE047C71F4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\en-GB\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir7F0E83DE8F83DBD6E7224B3DCE0A88BA" Name="en-us">
+                <Component Id="cmp6F0C8EF0D5733634DE07F34F18F640A6" Guid="{0F2F5CBF-5855-4A56-9CF0-90C66DDA211D}">
+                    <File Id="fil2FC98BBC3B6C6844A997538DCDA2B490" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\en-us\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp011807259F7C48B6A1DF860056AD07D6" Guid="{2F87F36B-3FD4-43BE-9445-57FD78DDB4A6}">
+                    <File Id="filBCA4867B6F5D8F12FD4C2425B8023F5A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\en-us\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir519A934CFE79399491EFB9468A5F9603" Name="es-ES">
+                <Component Id="cmp71617248039C908601A6E563DFAD3F96" Guid="{32C826C6-62A9-49D7-A8A0-9AF09207E908}">
+                    <File Id="filFB828D92A169AC9153C96E50427C0CA3" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\es-ES\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp702D9185578A95AEC68D60E00BC0AFCF" Guid="{1496F04A-7C1B-400C-95FF-4916AD440DA0}">
+                    <File Id="fil1E918654F354E74C0514FDBB88B3418C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\es-ES\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir15C6D4CA9C5E1FDF94DF14432F599B2A" Name="es-MX">
+                <Component Id="cmp49E9334DECFD24CB50E3641A2FBE7EC0" Guid="{1072B795-308F-43AB-9956-B4121E32F84B}">
+                    <File Id="filE66D9470A9ABB5739B51CD3C83B8DE1A" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\es-MX\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpBDC125ABDEE80C823629FEF521259240" Guid="{25617FFF-6F7E-40E6-96E6-15B86A586ABF}">
+                    <File Id="fil04E75238262EB385270F0C987B660C8D" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\es-MX\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir619B538A872CA0EC0D6405666B5ACFA9" Name="et-EE">
+                <Component Id="cmpA84033671778819B027ED292CB232143" Guid="{3067CA35-94C0-4AA5-969A-5D0049C14A0E}">
+                    <File Id="filBC2CA57C6216CC33CAD3D0F8BE2A5162" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\et-EE\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpDE6CF78AB519C1A09F78CBBA430124A7" Guid="{57ED65B6-86AA-49FE-87D6-CF0C9E470827}">
+                    <File Id="filECA014E475C97740D166FFEDA6339171" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\et-EE\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir3CFB500B170BAC4E97741F8E5DC428DC" Name="eu-ES">
+                <Component Id="cmpAF6663D486A6CF84BB01E020C61D35AF" Guid="{73FE9FA7-561D-4A2A-A9F6-7D76ECC9AC39}">
+                    <File Id="filBF76E641FA05E1C6D36295A9E679CD5C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\eu-ES\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp15C1411DFD493C28F3C997468D7AA61B" Guid="{6E97C7BC-F4A5-43F8-98E3-C5E0EE9990A1}">
+                    <File Id="fil90F3A0806068FDD14737BD772B7620EA" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\eu-ES\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirE7F692EE54FF4237541F9D5E36187953" Name="fa-IR">
+                <Component Id="cmp561FF1D6671154A28046F0442CFBD6B5" Guid="{801924D4-3CA0-49E5-9628-AEF42B072538}">
+                    <File Id="fil848E287EB95891AEDE087CA3BE06984B" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fa-IR\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp3ED5B121A87C48DD635191A0B0A6E33D" Guid="{C489A219-4058-4678-AC89-68A92DCE639C}">
+                    <File Id="filE366ACC6342A9C2D5F579768E65531DD" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fa-IR\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirA9B029A8243C2F241FDE95930E4A7493" Name="fi-FI">
+                <Component Id="cmp3B357E6D0C2A33CFF3965EBC53C92D00" Guid="{088C6D5B-04F5-4912-8C28-2E8D3EAA7AD7}">
+                    <File Id="fil119E9D6BE1CF82F75D1C2055D45A76F5" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fi-FI\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp5B3216070F85472832961EED6709DF6A" Guid="{9CE410B2-D5FC-4625-83B7-D613BCC4D29A}">
+                    <File Id="filE2F5857C1EB2FED51463DF3986FF4644" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fi-FI\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirB58A8BCF5145E5018093D59C956353F2" Name="fr-CA">
+                <Component Id="cmp22CA014D51375E5DA361D48D1B84A661" Guid="{C9DC092A-9886-4368-A057-9056EAA5A94F}">
+                    <File Id="filB20552E392FC30B98B09159C6022C59F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fr-CA\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp08B2C88499D2167580FE54D2BE749BF6" Guid="{900BF917-E14D-40A1-8CC0-CB81173551D9}">
+                    <File Id="filD46C4923F84F64C6EDE010C2F29F63ED" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fr-CA\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir83A5A46E4C0778C480C853AB49248682" Name="fr-FR">
+                <Component Id="cmp67A081B7AE4E68C2B4316125865F0713" Guid="{DD5B3B5B-39AF-4947-81C9-4A37DB119262}">
+                    <File Id="fil018EC1E88086742A91288D0EB1781DA3" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fr-FR\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp46A6F82E2C8A32CD34A02D1A4F2879C8" Guid="{59AD855A-9C0A-4A57-9899-4FD422EDBF38}">
+                    <File Id="filC30514225E8C59752CFA0928D31C63A6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\fr-FR\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir06082F6D290817B3DB2E45D0ECEBF176" Name="gl-ES">
+                <Component Id="cmp3C38100F54BA2C3AEBDBD2F456B6F5E1" Guid="{3B36909F-2BAC-493F-BEA7-2CB7E25B60A5}">
+                    <File Id="filF766BBCF5933144061C34000ADC49B0C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\gl-ES\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpAA182571EF0086C06ADA9B99E559806A" Guid="{BFF0498F-7C8E-40E0-8A67-FEA1B45153E6}">
+                    <File Id="filDF23652F42CF6D99C01D4B8D5CD5F438" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\gl-ES\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir7F087026D51E5913577176AF1F7AF58A" Name="he-IL">
+                <Component Id="cmp9B17B0318493F7A35FC332D08A4C75EA" Guid="{6A635288-18E3-44B5-9E5F-6CBB7FD40C9B}">
+                    <File Id="fil4F3E346E8EB023B525824E860D8D6E3E" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\he-IL\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp75DC79B0F23EBF985BF94CD23DBD293D" Guid="{D64DA746-5B96-4DB4-B758-8D17D892952D}">
+                    <File Id="fil1FDF31FD8BDD29B5D4CC746D09494CEE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\he-IL\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir83D31F02C8A619F6B66CBE1B6673DC6A" Name="hi-IN">
+                <Component Id="cmpACBCA5A2A76679F33DA4494128383B04" Guid="{1A363FA2-7824-4936-9745-8F1D2A43E6BE}">
+                    <File Id="fil5AC751F3A81E90E9351F68C8CEDBEDEB" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\hi-IN\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpEFF6CF46DB7B5865C2FBB633053D43BC" Guid="{5F25FCC6-DF89-4D99-857F-71E1F99B689B}">
+                    <File Id="fil802A40481578F35D0D522FD14585C146" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\hi-IN\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirBE47B449BF87E4F551ECCC45544832BE" Name="hr-HR">
+                <Component Id="cmpCAC2AB9758FB582A8266C1B11219C244" Guid="{87FB97E0-ED80-47D4-8454-C8DC1D488BBA}">
+                    <File Id="fil9943B8A91F557BDE014065712AFA81A8" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\hr-HR\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp8F7264A3EBA3CB58915525693FF365A1" Guid="{F91014C3-D6D2-408E-AB01-690CFAB4E577}">
+                    <File Id="fil707C5FB4AFAE4AA274DA8278D6789F72" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\hr-HR\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir14C4FAF982D18EF4AC667413C9D0F458" Name="hu-HU">
+                <Component Id="cmp1AD2FFAC2DB39920371022788FE9B105" Guid="{FA4F6419-5082-46ED-BF8C-6DF913F9E78D}">
+                    <File Id="filC465CDA8CDE8C4BB00D884471A07E247" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\hu-HU\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpC1D6883664B11BAF60F9085668C93484" Guid="{62085315-5819-41D6-9A18-FABDA2EE9048}">
+                    <File Id="filD43CF0100D2E742530A4D53D001097EF" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\hu-HU\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir59E6E5F01DAAF89C01ECF3A2545CA15D" Name="id-ID">
+                <Component Id="cmp0C35B8364570F343D0874D38BE4E9C44" Guid="{855A4EB1-3B38-4D1A-A9C8-DB7D49A75F43}">
+                    <File Id="fil066EDC7188DA7589F7C942996CB7D4A7" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\id-ID\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpDB93FD9E2C16A72C09C579BADB690F0A" Guid="{1FD3E865-76E2-4352-AAD3-088EFF417D3C}">
+                    <File Id="fil10BCCE1DBCD5DC84161D1427A4A3E57E" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\id-ID\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir21C1843FA652FC121BC601BA561AAF97" Name="is-IS">
+                <Component Id="cmp2C695D9CB85C8E3E354404BE86B623D9" Guid="{DF05A836-90FA-4537-8AB7-0E3246A4BCE5}">
+                    <File Id="fil131B9871479E7AD87F16F0C858A8388B" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\is-IS\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp420E3E58A58193BBDB9C839BE8A42703" Guid="{0AC67470-EF29-4C73-ABE1-6491427AA172}">
+                    <File Id="fil16EB1EE0124AE2B0BF990A86928EBEF8" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\is-IS\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirE3B78FECC55D051A290D65DB7152303E" Name="it-IT">
+                <Component Id="cmp61A5A90D9F68EBD1462FA3B6A543155C" Guid="{8CA35F9B-027C-4EFE-8610-BA10C27DEACD}">
+                    <File Id="filBDC4014EAB9DCA4D52CB2F9911A7B9F5" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\it-IT\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp95B46729A92E2A600532F4C2193F591D" Guid="{F17C8636-8BCC-462A-8C89-45BA9DBAEE08}">
+                    <File Id="filCFC5B0384FE4954B2FA7C63087D86ECB" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\it-IT\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir491F4D4E37AD7E1BE6B3D0E7F3A72AD8" Name="ja-JP">
+                <Component Id="cmp1C6CBB8D11AF274B48C70DFA67494970" Guid="{88A019D5-4064-4528-8736-C91111B6E98E}">
+                    <File Id="fil273C7308D276FD2A23988D60A960A6CB" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ja-JP\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp61D927E4A0D75649EF0DEE1B19148465" Guid="{AE72FF2D-AEB6-4610-B13A-1D37A887A43D}">
+                    <File Id="fil015AD64A04190A7750A19AB2EB90D9F4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ja-JP\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirEC15C0A581CA8A850FD39E162B148A72" Name="ka-GE">
+                <Component Id="cmp1E9A9A9E2C878303956C66D94AFD9BBD" Guid="{064050D6-8116-4FA0-B962-E39FD52470AA}">
+                    <File Id="fil996F14E2F18A2F10BF996F5054049035" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ka-GE\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpCEAD6D141A66CA17AFFFC9C021E2B4A2" Guid="{0FA91AF1-2175-4BC8-915C-434226DA50A7}">
+                    <File Id="fil85F85EF67E1C004E3A5FE1A1709AE40F" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ka-GE\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirD9F51AB5BD2591E8E44B7C4A5D56AE57" Name="kk-KZ">
+                <Component Id="cmp27E3F1B85F8659EAFC560F217EC113BB" Guid="{61CCA936-82F0-4D18-AA28-8A844064256D}">
+                    <File Id="fil8405A0B12D7FEE7F290042FAF1B8DFA6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\kk-KZ\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp35D29734A1E12739D370E4797A206C57" Guid="{AAE75022-C66F-4214-A877-21B71A3B918F}">
+                    <File Id="filE40417453B475E799A45F2D5E7E7C1F7" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\kk-KZ\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir6CA1875845D80157AAC810E64476B463" Name="ko-KR">
+                <Component Id="cmp1B35511A7BC0B5FD94365D48675BB516" Guid="{EB43CE96-F8DB-405C-AD0C-93B79C360166}">
+                    <File Id="filAB7B4F1041B5812F524D84C4A511A8CF" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ko-KR\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp309F0402130ABF5473D072964B6687D3" Guid="{85EAF1D2-0E14-4C7E-8C25-C291ABBC44D6}">
+                    <File Id="fil7183221B6BF4764F8277BF5C4F3C59E9" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ko-KR\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir768470E0FA10C7F41860ABF9EABD8534" Name="lt-LT">
+                <Component Id="cmp474828C456115EF4162A1C124F36A4D5" Guid="{4AD51C37-A5C5-4BF2-B636-AB8819D09B3D}">
+                    <File Id="filB84631A2781EF15421258DC28A0B0B01" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\lt-LT\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp9283FA4AEE0F08AAB7AB87827B28DC26" Guid="{149C9446-DEC4-4A10-B8B0-FDF91C780F80}">
+                    <File Id="fil24AC09E24350C6B8341CD76494DAF7BC" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\lt-LT\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir1A833CA7766977D10EEE162A73D1C0B5" Name="lv-LV">
+                <Component Id="cmp304D68A39CCA5BBA90AA0BA55D00C551" Guid="{3706FF10-AE05-49B6-B089-C12C580CC609}">
+                    <File Id="fil6EBA5B3A4ECA4DCA857C719DCBFA8C94" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\lv-LV\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpDD4F219250A08A3487BCC283E7928CF2" Guid="{6FFB1FDE-F5B1-4160-A49B-024239E24CA9}">
+                    <File Id="filC7E231BC69BE4156741D003B285C53CA" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\lv-LV\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirBFE1B1B555C9CD11519B3E5832899E42" Name="Microsoft.UI.Xaml">
+                <Directory Id="dir0D7C77E0FD10B9CF872E8823EC562607" Name="Assets">
+                    <Component Id="cmp2F2A3BEAB7E03FE0008017A9A8182DA8" Guid="{C703CD43-91A4-4565-B0AF-15D7E8D28DC4}">
+                        <File Id="fil2530CBBB31FDD6BE02A0906A624BF3D0" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\Microsoft.UI.Xaml\Assets\NoiseAsset_256x256_PNG.png" />
+                    </Component>
+                </Directory>
+            </Directory>
+            <Directory Id="dir7B9F03B14B526DA62318E7D77ECBB1F7" Name="ms-MY">
+                <Component Id="cmpF26BE1DD89B326D880BFA0DF2E93F589" Guid="{A266F332-4FCA-4EA5-A0F4-E19772CCCD6D}">
+                    <File Id="fil6F17D6295FCA70AFE6A77016C634972E" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ms-MY\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp5528CADB8BAABB260833BCE9EE7E0B3D" Guid="{056FBA59-74B8-4765-A051-236D0DEDAA73}">
+                    <File Id="fil99CB7BDBDAE1DA14F9F013189326E542" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ms-MY\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirDAB6B60FBDEAE527E832ED82CFC20982" Name="nb-NO">
+                <Component Id="cmp58B2CC7498D70E97D1B6A7BEE97C1366" Guid="{D2E5A0C1-D367-44EC-A264-5E522AFE62F0}">
+                    <File Id="fil4CED4817691EB997674EE9B4044111A1" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\nb-NO\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp90A660C19ABD2D6713C3216279929556" Guid="{094D6988-C001-43A4-AF78-F737F621EF98}">
+                    <File Id="fil6E4D2313500893EDAF06A3782B876A52" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\nb-NO\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir9AD1FFCB2B8D8250BB01CD23880C978A" Name="nl-NL">
+                <Component Id="cmpA8DF5D1710EE4469F54F1EB10590DFD7" Guid="{8F98BD91-5980-426B-A7A5-ECC095ED93F0}">
+                    <File Id="fil4748DF155E9B60E3C90FCFA9F96B44D3" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\nl-NL\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpC3B5BE4379939318BD75935D2BB58180" Guid="{4662AF65-BA3F-4AED-A2B2-480281E44F21}">
+                    <File Id="filA6D05B82202E1B0913EDA725E73D6359" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\nl-NL\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir1D8CBA32CBC068D9BC69492CD41871F7" Name="nn-NO">
+                <Component Id="cmp0B63C5311C1C95CE1C5E03E9A59E8BAB" Guid="{51A542C4-8473-4B73-BED5-D6123EFFD26F}">
+                    <File Id="fil3E1E50D13E93BAFD356E315B76B431DA" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\nn-NO\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpDEBBDB08601F0A281979027ADD4A7659" Guid="{841BC6E7-7EE9-4816-BC5B-9763312DAFDF}">
+                    <File Id="fil273ECDC0C8AA5BA01026D748C0326672" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\nn-NO\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirFD77005055268DDC768930AE39C43C8B" Name="pl-PL">
+                <Component Id="cmp92F1769A862A6DF823928041754BD559" Guid="{33C546C5-28A2-4933-A3B8-9E85135E2109}">
+                    <File Id="fil3266716A3534129D18B663045B05B197" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\pl-PL\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp6A0B4F7EF293E06E41C275513AE33E29" Guid="{966BA417-0EB5-40EB-9A54-59717932F63C}">
+                    <File Id="fil7023EF8A4E6669E2757E8010AEA63A09" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\pl-PL\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir339F53F3A11C56B053FD1FEC9B438810" Name="pt-BR">
+                <Component Id="cmp3D0B756360AF4F7515341B2E9104CC62" Guid="{D1D8CDF6-E020-43C9-842C-BC93C48EB228}">
+                    <File Id="filFF47809EFDFA342A1EC8F3D0A2AE1423" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\pt-BR\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpEC66C8A4B874A232FB0A962993E353A0" Guid="{09A8BA74-97AB-489A-9833-13DD8175D87F}">
+                    <File Id="fil31A8E3E5297D0A902F9A684B560ECCA4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\pt-BR\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirBD5A9D79E023DE60D6D9909C7468106E" Name="pt-PT">
+                <Component Id="cmp86E987D8881E95A8284BD8E7D3D87056" Guid="{B3177E24-1573-4A83-AFEA-45FE4808F300}">
+                    <File Id="fil1E95CC2BC86B612836C3E23127400E30" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\pt-PT\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpA664B887E2282AD0FB7EA20E60F8A908" Guid="{21886470-42E5-4E36-8084-31C3E75AC5FD}">
+                    <File Id="filB102FD5AA4D375631A13F9CE7D87642B" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\pt-PT\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirC6477B089471DA31FF82D8B479E07078" Name="ro-RO">
+                <Component Id="cmp56112F608010AB0B6A985008C96F6100" Guid="{BEB41DE9-3000-4CC7-B070-2689E610F333}">
+                    <File Id="fil1E7348E9E0BFC58BFF727915E35463B6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ro-RO\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp4AD2825AC83E436865E6CE2B4300AD47" Guid="{D56CBD20-D954-4F8F-8A93-CDA175A60232}">
+                    <File Id="fil6DD81C81B103FE487F427D5851EF3261" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ro-RO\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirD537E8BD60E960EB37BCA816F9AFAB0D" Name="ru-RU">
+                <Component Id="cmp7A15D45B9700FBB856419FB70A0795EB" Guid="{1208321B-0B7D-4DD4-BAB0-D51764098BAA}">
+                    <File Id="fil336BF3617750A9D33F2386FC766F44C2" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ru-RU\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp8BEA94BAE41D872D91BCC4BF3FFA260A" Guid="{3ED4D256-6B10-460A-92B4-E56F51FF72AB}">
+                    <File Id="filF06A31FCCD583C941953BD97D2C72A32" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\ru-RU\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir7F7DDB536E7B59AD149778CC1178AB44" Name="sk-SK">
+                <Component Id="cmp37F6EE400B98392AD5EA894F4CFF56F3" Guid="{8DE08331-7AA4-48D5-AD56-7D87E267ABE6}">
+                    <File Id="fil1AB2BE759DC4DBBAA487221693D7C8AA" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sk-SK\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp25AEC064522F64D1E678D9A58E857E03" Guid="{3B27BE24-2101-4E5B-AB4C-CAD05518003A}">
+                    <File Id="filBB524B1CAC734590395B173FB62CD848" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sk-SK\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirE6E3FF6670C5A54C462775AA7B643FD0" Name="sl-SI">
+                <Component Id="cmp72F689DFE5D2167FE6B4433199AC6A53" Guid="{BCCE23CF-DC66-4CAF-8A6F-84E392000293}">
+                    <File Id="fil7CCBA46C561645EBBDEB7704A82F4305" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sl-SI\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpC9D5231622366D9730F013E53B64CE97" Guid="{2E99A613-74BB-43D6-88C3-ABB61CE4265F}">
+                    <File Id="filB6664EA3577C5D5925D40BE728CD24A6" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sl-SI\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirBF5833055F0A8EF49CCF37006584E9FA" Name="sq-AL">
+                <Component Id="cmp8A2AD1500F4D992570A0ECC98FFAF7AF" Guid="{FA99B327-08C6-407F-8F9F-FCE30A2DA680}">
+                    <File Id="filD8E683381347839C2D12FBCDA488B9CD" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sq-AL\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpADE971ED88D8E88C4FFBFC890340AABA" Guid="{B7A14D98-CB16-4D1E-A6B7-3C47BD19B5DD}">
+                    <File Id="fil983B94859793E14D20F48BDBBF074435" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sq-AL\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir66F1C1415720B7F1FE711F9126640A78" Name="sr-Cyrl-RS">
+                <Component Id="cmpF06A287FA634619FE9CB435CB393AB43" Guid="{ACEA2C04-5731-4ECA-AB79-44939BE1E84D}">
+                    <File Id="fil61D1F168E809C17CE9E477A80BEDBACC" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sr-Cyrl-RS\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp9DD667DA0C6C0FE72B65B61B94997B81" Guid="{A2F91241-D22B-4F47-B67D-7831F6BD9C12}">
+                    <File Id="fil89D5B65E8594C4A8BC973224FA22CB81" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sr-Cyrl-RS\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirC9B1EED034D7C4BD70BEE15BC5659235" Name="sr-Latn-RS">
+                <Component Id="cmpC1B318AC49F9509A2696CA63B9CAC599" Guid="{46EA873C-1233-4699-BBFE-50B1A84AB43B}">
+                    <File Id="fil2265D0AD6391126D386FC422F0282880" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sr-Latn-RS\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpCD511138AD40BD8D7184DABDB1B91950" Guid="{D74A1191-2DAE-4F54-9F4E-40F2493C460E}">
+                    <File Id="fil5921A9186168AA38C30F0E1D2D7BE6E4" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sr-Latn-RS\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir12F4DA4CFDE1D5E56786C33DCDFFD26E" Name="sv-SE">
+                <Component Id="cmp44DCD41213488283DE8D7F1B8B9E1249" Guid="{4CB2C282-E6FE-4FEC-BEF0-1C2952B60497}">
+                    <File Id="fil144AA908300ED9704196C4BF7ED2A8BC" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sv-SE\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp9FAB48EF1940AA0D9A308AF96931FAB4" Guid="{70D9245D-F002-4245-A3F2-D82F491992DA}">
+                    <File Id="filFA3458BA9933B8DCFDB30A30D8F2EE37" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\sv-SE\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir96982D8FEA0FC2B51236E39CB8819D19" Name="th-TH">
+                <Component Id="cmpCAB5D7537D2909D674D6A71964F54B50" Guid="{B57D2409-F988-40C9-BFB0-A7B6B76BE4C5}">
+                    <File Id="fil5E19BB6CD86C82A8F70EA7BE9CEE0343" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\th-TH\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmpDCB3965F4BFE410DA084689CC39B06D7" Guid="{6732C5C2-2112-425B-A9DE-383744C5B994}">
+                    <File Id="fil0EFCE8CDA35D93540D0CDC88A2E6CD7C" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\th-TH\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirC5B26D132450CAB95EF9A5C16E231DF6" Name="tr-TR">
+                <Component Id="cmp74E9744F115A4CFC9B8137F7D86FEE2F" Guid="{00DEB6F9-66EF-41EF-AFBD-FEC9619CEADB}">
+                    <File Id="fil160220EA96AECAC80C4877598DEF8748" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\tr-TR\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp99A5C851CD56BACB9BB57F29551781D5" Guid="{E65A23BC-7C5F-43C7-9730-E3CFD99DD83D}">
+                    <File Id="fil0E66C9ED40CF07CBB794FBC0ADC86695" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\tr-TR\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir4C9CDCA97812CCD677F51C9D2F37D5FD" Name="uk-UA">
+                <Component Id="cmp0FCFE29760305FD55FA3FFC48CE38DF7" Guid="{FAA82686-D606-4077-9913-1F95855F225C}">
+                    <File Id="fil1113DE20121AE3C12C6B03ED5AD0D637" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\uk-UA\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp2B80FD86B3C8CCDF00F15D48149DC3AB" Guid="{14216CAD-D3CC-41C0-A546-6D67EEEBF49A}">
+                    <File Id="fil67203F330956860C4000CECA98D4A8A1" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\uk-UA\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dirEB78B57923F9854F677D0247B4F0F25D" Name="vi-VN">
+                <Component Id="cmpFA25F4DD76B4A694FF35232369633320" Guid="{5A55C161-C568-4924-B5BF-99EFD5DAD5D4}">
+                    <File Id="filEF06BB964C6795B6343DD06448DF3F04" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\vi-VN\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp427E4EE996A2D1114901AC7355F5A889" Guid="{C8240B8D-6C70-408F-A8BA-226F07098F4A}">
+                    <File Id="filE77E9E86BBBE97042A281C492D82C6DD" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\vi-VN\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir8C5E37FA87D1897FFB78337F53EB198C" Name="zh-CN">
+                <Component Id="cmp5AB1DBD4FFF069B69D694A024FA50FBC" Guid="{13896379-3BD3-4E8E-87C4-A78B8C4EA6AD}">
+                    <File Id="filCD9ACF492FF5BCC19173446816650DA9" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\zh-CN\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp6A8D9B542FBD81487CD97560B6F2C7E8" Guid="{B3D44B42-0F11-4435-93F1-F9F0E9A30EA5}">
+                    <File Id="filCBD296F7EBC5E0E23E0DC01F39FBD770" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\zh-CN\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+            <Directory Id="dir9F1EA0DADAA2710F788D419BCB15BCFA" Name="zh-TW">
+                <Component Id="cmpE052D231C7A1F4B447EC466D33113012" Guid="{C853AD11-9963-40D9-8FB0-5FBF985A2DD8}">
+                    <File Id="filACC0295C666BF80A0B3DD5EE2C860846" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\zh-TW\Microsoft.ui.xaml.dll.mui" />
+                </Component>
+                <Component Id="cmp42B2945AD5E876D9DDE1EF95B744B280" Guid="{E596FCF0-9B46-4E0F-98FE-55903F0DBF73}">
+                    <File Id="filE6275B4EF3B47FBCE862FB367E6BB0BE" KeyPath="yes" Source="$(var.Burls.Windows.ProjectDir)bin\win10-x64\publish\zh-TW\Microsoft.UI.Xaml.Phone.dll.mui" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="cg_Burls_Windows">
+            <ComponentRef Id="cmpF82FCA80BBAF44D285C97F10993DEEE6" />
+            <ComponentRef Id="cmp13DFA42DF3760778D23B852435E68952" />
+            <ComponentRef Id="cmpFD65F52CD5EC0B46A750F8EEFC3D4422" />
+            <ComponentRef Id="cmpEB2E40E88926DC89EC075540B80AB621" />
+            <ComponentRef Id="cmpC7819919599C9B13C084538151B02204" />
+            <ComponentRef Id="cmpC0451F04B68FBCEAB34F7C95E0606C2A" />
+            <ComponentRef Id="cmp77BB293E1B475220F79C67D1D80AF116" />
+            <ComponentRef Id="cmp038A0E894F7DF22D674DD8D5845A3347" />
+            <ComponentRef Id="cmpD768082E95892DA6C0847E96D731EC15" />
+            <ComponentRef Id="cmp22AB00E1A744EF6DE53AE5B6AFE2113A" />
+            <ComponentRef Id="cmpF891771E8AE8052D1D694E836641241D" />
+            <ComponentRef Id="cmpD856DF8252952B9408B3BBDCFC73FEC8" />
+            <ComponentRef Id="cmp224D02550DA9787CD7B41AE610832D0F" />
+            <ComponentRef Id="cmp21C4AE12341C50E77751E5B485DAF3C1" />
+            <ComponentRef Id="cmpFFF9C44485E0AC27AF1535D996FCD1F9" />
+            <ComponentRef Id="cmpA17138BC0852BAED36C5CD2A0E99DA8A" />
+            <ComponentRef Id="cmp14A5A9C603CEC62875B6E9947A401AF1" />
+            <ComponentRef Id="cmp269D78649FD9F330C5C591512326A7FF" />
+            <ComponentRef Id="cmpAED255B9519732184DE0D532AED15063" />
+            <ComponentRef Id="cmp526FB3AE9C1B64725F95EA823EE0E71D" />
+            <ComponentRef Id="cmpF595040057839ADF2721ADD93A6E0267" />
+            <ComponentRef Id="cmp1BB38A11730AE945B02AA1BFAF28A30B" />
+            <ComponentRef Id="cmp657A4267560BB8EC2FA402C0B9B899E5" />
+            <ComponentRef Id="cmpBB9D3ED17127492F89E958831A3A02ED" />
+            <ComponentRef Id="cmp06F5AE1888C956EB1EAE32EF65C65864" />
+            <ComponentRef Id="cmpDC19BA21EFF423B27F8787A2AB8F2B3C" />
+            <ComponentRef Id="cmp85A16DDDD438C8839C302EEFF54E8E0C" />
+            <ComponentRef Id="cmp4A61E3F01E16F7C35D22D304DE7C3D7D" />
+            <ComponentRef Id="cmpC2B3CC4C105FBF588A9EBBD45742C349" />
+            <ComponentRef Id="cmp0F72FDFC2B5DABBEED0952957424C516" />
+            <ComponentRef Id="cmp191446DEBB621CC91C2B2E713F085F01" />
+            <ComponentRef Id="cmp198468A4AE980CD6955CB6EB86083726" />
+            <ComponentRef Id="cmp493E9BC44885B6BC5C57BDB1302C40D9" />
+            <ComponentRef Id="cmp0209E8308C907CAD5474151F7C6836F5" />
+            <ComponentRef Id="cmp6361EE614B62630DD923390326EAF03C" />
+            <ComponentRef Id="cmp1E5A63B6F657DD090469973A1C3D2C59" />
+            <ComponentRef Id="cmp8C674FD6A69988A60A77A4CEE0F53781" />
+            <ComponentRef Id="cmp835034F744990576E31C2DBC7C9293BF" />
+            <ComponentRef Id="cmp3279C150AE8DF554FD7EEE2085672A2B" />
+            <ComponentRef Id="cmp946145B53A7DCDFA822B0EFD2314FAB6" />
+            <ComponentRef Id="cmpFAFA1E76C3FCC6B03C2356B7EAD0DBDB" />
+            <ComponentRef Id="cmpD9D87FA54509AB188B8C3924AF6E3A03" />
+            <ComponentRef Id="cmp5D3FA887F5136E46E491F65D9C5460ED" />
+            <ComponentRef Id="cmp6D16CC6E020D35989F1BBCF1C1C368C6" />
+            <ComponentRef Id="cmp0839A40C3843F519D68B0BD054EBF7C1" />
+            <ComponentRef Id="cmp524AB317E1F1E1446096141977034717" />
+            <ComponentRef Id="cmpC56A435CDB1A8C5DC24A5EE08CF973F1" />
+            <ComponentRef Id="cmp9EC4F7205246708AF18C6E38A1471159" />
+            <ComponentRef Id="cmpBD548B11860471AACE9BFBE0A66DF4CC" />
+            <ComponentRef Id="cmp47365E3063F6CD32D2934B4B74B36C93" />
+            <ComponentRef Id="cmp70E28C3AAE545DFF3A440D53E188B72C" />
+            <ComponentRef Id="cmp762DA720D2D995D5712BA9CCDD3773BB" />
+            <ComponentRef Id="cmpA9D8D1D3751B36300BE0AD48A8574775" />
+            <ComponentRef Id="cmp734794FF3E2B890369FC6F61ABF969DA" />
+            <ComponentRef Id="cmp9300BC0EDB0F33E79D9C73185929722F" />
+            <ComponentRef Id="cmpDFE3ED7A6C8AD7262EB265F149451E4D" />
+            <ComponentRef Id="cmp79BED09A11BCFA2959BEAAAE0E80DBCF" />
+            <ComponentRef Id="cmpA4D84A707FC5521D786B31BCA5FA175A" />
+            <ComponentRef Id="cmp57D856C08E480EBC080FF86FAEB1DDA3" />
+            <ComponentRef Id="cmp6C222876D8128B51B24D36D317A7265C" />
+            <ComponentRef Id="cmp3B4A4E68A8916F10E057C64DCC9101A2" />
+            <ComponentRef Id="cmpBEAF94964CE45A7FC21FE61ABFD9BF61" />
+            <ComponentRef Id="cmp29ED12E754D8E78AB1F1768864892A6B" />
+            <ComponentRef Id="cmpFC40A96231D4742B46282E916A215F18" />
+            <ComponentRef Id="cmp391A5EE3312408C56A3CCB4C685E9542" />
+            <ComponentRef Id="cmpBE11DC195E68C4B61A03D5E224F6E301" />
+            <ComponentRef Id="cmp51410DCEF2055A404C1271320BAD8EB5" />
+            <ComponentRef Id="cmpAD6AC2F951F30234C560193BED5CE3FF" />
+            <ComponentRef Id="cmp2A2D8EE38C7FD5C54943A5F9EBC9DC93" />
+            <ComponentRef Id="cmpF18AC71FC2BB5B87372410046807D67F" />
+            <ComponentRef Id="cmpE106E4D2EB2AA8C92BD03751102EC8EA" />
+            <ComponentRef Id="cmpAC3239EC74C647D5D74BD36CAA4F64EB" />
+            <ComponentRef Id="cmp0D8669A437D61758FD4375C71D74ABD4" />
+            <ComponentRef Id="cmp5A07035FA52F4F9E1424BE35CC16915F" />
+            <ComponentRef Id="cmpC09E619A9E5EE4338C7192F704A1FBAE" />
+            <ComponentRef Id="cmp63CF5AF0BB00F9F7BAAD865ED057A08B" />
+            <ComponentRef Id="cmp317E2A7342DA4CA080CB2B73EE07FCFE" />
+            <ComponentRef Id="cmp008E641F81C1729BF9BBAB88A7929F3C" />
+            <ComponentRef Id="cmp673A5FF45CDAFAAF147DD6FEC1DFB2DD" />
+            <ComponentRef Id="cmp65E35E1ECCB6C88CBA6C753F9B6EAD2C" />
+            <ComponentRef Id="cmp7805875504899DB1967EDA97584004B5" />
+            <ComponentRef Id="cmp612A0967963D6C1925C583B6DF75363B" />
+            <ComponentRef Id="cmp4D4B793198F23C2A2DCDB9CBEF442794" />
+            <ComponentRef Id="cmp701FDBE630B5C6570F2B1304CC7E3E38" />
+            <ComponentRef Id="cmp436C6723014A012D419B7E157C41E704" />
+            <ComponentRef Id="cmp3B0A3686DEFAE476106730528914B274" />
+            <ComponentRef Id="cmpB6AC401F2BFFAAC9587DECE1049F81C8" />
+            <ComponentRef Id="cmpBC4FC00A26E7D32479D42D3411317FC5" />
+            <ComponentRef Id="cmpB7F1EBE42DCB1051B92D42C1EF84E2F9" />
+            <ComponentRef Id="cmp4387649DAD23EB7D89C77DC64718A932" />
+            <ComponentRef Id="cmpE33D03E621A9BBA053187D6C3AD388FC" />
+            <ComponentRef Id="cmp3F85BD971B64F71377D11D1A00BD26C2" />
+            <ComponentRef Id="cmp93564B490C637E0462828E29BA75DB2B" />
+            <ComponentRef Id="cmp6D67B004F42A1248BEB124DBEDCE5D9F" />
+            <ComponentRef Id="cmp91DFA4EA1697C231A3E544CCA814B165" />
+            <ComponentRef Id="cmpF15F86B2638D16FD271D966C7E11D202" />
+            <ComponentRef Id="cmpF919932423CC33F941D9CE51CC85C59C" />
+            <ComponentRef Id="cmp2FF21B51EE6CE7787750EF2970000EF2" />
+            <ComponentRef Id="cmpD8955D1CF65AFD7709378BA54E68930E" />
+            <ComponentRef Id="cmp1A4E00432773E1807A73892E88F4713C" />
+            <ComponentRef Id="cmp33C30AAD37872CE4355CA33B0DDA2127" />
+            <ComponentRef Id="cmp85EE906FAD27826E64B8BAB8C7AB79E5" />
+            <ComponentRef Id="cmp4C2CC6B798D54B815104D4756261EE23" />
+            <ComponentRef Id="cmp68B65A61EF4876B66D25C42163CEFE73" />
+            <ComponentRef Id="cmp7F3F9EACFCF0C3E228B9C6AD4D048F5B" />
+            <ComponentRef Id="cmpDF684F009BB39A9539952FC73FDB57DA" />
+            <ComponentRef Id="cmpB7867CE535B3ADDFE80CA91FC2539D4D" />
+            <ComponentRef Id="cmpB90E2B38CF0AE373C2E61D5EA5B194C6" />
+            <ComponentRef Id="cmpAD0D33A670278D926DFB5A4164F2B5FC" />
+            <ComponentRef Id="cmpBCAC19A34A834CDC5022D612A6D6BF46" />
+            <ComponentRef Id="cmp5F0EE96CF4C3CC52F386377849348D04" />
+            <ComponentRef Id="cmp912E75EA58691FB7B49864D8AEE0CBFC" />
+            <ComponentRef Id="cmpD84B194ECAA584941BE9FD823C2AD4CF" />
+            <ComponentRef Id="cmp9153216D997C2BA0162936A31FB7332F" />
+            <ComponentRef Id="cmp35090A61E8C3021004327799804FCF0E" />
+            <ComponentRef Id="cmp78BBD25080738593531A5460BA6DC8FF" />
+            <ComponentRef Id="cmp83B53E452EC33C47892B43F4790FB403" />
+            <ComponentRef Id="cmpFE3F04A8F6EF1EF711A19B7F987A9EA6" />
+            <ComponentRef Id="cmp446493B984DAC16020890E14F5BDEF9E" />
+            <ComponentRef Id="cmp24B6C9AA392708EA32F8FA787D778CE7" />
+            <ComponentRef Id="cmp49D0978BB4049C5F7B64A311CD5C4668" />
+            <ComponentRef Id="cmp156EF4FACC15D2FA29B9A113C6B804B0" />
+            <ComponentRef Id="cmp32814F35040C0F5E0B052ABB37EE668C" />
+            <ComponentRef Id="cmp8D55D119FB18C41150A19AAAB9A72379" />
+            <ComponentRef Id="cmp9F2142F3BBD0B81B922AE7561221ECE4" />
+            <ComponentRef Id="cmpA2567E45592342D3D669055AF4F05545" />
+            <ComponentRef Id="cmp0D2FDD5B42E513558EA42C68BEC7C94E" />
+            <ComponentRef Id="cmp6F0C8EF0D5733634DE07F34F18F640A6" />
+            <ComponentRef Id="cmp011807259F7C48B6A1DF860056AD07D6" />
+            <ComponentRef Id="cmp71617248039C908601A6E563DFAD3F96" />
+            <ComponentRef Id="cmp702D9185578A95AEC68D60E00BC0AFCF" />
+            <ComponentRef Id="cmp49E9334DECFD24CB50E3641A2FBE7EC0" />
+            <ComponentRef Id="cmpBDC125ABDEE80C823629FEF521259240" />
+            <ComponentRef Id="cmpA84033671778819B027ED292CB232143" />
+            <ComponentRef Id="cmpDE6CF78AB519C1A09F78CBBA430124A7" />
+            <ComponentRef Id="cmpAF6663D486A6CF84BB01E020C61D35AF" />
+            <ComponentRef Id="cmp15C1411DFD493C28F3C997468D7AA61B" />
+            <ComponentRef Id="cmp561FF1D6671154A28046F0442CFBD6B5" />
+            <ComponentRef Id="cmp3ED5B121A87C48DD635191A0B0A6E33D" />
+            <ComponentRef Id="cmp3B357E6D0C2A33CFF3965EBC53C92D00" />
+            <ComponentRef Id="cmp5B3216070F85472832961EED6709DF6A" />
+            <ComponentRef Id="cmp22CA014D51375E5DA361D48D1B84A661" />
+            <ComponentRef Id="cmp08B2C88499D2167580FE54D2BE749BF6" />
+            <ComponentRef Id="cmp67A081B7AE4E68C2B4316125865F0713" />
+            <ComponentRef Id="cmp46A6F82E2C8A32CD34A02D1A4F2879C8" />
+            <ComponentRef Id="cmp3C38100F54BA2C3AEBDBD2F456B6F5E1" />
+            <ComponentRef Id="cmpAA182571EF0086C06ADA9B99E559806A" />
+            <ComponentRef Id="cmp9B17B0318493F7A35FC332D08A4C75EA" />
+            <ComponentRef Id="cmp75DC79B0F23EBF985BF94CD23DBD293D" />
+            <ComponentRef Id="cmpACBCA5A2A76679F33DA4494128383B04" />
+            <ComponentRef Id="cmpEFF6CF46DB7B5865C2FBB633053D43BC" />
+            <ComponentRef Id="cmpCAC2AB9758FB582A8266C1B11219C244" />
+            <ComponentRef Id="cmp8F7264A3EBA3CB58915525693FF365A1" />
+            <ComponentRef Id="cmp1AD2FFAC2DB39920371022788FE9B105" />
+            <ComponentRef Id="cmpC1D6883664B11BAF60F9085668C93484" />
+            <ComponentRef Id="cmp0C35B8364570F343D0874D38BE4E9C44" />
+            <ComponentRef Id="cmpDB93FD9E2C16A72C09C579BADB690F0A" />
+            <ComponentRef Id="cmp2C695D9CB85C8E3E354404BE86B623D9" />
+            <ComponentRef Id="cmp420E3E58A58193BBDB9C839BE8A42703" />
+            <ComponentRef Id="cmp61A5A90D9F68EBD1462FA3B6A543155C" />
+            <ComponentRef Id="cmp95B46729A92E2A600532F4C2193F591D" />
+            <ComponentRef Id="cmp1C6CBB8D11AF274B48C70DFA67494970" />
+            <ComponentRef Id="cmp61D927E4A0D75649EF0DEE1B19148465" />
+            <ComponentRef Id="cmp1E9A9A9E2C878303956C66D94AFD9BBD" />
+            <ComponentRef Id="cmpCEAD6D141A66CA17AFFFC9C021E2B4A2" />
+            <ComponentRef Id="cmp27E3F1B85F8659EAFC560F217EC113BB" />
+            <ComponentRef Id="cmp35D29734A1E12739D370E4797A206C57" />
+            <ComponentRef Id="cmp1B35511A7BC0B5FD94365D48675BB516" />
+            <ComponentRef Id="cmp309F0402130ABF5473D072964B6687D3" />
+            <ComponentRef Id="cmp474828C456115EF4162A1C124F36A4D5" />
+            <ComponentRef Id="cmp9283FA4AEE0F08AAB7AB87827B28DC26" />
+            <ComponentRef Id="cmp304D68A39CCA5BBA90AA0BA55D00C551" />
+            <ComponentRef Id="cmpDD4F219250A08A3487BCC283E7928CF2" />
+            <ComponentRef Id="cmp2F2A3BEAB7E03FE0008017A9A8182DA8" />
+            <ComponentRef Id="cmpF26BE1DD89B326D880BFA0DF2E93F589" />
+            <ComponentRef Id="cmp5528CADB8BAABB260833BCE9EE7E0B3D" />
+            <ComponentRef Id="cmp58B2CC7498D70E97D1B6A7BEE97C1366" />
+            <ComponentRef Id="cmp90A660C19ABD2D6713C3216279929556" />
+            <ComponentRef Id="cmpA8DF5D1710EE4469F54F1EB10590DFD7" />
+            <ComponentRef Id="cmpC3B5BE4379939318BD75935D2BB58180" />
+            <ComponentRef Id="cmp0B63C5311C1C95CE1C5E03E9A59E8BAB" />
+            <ComponentRef Id="cmpDEBBDB08601F0A281979027ADD4A7659" />
+            <ComponentRef Id="cmp92F1769A862A6DF823928041754BD559" />
+            <ComponentRef Id="cmp6A0B4F7EF293E06E41C275513AE33E29" />
+            <ComponentRef Id="cmp3D0B756360AF4F7515341B2E9104CC62" />
+            <ComponentRef Id="cmpEC66C8A4B874A232FB0A962993E353A0" />
+            <ComponentRef Id="cmp86E987D8881E95A8284BD8E7D3D87056" />
+            <ComponentRef Id="cmpA664B887E2282AD0FB7EA20E60F8A908" />
+            <ComponentRef Id="cmp56112F608010AB0B6A985008C96F6100" />
+            <ComponentRef Id="cmp4AD2825AC83E436865E6CE2B4300AD47" />
+            <ComponentRef Id="cmp7A15D45B9700FBB856419FB70A0795EB" />
+            <ComponentRef Id="cmp8BEA94BAE41D872D91BCC4BF3FFA260A" />
+            <ComponentRef Id="cmp37F6EE400B98392AD5EA894F4CFF56F3" />
+            <ComponentRef Id="cmp25AEC064522F64D1E678D9A58E857E03" />
+            <ComponentRef Id="cmp72F689DFE5D2167FE6B4433199AC6A53" />
+            <ComponentRef Id="cmpC9D5231622366D9730F013E53B64CE97" />
+            <ComponentRef Id="cmp8A2AD1500F4D992570A0ECC98FFAF7AF" />
+            <ComponentRef Id="cmpADE971ED88D8E88C4FFBFC890340AABA" />
+            <ComponentRef Id="cmpF06A287FA634619FE9CB435CB393AB43" />
+            <ComponentRef Id="cmp9DD667DA0C6C0FE72B65B61B94997B81" />
+            <ComponentRef Id="cmpC1B318AC49F9509A2696CA63B9CAC599" />
+            <ComponentRef Id="cmpCD511138AD40BD8D7184DABDB1B91950" />
+            <ComponentRef Id="cmp44DCD41213488283DE8D7F1B8B9E1249" />
+            <ComponentRef Id="cmp9FAB48EF1940AA0D9A308AF96931FAB4" />
+            <ComponentRef Id="cmpCAB5D7537D2909D674D6A71964F54B50" />
+            <ComponentRef Id="cmpDCB3965F4BFE410DA084689CC39B06D7" />
+            <ComponentRef Id="cmp74E9744F115A4CFC9B8137F7D86FEE2F" />
+            <ComponentRef Id="cmp99A5C851CD56BACB9BB57F29551781D5" />
+            <ComponentRef Id="cmp0FCFE29760305FD55FA3FFC48CE38DF7" />
+            <ComponentRef Id="cmp2B80FD86B3C8CCDF00F15D48149DC3AB" />
+            <ComponentRef Id="cmpFA25F4DD76B4A694FF35232369633320" />
+            <ComponentRef Id="cmp427E4EE996A2D1114901AC7355F5A889" />
+            <ComponentRef Id="cmp5AB1DBD4FFF069B69D694A024FA50FBC" />
+            <ComponentRef Id="cmp6A8D9B542FBD81487CD97560B6F2C7E8" />
+            <ComponentRef Id="cmpE052D231C7A1F4B447EC466D33113012" />
+            <ComponentRef Id="cmp42B2945AD5E876D9DDE1EF95B744B280" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

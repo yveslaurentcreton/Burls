@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <DefineConstants>HarvestPath=..\Burls.Windows\bin\win10-x64\publish</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <ProductVersion>3.10</ProductVersion>
@@ -8,6 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>Burls_Installer</OutputName>
     <OutputType>Package</OutputType>
+    <RunWixToolsOutOfProc Condition=" '$(PROCESSOR_ARCHITECTURE)'!='x86' ">true</RunWixToolsOutOfProc>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -19,6 +23,7 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fragments\FileFragments.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
@@ -28,9 +33,12 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Generate-FileFragments.ps1" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Burls.Windows\Burls.Windows.csproj">
       <Name>Burls.Windows</Name>
-      <Project>{467c7a1e-b731-4c64-ab57-a778ee0ab4fe}</Project>
+      <Project>{5cbe4110-853f-409d-83db-a788ca1ac43a}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
@@ -38,17 +46,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dependencies\WindowsAppRuntimeInstall-1.0.3-win-x64.exe" />
-    <Content Include="Dependencies\windowsdesktop-runtime-6.0.4-win-x64.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dependencies\" />
+    <Folder Include="Fragments\" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent />
+  </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
 	Other similar extension points exist, see Wix.targets.

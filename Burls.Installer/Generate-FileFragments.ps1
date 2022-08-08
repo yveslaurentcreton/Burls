@@ -1,0 +1,2 @@
+﻿& "C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\Burls.Windows\bin\win10-x64\publish" -cg cg_Burls_Windows -gg -scom -sreg -sfrag -srd -dr INSTALLFOLDER -var var.BurlsFilesDir -out ".\Fragments\FileFragments.wxs"
+# Find-Replace $(var.BurlsFilesDir) with $(var.Burls.Windows.ProjectDir)bin\win10-x64\publish
