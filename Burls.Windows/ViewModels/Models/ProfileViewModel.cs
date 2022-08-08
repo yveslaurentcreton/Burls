@@ -19,7 +19,7 @@ using static Burls.Domain.SelectionRule;
 
 namespace Burls.Windows.ViewModels.Models
 {
-    public partial class ProfileViewModel : ObservableRecipient, IEntity
+    public partial class ProfileViewModel : ObservableRecipient
     {
         private readonly IBrowserService _browserService;
         private readonly Profile _profile;
