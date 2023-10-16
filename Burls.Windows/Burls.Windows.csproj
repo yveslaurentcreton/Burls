@@ -17,6 +17,7 @@
     <ApplicationIcon>Assets\TitlebarLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\TitlebarLogo.ico" />
     <None Remove="Assets\TitlebarLogo.png" />
     <None Remove="Controls\BurlsGroup\BurlsGroup.xaml" />
     <None Remove="Controls\BurlsItem\BurlsItem.xaml" />
