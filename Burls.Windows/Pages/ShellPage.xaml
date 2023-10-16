@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<Page
     x:Class="Burls.Windows.Pages.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,40 +8,70 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView IsBackButtonVisible="Collapsed" IsPaneOpen="False" x:Name="MainNavigationInternal" SelectionChanged="MainNavigation_SelectionChanged" IsSettingsVisible="False" Header="{x:Bind CurrentPage.Title, Mode=OneWay}">
-        <!--<NavigationView.MenuItemTemplateSelector>
-            <selectors:MenuItemTemplateSelector>
-                <selectors:MenuItemTemplateSelector.ItemTemplate>
-                    <DataTemplate >
-                        <NavigationViewItem Content="{x:Bind Name}" TooltipService.ToolTip="{x:Bind Tooltip}">
-                            <NavigationViewItem.Icon>
-                                <SymbolIcon Symbol="{x:Bind Glyph}" />
-                            </NavigationViewItem.Icon>
-                        </NavigationViewItem>
-                    </DataTemplate>
-                </selectors:MenuItemTemplateSelector.ItemTemplate>
-            </selectors:MenuItemTemplateSelector>
-        </NavigationView.MenuItemTemplateSelector>-->
-        <NavigationView.MenuItems>
-            <NavigationViewItem Icon="Globe" Content="Select browser" Tag="BrowserProfileSelection" />
-        </NavigationView.MenuItems>
-        <NavigationView.FooterMenuItems>
-            <NavigationViewItem Content="Settings" Tag="Settings">
-                <NavigationViewItem.Icon>
-                    <AnimatedIcon x:Name='AnimatedIcon'>
-                        <AnimatedIcon.Source>
-                            <animatedvisuals:AnimatedSettingsVisualSource/>
-                        </AnimatedIcon.Source>
-                        <AnimatedIcon.FallbackIconSource>
-                            <SymbolIconSource Symbol="Setting"/>
-                        </AnimatedIcon.FallbackIconSource>
-                    </AnimatedIcon>
-                </NavigationViewItem.Icon>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            </NavigationViewItem>
-        </NavigationView.FooterMenuItems>
-        <ScrollViewer>
-            <Frame x:Name="ContentFrameInternal" Margin="58 12 58 58"/>
-        </ScrollViewer>
-    </NavigationView>
-</UserControl>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowActivationStates">
+                <VisualState x:Name="Activated" />
+                <VisualState x:Name="Deactivated">
+                    <VisualState.Setters>
+                        <Setter Target="AppTitle.Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Border x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Stretch" Margin="48,0,0,0">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Height="48">
+                <Image Width="18" Source="ms-appx:///Assets/TitlebarLogo.png" />
+                <TextBlock x:Name="AppTitle" Text="Burls" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12,0,0,0" />
+            </StackPanel>
+        </Border>
+
+        <NavigationView Grid.Column="1" Grid.Row="1" IsTitleBarAutoPaddingEnabled="True" IsBackButtonVisible="Collapsed" IsPaneOpen="False" x:Name="MainNavigationInternal" SelectionChanged="MainNavigation_SelectionChanged" IsSettingsVisible="False" Header="{x:Bind CurrentPage.Title, Mode=OneWay}">
+            <!--<NavigationView.MenuItemTemplateSelector>
+                <selectors:MenuItemTemplateSelector>
+                    <selectors:MenuItemTemplateSelector.ItemTemplate>
+                        <DataTemplate >
+                            <NavigationViewItem Content="{x:Bind Name}" TooltipService.ToolTip="{x:Bind Tooltip}">
+                                <NavigationViewItem.Icon>
+                                    <SymbolIcon Symbol="{x:Bind Glyph}" />
+                                </NavigationViewItem.Icon>
+                            </NavigationViewItem>
+                        </DataTemplate>
+                    </selectors:MenuItemTemplateSelector.ItemTemplate>
+                </selectors:MenuItemTemplateSelector>
+            </NavigationView.MenuItemTemplateSelector>-->
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Globe" Content="Select browser" Tag="BrowserProfileSelection" />
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Settings" Tag="Settings">
+                    <NavigationViewItem.Icon>
+                        <AnimatedIcon x:Name='AnimatedIcon'>
+                            <AnimatedIcon.Source>
+                                <animatedvisuals:AnimatedSettingsVisualSource/>
+                            </AnimatedIcon.Source>
+                            <AnimatedIcon.FallbackIconSource>
+                                <SymbolIconSource Symbol="Setting"/>
+                            </AnimatedIcon.FallbackIconSource>
+                        </AnimatedIcon>
+                    </NavigationViewItem.Icon>
+
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
+            <ScrollViewer>
+                <Frame x:Name="ContentFrameInternal" Margin="58 12 58 58"/>
+            </ScrollViewer>
+        </NavigationView>
+    </Grid>
+
+</Page>

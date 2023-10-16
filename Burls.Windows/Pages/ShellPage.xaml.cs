@@ -22,11 +22,12 @@ using Windows.Foundation.Collections;
 
 namespace Burls.Windows.Pages
 {
-    public sealed partial class ShellPage : UserControl, INotifyPropertyChanged
+    public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
         private readonly IApplicationService _applicationService;
 
+        public Border TitleBar => AppTitleBar;
         public Frame ContentFrame => ContentFrameInternal;
         public NavigationView MainNavigation => MainNavigationInternal;
         public IBurlsPage CurrentPage => ContentFrame.Content as IBurlsPage;

@@ -47,6 +47,9 @@ namespace Burls.Windows
             Activated += MainWindow_Activated;
 
             SetWindowDetails(1180, 860);
+
+            ExtendsContentIntoTitleBar = true;
+            SetTitleBar(_shellPage.TitleBar);
         }
 
         private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
